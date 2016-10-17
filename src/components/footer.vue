@@ -1,0 +1,30 @@
+<template>
+  <div class="weui_navbar daohangs">
+    <a href="javascript:void(0);" class="weui_navbar_item weui_bar_item_on">
+      <p class="kimg dhshouyeicon"></p>
+      <p>首页</p>
+    </a>
+    <a href="javascript:void(0);" class="weui_navbar_item ">
+      <p class="kimg dhfenleiicon"></p>
+      <p>分类</p>
+    </a>
+    <a href="javascript:void(0);" class="weui_navbar_item">
+      <p class="kimg faxxx"></p>
+      <p style="z-index:99999; position:absolute;left:0px;right:0px;">发现</p>
+      <div style="position:absolute;bottom:0px;left:0px;right:0px;">
+        <p class="faxxxicon"></p>
+        <div style="position:absolute;bottom:0px;left:0px;right:0px; z-index:-1">
+          <p style=" height:5.5em; text-align:center; margin:0 auto;background-color:#fff; border-radius:100%; border:1px solid #eee">
+          </p> </div>
+      </div>
+    </a>
+    <a href="javascript:void(0);" class="weui_navbar_item">
+      <p class="kimg dhgouwucheicon"></p>
+      <p>购物车</p>
+    </a>
+    <a href="javascript:void(0);" class="weui_navbar_item">
+      <p class="kimg dhzhongxinicon"></p>
+      <p> 我的</p>
+    </a>
+  </div>
+</template>
