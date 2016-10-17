@@ -1,12 +1,12 @@
 <!--suppress ALL -->
 <template>
-  <div id="app">
+  <div id="app"  :class="getBackClass">
     <div class="main">
       <!--router-->
       <router-view></router-view>
       <div style="height: 60px"></div>
     </div>
-    <cfooter></cfooter>
+    <cfooter v-if="isFooter"></cfooter>
     <cloading v-show='getLoading'></cloading>
   </div>
 </template>
@@ -24,7 +24,9 @@
       cloading
     },
     computed: mapGetters([
-      'getLoading'
+      'getLoading',
+      'isFooter',
+      'getBackClass'
     ]),
     methods: mapActions([
       'updateLoading'

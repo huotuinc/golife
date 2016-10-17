@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div id="full" class="weui-popup-container " style="z-index:9999">
+    <div id="full" :class="'weui-popup-container '+edit.open" style="z-index:9999">
       <div class="weui-popup-overlay">
       </div>
       <div class="weui-popup-modal v">
         <aside class="cmnt_wrap">
           <div class="cmnt_tp">
         <span class="fl">
-            <a href="javascript:void(0);" class="cmnt_cancel close-popup" id="j_cmnt_cancel" data-sudaclick="article_new_cms_send_cancel">取消</a>
+            <a href="javascript:void(0);" class="cmnt_cancel close-popup" v-on:click="close" data-sudaclick="article_new_cms_send_cancel">取消</a>
             </span><span class="fr">
             <a href="javascript:void(0);" class="cmnt_smt" id="j_cmnt_smt" data-sudaclick="article_new_cms_send_cmnt">发送</a>
             </span>
@@ -31,12 +31,12 @@
         <a href="javascript:;"><span class="icon"></span>收藏</a>
       </div>
       <div class="go-store">
-        <a href="geren-index9.html"><span class="icon" style="position:relative">
+        <router-link to="/circle/commentList/id"><span class="icon" style="position:relative">
     <i style="display:block;" class="plmus">99</i>
-    </span>评论</a>
+    </span>评论</router-link>
       </div>
-      <div class="add-to-cart yuanjiaoo "  >
-        <a class="open-popup" href="javascript:;" data-target="#full" style="display:block"> 编辑回复</a>
+      <div class="add-to-cart yuanjiaoo">
+        <a class="open-popup" href="javascript:;" v-on:click="openMessage" data-target="#full" style="display:block"> 编辑回复</a>
       </div>
     </div>
     <div class="fenmianmian-img">
@@ -91,8 +91,6 @@
     </div>
     <!--富文布end-->
 
-
-
     <!--标签热词-->
     <div style="padding:10px 15px 10px 15px;color:#999;">
       <div class="rechi">
@@ -103,7 +101,6 @@
       <p style="clear:both"></p>
     </div>
     <!---->
-
 
     <!--举报、点赞-->
     <div style="padding:10px 15px 10px 15px;color:#999;">
@@ -300,9 +297,32 @@
       </div>
     </div>
     <!--end-->
-    <p style="height:60px"></p>
   </div>
 </template>
+<script>
+  import store from '../../vuex/store';
+  export default {
+    data () {
+      return {
+        edit:{
+          open:'',
+        }
+      }
+    },
+    created () {
+      this.$store.dispatch("updateFooter",false);
+      this.$store.dispatch("updateBackClass",'');
+    },
+    methods:{
+      openMessage:function () {
+        this.edit.open="weui-popup-container-visible"
+      },
+      close:function () {
+        this.edit.open=""
+      }
+    },
+  }
+</script>
 <style>
   @import "../../../static/css/cmnt.min.css";
   @import "../../../static/css/online-min.css";

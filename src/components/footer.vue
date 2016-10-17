@@ -1,6 +1,6 @@
 <template>
   <div class="weui_navbar daohangs">
-    <a href="javascript:void(0);" class="weui_navbar_item weui_bar_item_on">
+    <a href="javascript:void(0);" class="weui_navbar_item">
       <p class="kimg dhshouyeicon"></p>
       <p>首页</p>
     </a>
@@ -8,7 +8,7 @@
       <p class="kimg dhfenleiicon"></p>
       <p>分类</p>
     </a>
-    <a href="javascript:void(0);" class="weui_navbar_item">
+    <a href="javascript:void(0);" class="weui_navbar_item weui_bar_item_on">
       <p class="kimg faxxx"></p>
       <p style="z-index:99999; position:absolute;left:0px;right:0px;">发现</p>
       <div style="position:absolute;bottom:0px;left:0px;right:0px;">
