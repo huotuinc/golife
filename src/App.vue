@@ -1,10 +1,10 @@
 <!--suppress ALL -->
 <template>
   <div id="app"  :class="getBackClass">
-    <div class="main">
+    <div class="main app-content">
       <!--router-->
-      <router-view></router-view>
-      <div style="height: 60px"></div>
+      <router-view  transition="cover" keep-alive></router-view>
+      <div style="height: 60px" v-if="isFooter"></div>
     </div>
     <cfooter v-if="isFooter"></cfooter>
     <cloading v-show='getLoading'></cloading>
@@ -39,4 +39,5 @@
 </script>
 <style>
   @import "../static/css/weui.min-gggeren-diy.css";
+  @import "../static/css/basic.css";
 </style>

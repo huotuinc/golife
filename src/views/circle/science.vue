@@ -39,7 +39,7 @@
               <p class="cont-zhbox-a"><b>养生科普一</b></p>
               <p class="cont-zhbox-img"></p>
               <p class="cont-zhbox-nav">瑞银在周二发布的一份报告中研究了部分国家的房地产市场，发现2011年来，有泡沫风险的地区房价上涨了几乎50%。瑞银认为，温哥华的房价在2008年的金融危机中没有受到影响，大宗商品走弱的背景下反而还在持续上涨。</p>
-            </a>
+            </router-link>
 
 
             <div class="zhbox">

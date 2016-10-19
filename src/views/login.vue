@@ -54,6 +54,6 @@
     },
   }
 </script>
-<style>
+<style scoped>
   @import "/static/css/weui.min-rsgghot-diy.css";
 </style>

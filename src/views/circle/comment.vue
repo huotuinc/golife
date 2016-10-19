@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="full" class="weui-popup-container " style="z-index:9999">
+    <div id="full" class="weui-popup-container" v-bind:class="{'weui-popup-container-visible':open}" style="z-index:9999">
       <div class="weui-popup-overlay"></div>
       <div class="weui-popup-modal v">
         <aside class="cmnt_wrap">
@@ -304,9 +304,7 @@
   export default {
     data () {
       return {
-        edit:{
-          open:'',
-        }
+        open:false,
       }
     },
     created () {
@@ -315,11 +313,16 @@
     },
     methods:{
       openMessage:function () {
-        this.edit.open="weui-popup-container-visible"
+        this.open=true
       },
       close:function () {
-        this.edit.open=""
+        this.open=false
       }
     },
   }
 </script>
+<style scoped>
+  @import "../../../static/css/weui.min-gggeren-diy.css";
+  @import "../../../static/css/cmnt.min.css";
+  @import "../../../static/css/online-min.css";
+</style>

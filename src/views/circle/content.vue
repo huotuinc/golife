@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div id="full" :class="'weui-popup-container '+edit.open" style="z-index:9999">
+    <div class="weui-popup-container" v-bind:class="{'weui-popup-container-visible':open}" style="z-index:9999">
       <div class="weui-popup-overlay">
       </div>
       <div class="weui-popup-modal v">
         <aside class="cmnt_wrap">
           <div class="cmnt_tp">
         <span class="fl">
-            <a href="javascript:void(0);" class="cmnt_cancel close-popup" v-on:click="close" data-sudaclick="article_new_cms_send_cancel">取消</a>
+            <a href="javascript:void(0);" class="cmnt_cancel close-popup" v-on:click="closeMessage">取消</a>
             </span><span class="fr">
-            <a href="javascript:void(0);" class="cmnt_smt" id="j_cmnt_smt" data-sudaclick="article_new_cms_send_cmnt">发送</a>
+            <a href="javascript:void(0);" class="cmnt_smt" data-sudaclick="article_new_cms_send_cmnt">发送</a>
             </span>
           </div>
           <div class="cmnt_login">
@@ -36,7 +36,7 @@
     </span>评论</router-link>
       </div>
       <div class="add-to-cart yuanjiaoo">
-        <a class="open-popup" href="javascript:;" v-on:click="openMessage" data-target="#full" style="display:block"> 编辑回复</a>
+        <a class="open-popup" href="javascript:;" v-on:click="openMessage" style="display:block"> 编辑回复</a>
       </div>
     </div>
     <div class="fenmianmian-img">
@@ -47,13 +47,13 @@
     </div>
     <div class="cont-zhbox-t diydz diyi">
       <div class="zhbox">
-        <div class="zh-tx">
+        <router-link to="/admin/100" class="zh-tx">
           <img src="/static/images/j2.jpg">
-        </div>
+        </router-link>
         <div class="zh-wz">
-          <div class="zh-wz-x">
+          <router-link to="/admin/100" class="zh-wz-x">
             <p class="zh-wz-name">小明</p>
-          </div>
+          </router-link>
           <div class="njk">
             <a href="javascript:;" id="show-toast-zan" class="weui_btn weui_btn_mini weui_btn_default">关注</a>
           </div>
@@ -150,9 +150,9 @@
         <div class="weui_panel_hd">相关专家</div>
         <div class="weui_panel_bd">
           <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
-            <div class="weui_media_hd zjtouxiang">
+            <router-link to="/admin/100" class="weui_media_hd zjtouxiang">
               <img class="weui_media_appmsg_thumb" src="/static/images/imgsss.png" alt="">
-            </div>
+            </router-link>
             <div class="weui_media_bd">
               <h4 class="weui_media_title">小明</h4>
               <p class="weui_media_desc">运用辨体-辨病-辨证相结合诊治疑难杂病：失眠、偏头痛、抑郁、高血压、心律失常、脂肪肝、肥胖、消瘦、糖尿病、高脂血、痛风、中风、肾功能不全、便秘、口腔溃疡、结肠炎、咳嗽、痤疮、湿疹、异位性皮炎、紫癜、月经不调、痛经等。2.男科病如性功能障碍、男性不育、前列腺炎、前列腺增生症等。3.过敏性疾病如鼻炎、哮喘、荨麻疹、花粉症及药物过敏等。4.九种体质的辨识与调治等疗效显著</p>
@@ -304,21 +304,22 @@
   export default {
     data () {
       return {
-        edit:{
-          open:'',
-        }
+        open:false
       }
     },
     created () {
       this.$store.dispatch("updateFooter",false);
       this.$store.dispatch("updateBackClass",'');
+//      this.$nextTick(() => {
+//        require("../../../static/js/jquery-weui")
+//      })
     },
     methods:{
       openMessage:function () {
-        this.edit.open="weui-popup-container-visible"
+        this.open=true
       },
-      close:function () {
-        this.edit.open=""
+      closeMessage:function () {
+        this.open=false
       }
     },
   }

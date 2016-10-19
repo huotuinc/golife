@@ -13,11 +13,16 @@
   import circleHeader from '../../components/circle/header'
   import circleSearch from '../../components/circle/search'
   export default {
+    data() {
+      return {
+        decline: false,
+      }
+    },
     components: {
       circleHeader,
       circleBanner,
       circleGroup,
       circleSearch
-    },
+    }
   }
 </script>

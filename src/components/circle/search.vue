@@ -1,5 +1,5 @@
 <template>
   <div class="fudongs">
-    <a href="#"><img src="/static/images/bjss.png"></a>
+    <router-link to="/search"><img src="/static/images/bjss.png"></router-link>
   </div>
 </template>

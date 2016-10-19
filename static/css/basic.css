@@ -1,0 +1,42 @@
+.app-content ._full_inner {
+  z-index: 2;
+}
+._effect {
+  opacity: 1;
+  transition: all .3s ease;
+}
+._full_inner {
+  position: relative;
+  height: 100%;
+  z-index: 5;
+}
+.app-content ._full_inner {
+  z-index: 2;
+}
+._effect--30 {
+  transform: translate3d(-30%,0,0);
+}
+._effect {
+  opacity: 1;
+  transition: all .3s ease;
+}
+._full_inner {
+  position: relative;
+  height: 100%;
+  z-index: 5;
+}
+._full_router {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.cover-transition {
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+.component-contact {
+  background: #f1f0f6;
+  overflow: auto;
+}

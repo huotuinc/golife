@@ -14,12 +14,12 @@
     </div>
     <div>
       <div class="weui_cells weui_cells_access" style="margin-top:0px; font-size:14px">
-        <a class="weui_cell" href="geren-index10.html">
+        <router-link class="weui_cell" to="/circle/groupAll">
           <div class="weui_cell_bd weui_cell_primary">
             <p>热门推荐</p>
           </div>
           <div class="weui_cell_ft" style="font-size:12px">18个</div>
-        </a>
+        </router-link>
       </div>
       <div class="custom-switch" style="padding:0px 0px; background-color:#fff; overflow:hidden">
         <div class="switch_slider" id="loopImgDiv" style="padding-bottom: 0px; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; padding-right: 0px; background: #fff;">
@@ -28,14 +28,14 @@
               <div id="wrapperPanel" class="swiper-wrapper" style="height: auto;">
                 <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
                 <div class="swiper-slide" v-for="item in hot" style="width: auto;">
-                  <a href="geren-index3.html">
+                  <router-link to="/circle/groupList/10">
                     <div class="xjcma">
                       <span class="bn">{{item.title}}</span>
                       <span class="bna">{{item.num}}人已关注</span>
                       <div class="masksd"></div>
                       <img  src="/static/images/a1.jpg" style="width:100%; "/>
                     </div>
-                  </a>
+                  </router-link>
                 </div>
               </div>
             </div>
