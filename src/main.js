@@ -11,7 +11,11 @@ Vue.use(VueRouter)
 
 // Vue.use(VueResource)
 const router = new VueRouter({
-  routes:routers.routes
+  routes:routers.routes,
+  scrollBehavior (to, from, savedPosition) {
+    window.console.log('========scroll=======')
+    return { x: 0, y: 0 }
+  }
 })
 router.beforeEach((to, from, next) => {
   store.dispatch("updateFooter",true);

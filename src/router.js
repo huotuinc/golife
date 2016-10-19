@@ -62,27 +62,19 @@ export const routes = [
   {
     path: '/userCenter/index',
     name: 'userCenterIndex',
-    component: resolve => require(['./views/userCenter/index'], resolve)
-  },
-  {
-    path: '/userCenter/message',
-    name: 'userCenterMessage',
-    component: resolve => require(['./views/userCenter/message'], resolve)
-  },
-  {
-    path: '/userCenter/fans/persons',
-    name: 'userCenterFansPerson',
-    component: resolve => require(['./views/userCenter/fans/persons'], resolve)
-  },
-  {
-    path: '/userCenter/fans/attention',
-    name: 'userCenterFansAttention',
-    component: resolve => require(['./views/userCenter/fans/attention'], resolve)
-  },
-  {
-    path: '/userCenter/fans/index',
-    name: 'userCenterFansIndex',
-    component: resolve => require(['./views/userCenter/fans/index'], resolve)
+    component: resolve => require(['./views/userCenter/index'], resolve),
+    children: [
+      {
+        path: '/userCenter/message',
+        name: 'userCenterMessage',
+        component: resolve => require(['./views/userCenter/message'], resolve)
+      },
+      {
+        path: '/userCenter/fans/:tab',
+        name: 'userCenterFansIndex',
+        component: resolve => require(['./views/userCenter/fans/index'], resolve)
+      },
+    ]
   },
   {
     path: '/admin/:userId',

@@ -40,4 +40,11 @@
 <style>
   @import "../static/css/weui.min-gggeren-diy.css";
   @import "../static/css/basic.css";
+  .fade-enter-active, .fade-leave-active {
+    opacity: 1;
+    transition: opacity .35s ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
 </style>

@@ -1,157 +1,76 @@
 <template>
-  <div>
-    <fansHeader></fansHeader>
-    <div class="my-attention">
-      <!--占位高度-->
-      <p style="height:42px"></p>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft wgz"--><!--未关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft wgz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--图文组合列表-->
-      <div class="weui_panel weui_panel_access">
-        <div class="weui_panel_bd">
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz"--><!--已关注状态-->
-          <!-- class="weui_media_box weui_media_appmsg weui_panel_ft ygz hxgz"--><!--互相关注状态-->
-          <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg weui_panel_ft wgz">
-            <div class="weui_media_hd">
-              <img class="weui_media_appmsg_thumb" src="/static/images/hot/moren.png" alt="">
-            </div>
-            <div class="weui_media_box weui_media_text">
-              <h4 class="weui_media_title">昵称</h4>
-              <ul class="weui_media_info">
-                <li class="weui_media_info_meta">发帖数&nbsp;&nbsp;321</li>
-                <li class="weui_media_info_meta weui_media_info_meta_extra">粉丝数&nbsp;&nbsp;3271万</li>
-              </ul>
-            </div>
-          </a>
-        </div>
-      </div>
+  <div class="_full_router _effect component-find">
+    <div class="_full_inner">
+      <fansHeader  v-on:changeTab="changeTab" ></fansHeader>
+      <fansAttention v-show="fans.isAttention" :active="fans.tab"></fansAttention>
+      <fansFans  v-show="fans.isFans" :active="fans.tab"></fansFans>
+      <fansPerson v-show="fans.isPerson" :active="fans.tab"></fansPerson>
     </div>
+      <!-- router -->
+    <!--<transition name="fade">-->
+      <!--<keep-alive>-->
+        <!--<router-view  v-on:update-decline="update" class="cover-transition"></router-view>-->
+      <!--</keep-alive>-->
+    <!--</transition>-->
   </div>
 </template>
 <script>
   import store from '../../../vuex/store'
   import fansHeader from '../../../components/fans/header'
+  import fansAttention from '../../../components/fans/attention'
+  import fansFans from '../../../components/fans/fans'
+  import fansPerson from '../../../components/fans/persons'
   export default {
+    data() {
+      return {
+        decline: false,
+        fans:{
+          isAttention:false,
+          isFans:false,
+          isPerson:false,
+          tab:''
+        }
+      }
+    },
+    methods: {
+      changeTab:function (tab) {
+        this.fans.isAttention=tab=='attention'
+        this.fans.isFans=tab=='index'
+        this.fans.isPerson=tab=='person'
+        this.fans.tab=tab
+      }
+    },
     components: {
-      fansHeader
+      fansHeader,
+      fansAttention,
+      fansFans,
+      fansPerson
     },
     created() {
       this.$store.dispatch("updateFooter",false);
-    }
+    },
+    activated() {
+      this.$store.dispatch("updateFooter",false);
+      let tab=this.$route.params.tab
+      window.console.log(this.$route.params.tab)
+      this.fans.isAttention=tab=='attention'
+      this.fans.isFans=tab=='index'
+      this.fans.isPerson=tab=='person'
+      this.fans.tab=tab;
+      this.$emit('update-decline', true)
+    },
+    deactivated() {
+      this.$emit('update-decline', false)
+    },
   }
 </script>
 <style scoped>
   @import "/static/css/weui.min-rsgghot-diy.css";
+  .fade-enter-active, .fade-leave-active {
+    opacity: 1;
+    transition: opacity .35s ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
 </style>
