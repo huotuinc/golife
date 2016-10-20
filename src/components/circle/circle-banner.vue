@@ -29,7 +29,7 @@
                 <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
                 <div class="swiper-slide" v-for="item in hot" style="width: auto;">
                   <router-link to="/circle/groupList/10">
-                    <div class="xjcma">
+                    <div class="custom-image-mask">
                       <span class="bn">{{item.title}}</span>
                       <span class="bna">{{item.num}}人已关注</span>
                       <div class="masksd"></div>
@@ -69,9 +69,39 @@
     },
     created () {
       let $this=this;
-      this.getHot().then((json) => {
-        this.bannerData=json.resultData.slideList;
-        this.hot=json.resultData.suggestList;
+
+      let slideList=[{},{},{}]
+      let suggestList=[
+        {
+          title:'测试',
+          num:200
+        },
+        {
+          title:'测试',
+          num:200
+        },
+        {
+          title:'测试',
+          num:200
+        },
+        {
+          title:'测试',
+          num:200
+        },
+        {
+          title:'测试',
+          num:200
+        },
+        {
+          title:'测试',
+          num:200
+        }
+      ]
+      this.bannerData=slideList
+      this.hot=suggestList
+//      this.getHot().then((json) => {
+//        this.bannerData=json.resultData.slideList;
+//        this.hot=json.resultData.suggestList;
         $this.$nextTick(() => {
           this.loading=false;
           this.isShowImage=false;
@@ -91,11 +121,11 @@
             }
           });
         })
-      }).catch((error) => {
-        this.loading=true;
-        this.isShowImage=false;
-        this.message="网络异常"
-      });
+//      }).catch((error) => {
+//        this.loading=true;
+//        this.isShowImage=false;
+//        this.message="网络异常"
+//      });
     },
   }
 </script>

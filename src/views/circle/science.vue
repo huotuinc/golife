@@ -1,9 +1,8 @@
 <template>
-  <div class="wihtab">
+  <div class="wihtab _full">
     <circleSearch></circleSearch>
-    <div class="weui_tab">
-      <circle-header></circle-header>
-      <div class="weui_tab_bd" style="padding-bottom:0px">
+    <circle-header></circle-header>
+    <div class="weui_tab_bd" style="padding-bottom:0px">
         <div class="cont-zhbox">
           <div class="cont-zhbox-t">
             <router-link to="/circle/content/10" class="bz" >
@@ -64,7 +63,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>

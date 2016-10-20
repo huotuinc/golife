@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="_full  app-content-color-white">
     <div id="full" class="weui-popup-container" v-bind:class="{'weui-popup-container-visible':open}" style="z-index:9999">
       <div class="weui-popup-overlay"></div>
       <div class="weui-popup-modal v">
@@ -300,7 +300,7 @@
   </div>
 </template>
 <script>
-  import store from '../../vuex/store';
+  import store from '../../../vuex/store';
   export default {
     data () {
       return {
@@ -322,7 +322,7 @@
   }
 </script>
 <style scoped>
-  @import "../../../static/css/weui.min-gggeren-diy.css";
-  @import "../../../static/css/cmnt.min.css";
-  @import "../../../static/css/online-min.css";
+  @import "../../../../static/css/weui.min-gggeren-diy.css";
+  @import "../../../../static/css/cmnt.min.css";
+  @import "../../../../static/css/online-min.css";
 </style>

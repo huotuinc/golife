@@ -1,10 +1,19 @@
 <!--suppress ALL -->
 <template>
   <div>
-    <circleSearch></circleSearch>
-    <circleHeader></circleHeader>
-    <circleBanner></circleBanner>
-    <circleGroup></circleGroup>
+    <div class="_full_inner _effect" :class="{'_effect--30':decline}">
+      <div class="fonthui">
+        <circleHeader></circleHeader>
+        <circleSearch></circleSearch>
+        <circleBanner></circleBanner>
+        <circleGroup></circleGroup>
+      </div>
+    </div>
+    <transition name="fade">
+      <keep-alive>
+        <router-view  v-on:update-decline="update" class="cover-transition"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 <script>
@@ -18,6 +27,11 @@
         decline: false,
       }
     },
+    methods:{
+      update:function (_decline) {
+        this.decline=_decline
+      }
+    },
     components: {
       circleHeader,
       circleBanner,
@@ -26,3 +40,12 @@
     }
   }
 </script>
+<style scoped>
+  .fade-enter-active, .fade-leave-active {
+    opacity: 1;
+    transition: opacity .35s ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
+</style>

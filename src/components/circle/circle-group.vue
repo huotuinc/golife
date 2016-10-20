@@ -40,7 +40,7 @@
             <div class="weui_cell_bd weui_cell_primary">
               <p class="cont-zhbox-a sm">{{list.name}}</p>
               <div class="zhbox mtt">
-                <router-link to="/circle/content/10"   class="zh-wz-time">
+                <router-link to="/circle/content/10" class="zh-wz-time">
                   <span style="float:left">{{list.userName}}</span>
                   <span style="float:right">回复{{list.commentsAmount}}</span>
                   <span style="float:right; margin-right:10px">浏览{{list.viewAmount}}</span>

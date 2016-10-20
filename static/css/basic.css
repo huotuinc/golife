@@ -1,4 +1,5 @@
 .app-content {
+  padding: 0px 0px 50px 0px;
   overflow: hidden;
   position: relative;
   height: 100%;
@@ -19,6 +20,8 @@
 
 ._effect--30 {
   transform: translate3d(-30%,0,0);
+  overflow: hidden;
+  height: 100%;
 }
 ._effect {
   opacity: 1;
@@ -41,7 +44,41 @@
   opacity: 1;
   transition: opacity .35s ease;
 }
-.component-contact {
-  background: #f1f0f6;
+/*.component-contact {*/
+  /*background: #f1f0f6;*/
+  /*overflow: auto;*/
+/*}*/
+
+/*.component-scoller {*/
+  /*!*overflow: auto;*!*/
+  /*user-select: none;*/
+  /*-webkit-user-select: none;*/
+  /*padding: 1px 0 50px;*/
+  /*!*box-sizing: border-box;*!*/
+/*}*/
+._full {
+   width: 100%;
+   height: 100%;
+}
+#app, body, html {
+  height: 100%;
+  overflow: hidden;
+}
+.app-scroll{
+  position: relative;
+  height: 100%;
   overflow: auto;
+  box-sizing: border-box;
+  /*overflow: hidden;*/
+}
+/*.weui_tab {*/
+  /*position: relative;*/
+  /*height: auto;*/
+/*}*/
+
+.app-content-box-sizing{
+  box-sizing: border-box;
+}
+.app-content-color-white{
+  background:#FFFFFF;
 }

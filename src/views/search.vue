@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="_full component-scoller">
     <div class="weui_search_bar" id="search_bar">
       <form class="weui_search_outer">
         <div class="weui_search_inner">

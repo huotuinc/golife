@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="_full">
     <div class="help-tipgg on">
       <p class="liuliu">
         <a href="#">举报</a>
@@ -88,3 +88,11 @@
     <!--end-->
   </div>
 </template>
+<script>
+  import store from '../../vuex/store'
+  export default {
+    created() {
+      this.$store.dispatch("updateFooter",false);
+    }
+  }
+</script>

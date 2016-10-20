@@ -3,16 +3,35 @@
  * Description : 路由列表
  */
 
-export const routes = [
+
+export const  circleRouter=[
   {
-    path: '/',
-    name: 'circleIndex',
-    component: resolve => require(['./views/circle/index'], resolve)
+    path: '/circle/groupAll',
+    name: 'circleGroupCommented',
+    component: resolve => require(['./views/circle/group/groupRecommend'], resolve)
   },
+  {
+    path: '/circle/groupList/:id',
+    name: 'login',
+    component: resolve => require(['./views/circle/group/groupList'], resolve)
+  },
+  {
+    path: '/circle/content/:id',
+    name: 'circleContent',
+    component: resolve => require(['./views/circle/content/content'], resolve)
+  },
+  {
+    path: '/circle/commentList/:id',
+    name: 'circleCommentList',
+    component: resolve => require(['./views/circle/content/comment'], resolve)
+  },
+]
+export const routes = [
   {
     path: '/circle/index',
     name: 'circleIndex',
-    component: resolve => require(['./views/circle/index'], resolve)
+    component: resolve => require(['./views/circle/index'], resolve),
+    children: circleRouter
   },
   {
     path: '/circle/attention',
@@ -28,26 +47,6 @@ export const routes = [
     path: '/circle/hot',
     name: 'circleHot',
     component: resolve => require(['./views/circle/hot'], resolve)
-  },
-  {
-    path: '/circle/content/:id',
-    name: 'circleContent',
-    component: resolve => require(['./views/circle/content'], resolve)
-  },
-  {
-    path: '/circle/commentList/:id',
-    name: 'circleCommentList',
-    component: resolve => require(['./views/circle/comment'], resolve)
-  },
-  {
-    path: '/circle/groupList/:id',
-    name: 'login',
-    component: resolve => require(['./views/circle/groupList'], resolve)
-  },
-  {
-    path: '/circle/groupAll',
-    name: 'circleGroupCommented',
-    component: resolve => require(['./views/circle/groupRecommend'], resolve)
   },
   {
     path: '/login',

@@ -1,29 +1,31 @@
 <template>
-  <div class="_full_router _effect component-find">
+  <div class="_full_router _effect">
     <div class="_full_inner">
-      <fansHeader  v-on:changeTab="changeTab" ></fansHeader>
-      <fansAttention v-show="fans.isAttention" :active="fans.tab"></fansAttention>
-      <fansFans  v-show="fans.isFans" :active="fans.tab"></fansFans>
-      <fansPerson v-show="fans.isPerson" :active="fans.tab"></fansPerson>
+      <div class="wihtab ">
+        <div class="weui_tab">
+          <div class="weui_navbar" style="position: fixed; top:0px; z-index:999">
+            <a href="javascript:void(0)" v-on:click="changeTab('person')" class="weui_navbar_item" :class="{'weui_bar_item_on':fans.isPerson}"> 推荐关注 </a><!--未选中样式-->
+            <a href="javascript:void(0)" v-on:click="changeTab('attention')" class="weui_navbar_item" :class="{'weui_bar_item_on':fans.isAttention}"> 我的关注 </a><!--选中样式-->
+            <a href="javascript:void(0)" v-on:click="changeTab('index')" class="weui_navbar_item" :class="{'weui_bar_item_on':fans.isFans}">粉丝 </a>
+          </div>
+          <!--占位高度-->
+          <p style="height:42px"></p>
+        </div>
+      </div>
+      <fansAttention v-if="fans.isAttention" :active="fans.tab"></fansAttention>
+      <fansFans  v-if="fans.isFans" :active="fans.tab"></fansFans>
+      <fansPerson v-if="fans.isPerson" :active="fans.tab"></fansPerson>
     </div>
-      <!-- router -->
-    <!--<transition name="fade">-->
-      <!--<keep-alive>-->
-        <!--<router-view  v-on:update-decline="update" class="cover-transition"></router-view>-->
-      <!--</keep-alive>-->
-    <!--</transition>-->
   </div>
 </template>
 <script>
   import store from '../../../vuex/store'
-  import fansHeader from '../../../components/fans/header'
   import fansAttention from '../../../components/fans/attention'
   import fansFans from '../../../components/fans/fans'
   import fansPerson from '../../../components/fans/persons'
   export default {
     data() {
       return {
-        decline: false,
         fans:{
           isAttention:false,
           isFans:false,
@@ -41,18 +43,13 @@
       }
     },
     components: {
-      fansHeader,
       fansAttention,
       fansFans,
       fansPerson
     },
-    created() {
-      this.$store.dispatch("updateFooter",false);
-    },
     activated() {
       this.$store.dispatch("updateFooter",false);
       let tab=this.$route.params.tab
-      window.console.log(this.$route.params.tab)
       this.fans.isAttention=tab=='attention'
       this.fans.isFans=tab=='index'
       this.fans.isPerson=tab=='person'

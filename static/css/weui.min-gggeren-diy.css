@@ -6,7 +6,7 @@ body {
 	background-color: #efeff4
 }
 /*20160816个人中心*/
- 
+
 .grs a {
 	display: block;
 	position: absolute;
@@ -497,7 +497,7 @@ ul.rating li.five a {
 .wihtab .weui_navbar {
 	background-color: #f9f9f9
 }
- 
+
 .wihtab .weui_navbar_item.weui_bar_item_on {
 	background-color: #fff;
 	color: #ff4b4b
@@ -515,10 +515,10 @@ ul.rating li.five a {
 	border: 1px solid #ddd;
 	border-radius: 6px
 }
- 
+
 .cont-zhbox-a {
 	line-height: 20px;
-	font-size: 16px;  
+	font-size: 16px;
 }
 .cont-zhbox-a.sm{font-size: 14px;line-height:16px;}
 .zhbox-zd {
@@ -651,19 +651,19 @@ ul.rating li.five a {
 
 
  /**/
-.xjcma{position:relative;text-align:center;line-height:0px; color:#fff;}
-.xjcma .bn{position:absolute; left:0px; right:0px;top:41%; font-size:14px; z-index:9999}
-.xjcma .bna{position:absolute;left:0px; right:0px;top:60%; color:#A2A2A2; font-size:0.6em; z-index:9999}
-.xjcma .masksd{background-color:rgba(0,0,0,0.6); width:100%; height:100%; position:absolute;}
+.custom-image-mask{position:relative;text-align:center;line-height:0px; color:#fff;}
+.custom-image-mask .bn{position:absolute; left:0px; right:0px;top:41%; font-size:14px; line-height: 0px; z-index:9999}
+.custom-image-mask .bna{position:absolute;left:0px; right:0px;top:60%; color:#A2A2A2; font-size:0.6em; z-index:9999}
+.custom-image-mask .masksd{background-color:rgba(0,0,0,0.6); width:100%; height:100%; position:absolute;}
 
 
 /**滑动组件**/
- 
+
 .hot-slider .hots-bar {
     line-height:42px;
     font-size:14px;
     border-bottom: 1px solid #fff;
-    z-index: 10000;    
+    z-index: 10000;
 }
 .hot-slider a{color: #666;}
 .hot-slider .hots-bar, .hot-slider .hots-wp {
@@ -756,7 +756,7 @@ ul.rating li.five a {
     overflow-y: hidden;
 }
 
- 
+
 .clearfix:after {
     display: hotle;
     clear: both;
@@ -950,7 +950,17 @@ ul.rating li.five a {
 /***滑动页面组件结束**/
 
 
-.fudongs{ width:20px; height:20px; padding:10px; background-color: rgba(0,0,0,0.7); border-radius:100px; position: fixed; bottom:78px; right:5%; z-index:99}
+.fudongs{
+  width:20px;
+  height:20px;
+  padding:10px;
+  background-color: rgba(0,0,0,0.7);
+  border-radius:100px;
+  position: fixed;
+  bottom:78px;
+  right:5%;
+  z-index:99
+}
 .fudongs img{ width:100%}
 
 .fgh .weui_media_box {
@@ -960,10 +970,10 @@ ul.rating li.five a {
 	width:40px;
     height:40px;
     line-height:40px; overflow:hidden}
-	
+
 .fgh .weui_media_box .weui_media_desc{font-size: 14px; color:#666;
     line-height: 1.2;}
-	
+
 .fgh 	.weui_media_box.weui_media_appmsg .weui_media_appmsg_thumb {
     width: 100%;
     /* max-height: 100%; */
@@ -1018,7 +1028,7 @@ line-height: 1.9;
     line-height: 34px;
     border-radius: 24px;}
 	.yuanjiaoo:nth-child(odd){margin-left:0px}
- 
+
 .item-action {
     width: 100%;
     display: -webkit-box;
@@ -1039,7 +1049,7 @@ line-height: 1.9;
 	width: 48px;
 	line-height: 19px;
 	border-right: 1px #eee solid;
-	 
+
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box
 }
@@ -1047,7 +1057,7 @@ line-height: 1.9;
 	width: 48px;
 	line-height: 19px;
 	border-right: 1px #eee solid;
-	 
+
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box
 }
@@ -1055,7 +1065,7 @@ line-height: 1.9;
     width: 48px;
     line-height: 19px;
     border-right: 1px #eee solid;
-    
+
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -1083,7 +1093,7 @@ line-height: 1.9;
     width: 48px;
     line-height: 19px;
     border-right: 1px #eee solid;
-    
+
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -1298,26 +1308,26 @@ textarea {
 .weui_navbar_item.weui_bar_item_on .dhshouyeicon{background-image:url(../images/iconfont-shouyed.png);}
 
 .dhfenleiicon{background-image:url(../images/iconfont-fenlei.png); width:23px; height:23px; background-size:23px 23px; background-position:center; background-repeat:no-repeat; text-align:center; margin:0 auto}
-.weui_navbar_item.weui_bar_item_on .dhfenleiicon{background-image:url(../images/iconfont-fenleid.png);} 
+.weui_navbar_item.weui_bar_item_on .dhfenleiicon{background-image:url(../images/iconfont-fenleid.png);}
 
 .dhgouwucheicon{background-image:url(../images/iconfont-gouwuche.png); width:23px; height:23px; background-size:23px 23px; background-position:center; background-repeat:no-repeat; text-align:center; margin:0 auto}
-.weui_navbar_item.weui_bar_item_on .dhgouwucheicon{background-image:url(../images/iconfont-gouwuched.png);} 
+.weui_navbar_item.weui_bar_item_on .dhgouwucheicon{background-image:url(../images/iconfont-gouwuched.png);}
 
 .dhzhongxinicon{background-image:url(../images/iconfont-gerenzhongxin.png); width:23px; height:23px; background-size:23px 23px; background-position:center; background-repeat:no-repeat; text-align:center; margin:0 auto}
-.weui_navbar_item.weui_bar_item_on .dhzhongxinicon{background-image:url(../images/iconfont-gerenzhongxind.png);} 
+.weui_navbar_item.weui_bar_item_on .dhzhongxinicon{background-image:url(../images/iconfont-gerenzhongxind.png);}
 
 
 
 .faxxx{background-image:url(../images/iconfont-fax_b.png); width:23px; height:23px; background-size:23px 23px; background-position:center; background-repeat:no-repeat; text-align:center; margin:0 auto}
 
 .faxxxicon{background-image:url(../images/iconfont-fax.png); width:40px; height:40px; background-size:40px 40px; background-position:center 6px; background-repeat:no-repeat; text-align:center; margin:0 auto;height:5.5em; text-align:center; margin:0 auto;}
-.weui_navbar_item.weui_bar_item_on .faxxxicon{background-image:url(../images/iconfont-faxx.png);} 
+.weui_navbar_item.weui_bar_item_on .faxxxicon{background-image:url(../images/iconfont-faxx.png);}
 
 
 .qbxiaozu{ }
 .qbxiaozu ul{ list-style-type:none}
 .qbxiaozu li{float:left; width:50%;}
-.qbxiaozu li .xjcma{ margin:2%; display:block}
+.qbxiaozu li .custom-image-mask{ margin:2%; display:block}
 .qbxiaozu .bn{    font-size:18px;top:44%}
 
 .plmus{position:absolute;right:-8px;top:0px;background-color:red; font-size:0.8em; line-height:0.8em; margin:0px; padding:2px; border-radius:6px; color:#fff; font-style:normal; min-width:0.8em}
@@ -1328,9 +1338,9 @@ textarea {
 .weui_media_hd.zjtouxiang img{ border-radius:100%}
 .weui_media_hd.zjtouxiangs img{ border-radius:2px; margin-top:4px}
 .weui_media_desc.hidd{        text-overflow:ellipsis;
-	white-space:nowrap; 
+	white-space:nowrap;
 	overflow:hidden;
-	display:inline-block; width:90%} 
+	display:inline-block; width:90%}
 
 .j.weui_media_box:before{ width:90%; }
 
@@ -1341,7 +1351,7 @@ textarea {
     height: 54px;
     line-height: 54px;
     text-align: center;MARGIN-TOP: 6PX;}
-	
+
 .weui_media_title.diytiel{font-size: 14px;
     line-height: 1.2;
     overflow: hidden;

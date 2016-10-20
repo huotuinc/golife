@@ -1,10 +1,9 @@
 <template>
-  <div class="wihtab">
+  <div class="wihtab _full">
     <circleSearch></circleSearch>
-    <div class="weui_tab">
-      <circle-header></circle-header>
-      <div class="weui_tab_bd" style="padding-bottom:0px">
-        <div class="cont-zhbox">
+    <circle-header></circle-header>
+    <div class="weui_tab_bd" style="padding-bottom:0px">
+      <div class="cont-zhbox">
           <div class="cont-zhbox-t">
             <a href="geren-index8.html" class="bz" >
               <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
@@ -35,8 +34,7 @@
           </div>
           <p style="text-align:center; font-size:12px; color:#ccc; margin-top:4px">2016-10-10 10:00</p>
         </div>
-
-        <div class="cont-zhbox">
+      <div class="cont-zhbox">
           <div class="cont-zhbox-t">
             <a href="geren-index8.html" class="bz" >
               <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
@@ -46,7 +44,6 @@
           </div>
           <p style="text-align:center; font-size:12px; color:#ccc; margin-top:4px">2016-10-10 10:00</p>
         </div>
-      </div>
     </div>
   </div>
 </template>
