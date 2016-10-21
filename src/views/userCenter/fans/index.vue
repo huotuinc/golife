@@ -1,7 +1,7 @@
 <template>
   <div class="_full_router _effect">
     <div class="_full_inner">
-      <div class="wihtab ">
+      <div class="wihtab">
         <div class="weui_tab">
           <div class="weui_navbar" style="position: fixed; top:0px; z-index:999">
             <a href="javascript:void(0)" v-on:click="changeTab('person')" class="weui_navbar_item" :class="{'weui_bar_item_on':fans.isPerson}"> 推荐关注 </a><!--未选中样式-->
@@ -12,9 +12,11 @@
           <p style="height:42px"></p>
         </div>
       </div>
-      <fansAttention v-if="fans.isAttention" :active="fans.tab"></fansAttention>
-      <fansFans  v-if="fans.isFans" :active="fans.tab"></fansFans>
-      <fansPerson v-if="fans.isPerson" :active="fans.tab"></fansPerson>
+      <div class="scrollable-content padding-bottom-42">
+        <fansAttention v-if="fans.isAttention" :active="fans.tab"></fansAttention>
+        <fansFans  v-if="fans.isFans" :active="fans.tab"></fansFans>
+        <fansPerson v-if="fans.isPerson" :active="fans.tab"></fansPerson>
+      </div>
     </div>
   </div>
 </template>

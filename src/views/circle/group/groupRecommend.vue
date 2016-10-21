@@ -1,8 +1,8 @@
 <template>
   <div class="_full_router ddbg">
     <div class="_full_inner">
-      <div class="qbxiaozu">
-    <ul>
+      <div class="qbxiaozu scrollable-content">
+        <ul>
       <li>
         <router-link to="/circle/groupList/10">
           <div class="custom-image-mask">
@@ -136,8 +136,7 @@
         </router-link>
       </li>
     </ul>
-    <p style="clear:both"></p>
-  </div>
+      </div>
     </div>
   </div>
 </template>

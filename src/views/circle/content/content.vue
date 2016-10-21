@@ -1,6 +1,6 @@
 <template>
   <div class="_full_router  app-content-color-white">
-    <div class="_full_inner">
+    <div class="_full_inner scrollable-content">
       <div class="weui-popup-container" v-bind:class="{'weui-popup-container-visible':open}" style="z-index:9999">
         <div class="weui-popup-overlay">
         </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="_full_inner _effect" :class="{'_effect--30':decline}">
+    <div class="_full_inner scrollable-content padding-bottom-50 _effect" :class="{'_effect--30':decline}">
       <div class="fonthui" style="position:relative">
         <div class="grs">
           <a href="javascript:void(0);" class="z"><img src="/static/images/ddicon/zzdxx.png"  style="width:100%"></a>

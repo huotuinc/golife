@@ -28,8 +28,7 @@
         <a class="open-popup" href="javascript:;" data-target="#full" style="display:block">编辑回复</a>
       </div>
     </div>
-    <div class="f_hot_cmnt" style="display: block;">
-      <p style="height:14px; background-color:#fff"></p>
+    <div class="f_hot_cmnt scrollable-content" style="display: block;">
       <div class="cmnt_list">
         <div class="cmnt_item" >
           <img src="http://tva1.sinaimg.cn/crop.0.0.1080.1080.50/8301bf66jw8eisueq6lquj20u00u0tbq.jpg" alt="" class="cmnt_pic">

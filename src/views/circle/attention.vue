@@ -3,7 +3,7 @@
   <div class="wihtab _full">
       <circleSearch></circleSearch>
       <circle-header></circle-header>
-      <div>
+      <div class="scrollable-content padding-bottom-100">
             <div class="cont-zhbox">
               <div class="cont-zhbox-t">
                 <router-link to="/circle/content/10"   class="bz" >
@@ -63,7 +63,8 @@
       </div>
     </div>
 </template>
-t circleSearch from '../../components/circle/search'
+<script>
+  import circleSearch from '../../components/circle/search'
   import circleHeader from '../../components/circle/header'
 
   export  default{

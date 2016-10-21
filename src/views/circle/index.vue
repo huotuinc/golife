@@ -1,17 +1,17 @@
 <!--suppress ALL -->
 <template>
   <div>
-    <div class="_full_inner _effect" :class="{'_effect--30':decline}">
-      <div class="fonthui">
-        <circleHeader></circleHeader>
-        <circleSearch></circleSearch>
-        <circleBanner></circleBanner>
-        <circleGroup></circleGroup>
+    <div class="_full_inner fonthui _effect" :class="{'_effect--30':decline}">
+      <circleHeader></circleHeader>
+      <circleSearch></circleSearch>
+      <div class="scrollable-content padding-bottom-100">
+            <circleBanner></circleBanner>
+            <circleGroup></circleGroup>
       </div>
     </div>
     <transition name="fade">
       <keep-alive>
-        <router-view  v-on:update-decline="update" class="cover-transition"></router-view>
+        <router-view  v-on:update-decline="update"  class="cover-transition"></router-view>
       </keep-alive>
     </transition>
   </div>

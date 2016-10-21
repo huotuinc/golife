@@ -1,7 +1,6 @@
 <template>
   <div class="_full_router">
-    <div class="_full_inner ddbg">
-      <div class="weui_panel_bd" style="background-color:#fff">
+    <div class="_full_inner app-content-color-white scrollable-content">
         <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg j">
           <div class="weui_media_hd zjtouxiangs ">
             <img class="weui_media_appmsg_thumb" src="/static/images/hj1.jpg" alt="">
@@ -42,10 +41,7 @@
             <p class="weui_media_desc" style="color:#999; margin-top:5px">16/10/10</p>
           </div>
         </a>
-      </div>
     </div>
-    <!-- router -->
-    <router-view transition="cover"></router-view>
   </div>
 </template>
 <script>

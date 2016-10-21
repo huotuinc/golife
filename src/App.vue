@@ -1,11 +1,12 @@
 <!--suppress ALL -->
 <template>
-  <div id="app"  :class="getBackClass">
+  <div id="app" class="scrollable-wrap" :class="getBackClass">
     <div class="main app-content" :class="{'app-content-box-sizing':isFooter}">
-      <cfooter v-if="isFooter"></cfooter>
       <!--router-->
-      <router-view  transition="cover"  class="app-scroll" :class="getBackClass" keep-alive></router-view>
+      <!--<router-view  transition="cover"  class="scrollable-content" :class="getBackClass" keep-alive></router-view>-->
+      <router-view  transition="cover" class="scrollable"  :class="getBackClass" keep-alive></router-view>
     </div>
+    <cfooter v-if="isFooter"></cfooter>
     <cloading v-show='getLoading'></cloading>
   </div>
 </template>

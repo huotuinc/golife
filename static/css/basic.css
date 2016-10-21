@@ -1,8 +1,8 @@
 .app-content {
-  padding: 0px 0px 50px 0px;
-  overflow: hidden;
-  position: relative;
-  height: 100%;
+  /*padding: 0px 0px 50px 0px;*/
+  /*overflow: hidden;*/
+  /*position: relative;*/
+  /*height: 100%;*/
 }
 .app-content ._full_inner {
   z-index: 2;
@@ -65,9 +65,9 @@
   overflow: hidden;
 }
 .app-scroll{
-  position: relative;
-  height: 100%;
-  overflow: auto;
+  /*position: relative;*/
+  /*height: 100%;*/
+  /*overflow: auto;*/
   box-sizing: border-box;
   /*overflow: hidden;*/
 }
@@ -79,6 +79,45 @@
 .app-content-box-sizing{
   box-sizing: border-box;
 }
+.padding-bottom-50{
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+.padding-bottom-42{
+  padding-bottom: 42px;
+  box-sizing: border-box;
+}
 .app-content-color-white{
   background:#FFFFFF;
+}
+.padding-bottom-100{
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.scrollable-wrap {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+.scrollable {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.scrollable-content {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.weui_tab_bd{
+  overflow: inherit;
 }

@@ -2,7 +2,7 @@
   <div class="wihtab _full">
     <circleSearch></circleSearch>
     <circle-header></circle-header>
-    <div class="weui_tab_bd" style="padding-bottom:0px">
+    <div class="scrollable-content padding-bottom-100">
         <div class="cont-zhbox">
           <div class="cont-zhbox-t">
             <router-link to="/circle/content/10" class="bz" >
