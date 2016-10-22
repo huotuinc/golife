@@ -47,10 +47,8 @@
 <script>
   import store from '../../vuex/store'
   export default {
-    created() {
-      this.$store.dispatch("updateFooter",false);
-    },
     activated() {
+      this.$store.dispatch("updateFooter",false);
       this.$emit('update-decline', true)
     },
     deactivated() {

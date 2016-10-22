@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="weui_cells weui_cells_access xia" style="margin-top:0px; font-size:14px">
-      <router-link to="/circle/groupList/10" class="weui_cell">
+      <router-link :to="{ path: 'groupList/10' }" append class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
           <p>我的小组</p>
         </div>
@@ -40,7 +40,7 @@
             <div class="weui_cell_bd weui_cell_primary">
               <p class="cont-zhbox-a sm">{{list.name}}</p>
               <div class="zhbox mtt">
-                <router-link to="/circle/content/10" class="zh-wz-time">
+                <router-link :to="{ path: 'content/10' }" append class="zh-wz-time">
                   <span style="float:left">{{list.userName}}</span>
                   <span style="float:right">回复{{list.commentsAmount}}</span>
                   <span style="float:right; margin-right:10px">浏览{{list.viewAmount}}</span>

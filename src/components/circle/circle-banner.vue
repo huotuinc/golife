@@ -14,7 +14,7 @@
     </div>
     <div>
       <div class="weui_cells weui_cells_access" style="margin-top:0px; font-size:14px">
-        <router-link class="weui_cell" to="/circle/groupAll">
+        <router-link class="weui_cell" :to="{ path: 'groupAll' }" append>
           <div class="weui_cell_bd weui_cell_primary">
             <p>热门推荐</p>
           </div>
@@ -28,7 +28,7 @@
               <div id="wrapperPanel" class="swiper-wrapper" style="height: auto;">
                 <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
                 <div class="swiper-slide" v-for="item in hot" style="width: auto;">
-                  <router-link to="/circle/groupList/10">
+                  <router-link  :to="{ path: 'groupList/10' }" append>
                     <div class="custom-image-mask">
                       <span class="bn">{{item.title}}</span>
                       <span class="bna">{{item.num}}人已关注</span>

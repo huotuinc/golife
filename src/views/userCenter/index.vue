@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="_full_inner scrollable-content padding-bottom-50 _effect" :class="{'_effect--30':decline}">
+    <!--<div class="_full_inner scrollable-content padding-bottom-50 _effect" :class="{'_effect&#45;&#45;30':decline}">-->
+    <div class="_full_inner scrollable-content padding-bottom-50">
       <div class="fonthui" style="position:relative">
         <div class="grs">
           <a href="javascript:void(0);" class="z"><img src="/static/images/ddicon/zzdxx.png"  style="width:100%"></a>
@@ -153,9 +154,12 @@
       </div>
       <!--end-->
     </div>
-    <transition name="fade">
+    <!--<transition name="custome-fade"-->
+                <!--enter-active-class="animated slideInRight"-->
+                <!--leave-active-class="animated slideOutLeft">-->
+    <transition>
       <keep-alive>
-      <router-view  v-on:update-decline="update" class="cover-transition"></router-view>
+        <router-view  v-on:update-decline="update" class="cover-transition"></router-view>
       </keep-alive>
     </transition>
   </div>
@@ -167,6 +171,9 @@
         decline: false,
       }
     },
+    activated() {
+      window.console.log("=========start========")
+    },
     methods:{
       update:function (_decline) {
         this.decline=_decline
@@ -175,11 +182,5 @@
   }
 </script>
 <style scoped>
-  .fade-enter-active, .fade-leave-active {
-    opacity: 1;
-    transition: opacity .35s ease;
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
+  @import "../../../static/css/animate.css";
 </style>

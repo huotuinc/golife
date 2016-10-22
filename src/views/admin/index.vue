@@ -1,5 +1,5 @@
 <template>
-  <div class="_full">
+  <div class="_full_router ddbg scrollable-content">
     <div class="help-tipgg on">
       <p class="liuliu">
         <a href="#">举报</a>
@@ -91,8 +91,12 @@
 <script>
   import store from '../../vuex/store'
   export default {
-    created() {
+    activated() {
       this.$store.dispatch("updateFooter",false);
+      this.$emit('update-decline', true)
+    },
+    deactivated() {
+      this.$emit('update-decline', false)
     }
   }
 </script>

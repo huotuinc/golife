@@ -3,8 +3,9 @@
   <div id="app" class="scrollable-wrap" :class="getBackClass">
     <div class="main app-content" :class="{'app-content-box-sizing':isFooter}">
       <!--router-->
-      <!--<router-view  transition="cover"  class="scrollable-content" :class="getBackClass" keep-alive></router-view>-->
-      <router-view  transition="cover" class="scrollable"  :class="getBackClass" keep-alive></router-view>
+      <keep-alive>
+        <router-view  class="scrollable"  :class="getBackClass"></router-view>
+      </keep-alive>
     </div>
     <cfooter v-if="isFooter"></cfooter>
     <cloading v-show='getLoading'></cloading>
@@ -41,11 +42,4 @@
 <style>
   @import "../static/css/weui.min-gggeren-diy.css";
   @import "../static/css/basic.css";
-  .fade-enter-active, .fade-leave-active {
-    opacity: 1;
-    transition: opacity .35s ease;
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
 </style>

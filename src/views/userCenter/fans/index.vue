@@ -1,5 +1,6 @@
 <template>
-  <div class="_full_router _effect">
+  <div class="_full_router">
+    <!--<div class="_full_inner _effect" :class="{'_effect&#45;&#45;30':decline}">-->
     <div class="_full_inner">
       <div class="wihtab">
         <div class="weui_tab">
@@ -18,6 +19,14 @@
         <fansPerson v-if="fans.isPerson" :active="fans.tab"></fansPerson>
       </div>
     </div>
+    <!--<transition name="custome-fade"-->
+                <!--enter-active-class="animated slideInRight"-->
+                <!--leave-active-class="animated slideOutLeft">-->
+    <transition>
+      <keep-alive>
+        <router-view  v-on:update-decline="update" class="cover-transition"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 <script>
@@ -28,6 +37,7 @@
   export default {
     data() {
       return {
+        decline: false,
         fans:{
           isAttention:false,
           isFans:false,
@@ -42,6 +52,9 @@
         this.fans.isFans=tab=='index'
         this.fans.isPerson=tab=='person'
         this.fans.tab=tab
+      },
+      update:function (_decline) {
+        this.decline=_decline
       }
     },
     components: {
@@ -49,7 +62,12 @@
       fansFans,
       fansPerson
     },
+//    created() {
+//      window.console.log('=============fans create==============')
+//      this.$store.dispatch("updateFooter",false);
+//    },
     activated() {
+      window.console.log('=============fans activated==============')
       this.$store.dispatch("updateFooter",false);
       let tab=this.$route.params.tab
       this.fans.isAttention=tab=='attention'
@@ -59,17 +77,12 @@
       this.$emit('update-decline', true)
     },
     deactivated() {
+      window.console.log('=============fans decativated==============')
       this.$emit('update-decline', false)
     },
   }
 </script>
 <style scoped>
   @import "/static/css/weui.min-rsgghot-diy.css";
-  .fade-enter-active, .fade-leave-active {
-    opacity: 1;
-    transition: opacity .35s ease;
-  }
-  .fade-enter, .fade-leave-active {
-    opacity: 0
-  }
+  @import "/static/css/animate.css";
 </style>

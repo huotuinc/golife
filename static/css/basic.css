@@ -9,8 +9,13 @@
 }
 ._effect {
   opacity: 1;
-  transition: all .3s ease;
+  transition: all 1.5s cubic-bezier(.81,1.38,.71,-0.46);
+  /*-webkit-animation-duration: 1s;*/
+  /*animation-duration: 1s;*/
+  /*-webkit-animation-fill-mode: both;*/
+  /*animation-fill-mode: both;*/
 }
+
 ._full_inner {
   position: relative;
   height: 100%;
@@ -19,13 +24,9 @@
 
 
 ._effect--30 {
-  transform: translate3d(-30%,0,0);
+  transform: translate3d(-100%,0,0);
   overflow: hidden;
   height: 100%;
-}
-._effect {
-  opacity: 1;
-  transition: all .3s ease;
 }
 ._full_inner {
   position: relative;
@@ -42,7 +43,7 @@
 }
 .cover-transition {
   opacity: 1;
-  transition: opacity .35s ease;
+  /*transition: opacity .35s ease;*/
 }
 /*.component-contact {*/
   /*background: #f1f0f6;*/
@@ -121,3 +122,12 @@
 .weui_tab_bd{
   overflow: inherit;
 }
+
+/*!**页面过渡效果**!*/
+/*.slide-fade-enter-active {*/
+  /*transition: all .7s ease;*/
+/*}*/
+/*.slide-fade-leave-active {*/
+  /*transition: all .7s ease;*/
+  /*opacity: 0.6;*/
+/*}*/

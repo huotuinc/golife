@@ -8,7 +8,7 @@
         <p class="kimg dhfenleiicon"></p>
         <p>分类</p>
       </a>
-      <router-link to="/circle/index" active-class="weui_bar_item_on" class="weui_navbar_item">
+      <router-link to="/circle" active-class="weui_bar_item_on" class="weui_navbar_item">
         <p class="kimg faxxx"></p>
         <p style="z-index:99999; position:absolute;left:0px;right:0px;">发现</p>
         <div style="position:absolute;bottom:0px;left:0px;right:0px;">

@@ -1,12 +1,14 @@
 <!--suppress ALL -->
 <template>
-  <div class="wihtab _full">
+  <div>
+    <!--<div class="_full_inner fonthui _effect" :class="{'_effect&#45;&#45;30':decline}">-->
+    <div class="_full_inner fonthui">
       <circleSearch></circleSearch>
       <circle-header></circle-header>
       <div class="scrollable-content padding-bottom-100">
             <div class="cont-zhbox">
               <div class="cont-zhbox-t">
-                <router-link to="/circle/content/10"   class="bz" >
+                <router-link :to="{ path: 'content/10' }" append class="bz" >
                   <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
                   <p class="cont-zhbox-img"><img src="/static/images/j2.jpg"></p>
                   <p class="cont-zhbox-nav"></p>
@@ -34,7 +36,7 @@
             </div>
             <div class="cont-zhbox">
               <div class="cont-zhbox-t">
-                <router-link to="/circle/content/10" class="bz" >
+                <router-link :to="{ path: 'content/10' }" append class="bz" >
                   <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
                   <p class="cont-zhbox-img"></p>
                   <p class="cont-zhbox-nav">瑞银在周二发布的一份报告中研究了部分国家的房地产市场，发现2011年来，有泡沫风险的地区房价上涨了几乎50%。瑞银认为，温哥华的房价在2008年的金融危机中没有受到影响，大宗商品走弱的背景下反而还在持续上涨。</p>
@@ -62,6 +64,15 @@
             </div>
       </div>
     </div>
+    <!--<transition name="custome-fade"-->
+                <!--enter-active-class="animated slideInRight"-->
+                <!--leave-active-class="animated slideOutLeft">-->
+    <transition>
+      <keep-alive>
+        <router-view  v-on:update-decline="update"  class="cover-transition"></router-view>
+      </keep-alive>
+    </transition>
+  </div>
 </template>
 <script>
   import circleSearch from '../../components/circle/search'
@@ -84,3 +95,6 @@
     },
   }
 </script>
+<style scoped>
+  @import "../../../static/css/animate.css";
+</style>

@@ -4,12 +4,8 @@ import VueRouter from 'vue-router'
 import * as routers from './router'
 import store from './vuex/store';
 import $ from 'jquery'
-// import weui from '../static/js/jquery-weui'
-// import VueAnimatedList from 'vue-animated-list'
 Vue.use(VueRouter)
-// Vue.use(VueAnimatedList)
 
-// Vue.use(VueResource)
 const router = new VueRouter({
   routes:routers.routes,
   scrollBehavior (to, from, savedPosition) {
