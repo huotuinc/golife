@@ -8,7 +8,7 @@
  *
  * author:xhl
  */
-
+import "whatwg-fetch"
 /**
  * API根地址
  */

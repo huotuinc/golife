@@ -1,7 +1,6 @@
 /**
  * Created by Administrator on 2016/10/11.
  */
-import "whatwg-fetch"
 import * as bases from '../apis/base'
 
 
