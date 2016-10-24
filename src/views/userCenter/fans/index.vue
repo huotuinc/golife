@@ -48,6 +48,7 @@
     },
     methods: {
       changeTab:function (tab) {
+
         this.fans.isAttention=tab=='attention'
         this.fans.isFans=tab=='index'
         this.fans.isPerson=tab=='person'
