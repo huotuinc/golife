@@ -71,7 +71,6 @@
         .then(function (data) {
           $this.hotData=data;
           hideLoading($this)
-          let $this=this;
           $this.$nextTick(() => {
             let mySwiper = new Swiper('.swiper-container', {
               loop: true,
