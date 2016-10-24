@@ -3,7 +3,7 @@
     <div>
       <div class="swiper-container"  data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
         <div class="swiper-wrapper" style="line-height:0px">
-          <div class="swiper-slide" v-for="item in bannerData">
+          <div class="swiper-slide" v-for="item in hotData.banner">
             <a href="geren-index8.html">
               <img src="/static/images/rrr.jpg" style="width:100%" alt="">
             </a>
@@ -27,7 +27,7 @@
             <div class="switch-container">
               <div id="wrapperPanel" class="swiper-wrapper" style="height: auto;">
                 <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
-                <div class="swiper-slide" v-for="item in hot" style="width: auto;">
+                <div class="swiper-slide" v-for="item in hotData.recommended" style="width: auto;">
                   <router-link  :to="{ path: 'groupList/10' }" append>
                     <div class="custom-image-mask">
                       <span class="bn">{{item.title}}</span>
@@ -47,13 +47,16 @@
 </template>
 <script>
   import Swiper from 'swiper'
-  import circle from '../../apis/circle'
+  import { getBanner } from '../../apis/circle'
   import subLoading from '../../components/common/loading'
+  import { hideLoading,errorTip } from '../../apis/common/actions'
   export default {
     data () {
       return {
-        bannerData:[],
-        hot:[],
+        hotData:{
+          banner:[],
+          recommended:[]
+        },
         loading:true,
         isShowImage:true,
         message:""
@@ -62,70 +65,33 @@
     components: {
       subLoading
     },
-    methods: {
-      getHot:function () {
-        return circle.getBanner();
-      }
-    },
     created () {
-      let $this=this;
+      let $this=this
+      getBanner()
+        .then(function (data) {
+          $this.hotData=data;
+          hideLoading($this)
+          let $this=this;
+          $this.$nextTick(() => {
+            let mySwiper = new Swiper('.swiper-container', {
+              loop: true,
+              autoplay: 3000
+            })
+            let mySwiper2 = new Swiper('.switch-container', {
+              pagination: '.swiper-pagination',
+              slidesPerView:2.5,
+              paginationClickable: true,
+              spaceBetween: 10,
+              freeMode: true,
+              onInit: function (mySwiper2) {
 
-      let slideList=[{},{},{}]
-      let suggestList=[
-        {
-          title:'测试',
-          num:200
-        },
-        {
-          title:'测试',
-          num:200
-        },
-        {
-          title:'测试',
-          num:200
-        },
-        {
-          title:'测试',
-          num:200
-        },
-        {
-          title:'测试',
-          num:200
-        },
-        {
-          title:'测试',
-          num:200
-        }
-      ]
-      this.bannerData=slideList
-      this.hot=suggestList
-//      this.getHot().then((json) => {
-//        this.bannerData=json.resultData.slideList;
-//        this.hot=json.resultData.suggestList;
-        $this.$nextTick(() => {
-          this.loading=false;
-          this.isShowImage=false;
-          this.message=""
-          let mySwiper = new Swiper('.swiper-container', {
-            loop: true,
-            autoplay: 3000
+              }
+            });
           })
-          let mySwiper2 = new Swiper('.switch-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView:2.5,
-            paginationClickable: true,
-            spaceBetween: 10,
-            freeMode: true,
-            onInit: function (mySwiper2) {
-
-            }
-          });
         })
-//      }).catch((error) => {
-//        this.loading=true;
-//        this.isShowImage=false;
-//        this.message="网络异常"
-//      });
+        .catch(function () {
+          errorTip($this)
+        })
     },
   }
 </script>

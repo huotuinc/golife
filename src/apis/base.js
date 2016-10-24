@@ -58,4 +58,3 @@ export const post = (uri, params) => {
       return Promise.reject(new Error(res.status));
   });
 };
-

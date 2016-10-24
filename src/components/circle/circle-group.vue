@@ -10,7 +10,7 @@
       </router-link>
     </div>
     <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
-    <div class="cont-zhbox" v-for="item in testData">
+    <div class="cont-zhbox" v-for="item in groupData">
       <div class="cont-zhbox-t" style="padding:5px 0px">
         <div class="cont-zhbox-t" style="border:0px; padding:5px 10px 10px 10px">
           <div class="zhbox">
@@ -59,12 +59,13 @@
   </div>
 </template>
 <script>
-  import circle from '../../apis/circle'
+  import { getGroup } from '../../apis/circle'
   import subLoading from '../../components/common/loading'
+  import { hideLoading,errorTip } from '../../apis/common/actions'
   export default {
     data () {
       return {
-        testData:[],
+        groupData:[],
         loading:true,
         isShowImage:true,
         message:""
@@ -74,9 +75,6 @@
       subLoading
     },
     methods: {
-      getGroup:function () {
-        return circle.getGroup();
-      },
       open:function () {
         require("../../../static/js/jquery-weui")
         $.actions({
@@ -108,16 +106,15 @@
       }
     },
     created () {
-      this.getGroup().then((json) => {
-        this.testData=json.resultData.circlelist;
-        this.loading=false;
-        this.isShowImage=false;
-        this.message=""
-      }).catch((error) => {
-        this.loading=true;
-        this.isShowImage=false;
-        this.message="网络异常";
-      });
+      let $this=this
+      getGroup()
+        .then(function (data) {
+          $this.groupData=data;
+          hideLoading($this)
+        })
+        .catch(function (error) {
+          errorTip($this)
+        })
     },
   }
 </script>
