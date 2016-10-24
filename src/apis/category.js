@@ -6,9 +6,6 @@
  * Floor 4,Block B,Wisdom E Valley,Qianmo Road,Binjiang District
  * 2013-2016. All rights reserved.
  *
- * description:分类相关API接口
- * author:xhl
  */
 import * as bases from '../apis/base'
 
-// app/wiki/wikiList

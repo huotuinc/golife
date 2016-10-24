@@ -12,7 +12,7 @@ import "whatwg-fetch"
 /**
  * API根地址
  */
-export const javaApiUri='http://192.168.1.92:8986'
+export const javaApiUri='http://mallsns.51flashmall.com:8091'
 
 /**
  * get请求
