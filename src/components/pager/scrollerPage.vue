@@ -1,7 +1,7 @@
 <template>
   <div ref="pager">
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="scrollStatus.disabled"
-         infinite-scroll-distance="100">
+         infinite-scroll-distance="50">
       <slot></slot>
     </div>
     <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage"
@@ -77,6 +77,7 @@
        */
       loadMore: function () {
         let $this = this
+        this.scrollStatus.loading=true
         this.nextMethod($this.data.lastId)
           .then(function (data) {
             if (data == null) {
