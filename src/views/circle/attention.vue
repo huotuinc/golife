@@ -2,14 +2,24 @@
 <template>
   <div>
     <!--<div class="_full_inner fonthui _effect" :class="{'_effect&#45;&#45;30':decline}">-->
-    <div class="_full_inner fonthui">
+    <div class="fonthui">
       <circleSearch></circleSearch>
       <circle-header></circle-header>
-      <div class="scrollable-content padding-bottom-100">
-            <div class="cont-zhbox">
+      <div class="scrollable-content" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
+        <mt-loadmore :auto-Fill="false"  top-Distance="20" @top-status-change="handleTopChange"
+                     :top-method="loadTop"
+                     ref="loadmore">
+          <div slot="top" class="mint-loadmore-top">
+            <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
+            <span v-show="loadStatus.topStatus === 'loading'">
+              <mt-spinner type="snake"></mt-spinner>
+            </span>
+          </div>
+          <scrollerPager :nextMethod="nextMethod" ref="scrollerPager">
+            <div class="cont-zhbox" v-for="item in data.list">
               <div class="cont-zhbox-t">
                 <router-link :to="{ path: 'content/10' }" append class="bz" >
-                  <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
+                  <p class="cont-zhbox-a"><b>{{item.name}}</b></p>
                   <p class="cont-zhbox-img"><img src="/static/images/j2.jpg"></p>
                   <p class="cont-zhbox-nav"></p>
                 </router-link>
@@ -19,49 +29,23 @@
                   </div>
                   <div class="zh-wz">
                     <div class="zh-wz-x">
-                      <p class="zh-wz-name"> 官方发布<img src="/static/images/ddbm.png" class="zh-wz-name-ico"></p>
+                      <p class="zh-wz-name">{{item.userName}}<img src="/static/images/ddbm.png" class="zh-wz-name-ico"></p>
                     </div>
-                    <div class="njk">
+                    <div class="njk" v-if="!item.concerned">
                       <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default">关注</a>
                     </div>
                     <div  class="zh-wz-time">
-                      <span style="float:left">23小时前</span>
-                      <span style="float:right"></span>
-                      <span style="float:right; margin-right:10px"></span>
+                      <span style="float:left">{{item.time | timeToNow}}</span>
+                      <span style="float:right">回复{{item.commentsAmount}}</span>
+                      <span style="float:right; margin-right:10px">浏览{{item.viewAmount}}</span>
                       <p style="clear:both"></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="cont-zhbox">
-              <div class="cont-zhbox-t">
-                <router-link :to="{ path: 'content/10' }" append class="bz" >
-                  <p class="cont-zhbox-a"><b>韩媒:朝鲜遭遇严重干旱粮食缺口近70万吨粮食缺口近70万吨</b></p>
-                  <p class="cont-zhbox-img"></p>
-                  <p class="cont-zhbox-nav">瑞银在周二发布的一份报告中研究了部分国家的房地产市场，发现2011年来，有泡沫风险的地区房价上涨了几乎50%。瑞银认为，温哥华的房价在2008年的金融危机中没有受到影响，大宗商品走弱的背景下反而还在持续上涨。</p>
-                </router-link>
-                <div class="zhbox">
-                  <div class="zh-tx">
-                    <img src="/static/images/imgsss.png">
-                  </div>
-                  <div class="zh-wz">
-                    <div class="zh-wz-x">
-                      <p class="zh-wz-name"> 官方发布<img src="/static/images/ddbm.png" class="zh-wz-name-ico"></p>
-                    </div>
-                    <div class="njk" style="display:none">
-                      <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default">关注</a>
-                    </div>
-                    <div  class="zh-wz-time">
-                      <span style="float:left">09-10 22:00</span>
-                      <span style="float:right">回复32</span>
-                      <span style="float:right; margin-right:10px">浏览38281</span>
-                      <p style="clear:both"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </scrollerPager>
+        </mt-loadmore>
       </div>
     </div>
     <!--<transition name="custome-fade"-->
@@ -77,22 +61,51 @@
 <script>
   import circleSearch from '../../components/circle/search'
   import circleHeader from '../../components/circle/header'
-
-  export  default{
-    components: {
-      circleSearch,
-      circleHeader
-    },
+  import scrollerPager from '../../components/pager/scrollerPage'
+  import { Loadmore } from 'mint-ui';
+  import { getConcernArticle } from '../../apis/user'
+  export default {
     data() {
       return {
         decline: false,
+        loadStatus: {
+          topStatus: '',
+          allLoaded: true,
+        },
+        wrapperHeight: '',
+        data: {
+          list: []
+        }
       }
     },
-    methods:{
-      update:function (_decline) {
-        this.decline=_decline
-      }
+    components: {
+      circleHeader,
+      circleSearch,
+      Loadmore,
+      scrollerPager
     },
+    methods: {
+      nextMethod(lastId){
+        return getConcernArticle(lastId)
+      },
+      handleTopChange(status) {
+        this.loadStatus.topStatus = status;
+      },
+      update: function (_decline) {
+        this.decline = _decline
+      },
+      /**
+       * 下拉刷新
+       * @param id
+       */
+      loadTop: function (id) {
+        this.$refs.scrollerPager.refresh(this,id)
+      },
+    },
+    mounted() {
+      this.data.list=this.$refs.scrollerPager.data.list
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.wrapper.getBoundingClientRect().top + 50);
+    }
   }
 </script>
 <style scoped>
