@@ -2,12 +2,27 @@
 <template>
   <div>
     <!--<div class="_full_inner fonthui animated slideInRight" :class="{'animated slideOutLeft':decline}">-->
-    <div class="_full_inner fonthui">
+    <div class="fonthui">
       <circleHeader></circleHeader>
       <circleSearch></circleSearch>
-      <div class="scrollable-content padding-bottom-100">
-            <circleBanner></circleBanner>
-            <circleGroup></circleGroup>
+      <div class="scrollable-content" ref="circle" :style="{ height: wrapperHeight + 'px' }">
+        <mt-loadmore @top-status-change="handleTopChange" bottom-Distance="20" top-Distance="20" :top-method="loadTop"
+                     :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
+            <circleBanner ref="circleBanner"></circleBanner>
+            <circleGroup ref="circleGroup"></circleGroup>
+          <div slot="top" class="mint-loadmore-top">
+            <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
+            <span v-show="loadStatus.topStatus === 'loading'">
+              <mt-spinner type="snake"></mt-spinner>
+            </span>
+          </div>
+          <div slot="bottom" v-show="!loadStatus.allLoaded" class="mint-loadmore-bottom">
+            <span v-show="loadStatus.bottomStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.bottomStatus === 'drop' }">↑</span>
+            <span v-show="loadStatus.bottomStatus === 'loading'">
+              <mt-spinner type="snake"></mt-spinner>
+            </span>
+          </div>
+        </mt-loadmore>
       </div>
     </div>
     <!--<transition name="custome-fade"-->
@@ -25,135 +40,59 @@
   import circleGroup from '../../components/circle/circle-group'
   import circleHeader from '../../components/circle/header'
   import circleSearch from '../../components/circle/search'
+  import {Loadmore} from 'mint-ui';
   export default {
     data() {
       return {
         decline: false,
+        wrapperHeight: '',
+        loadStatus:{
+          topStatus: '',
+          bottomShow:true,
+          bottomStatus: '',
+          allLoaded: false,
+        },
       }
     },
     methods:{
       update:function (_decline) {
         this.decline=_decline
+      },
+      handleTopChange(status) {
+
+        this.loadStatus.topStatus = status;
+      },
+      handleBottomChange(status) {
+        this.loadStatus.bottomStatus = status;
+      },
+      /**
+       * 下拉刷新
+       * @param id
+       */
+      loadTop:function (id) {
+        let $this=this;
+        this.$refs.circleBanner.initBanner()
+          .then(function () {
+            $this.$refs.loadmore.onTopLoaded(id);
+          })
+        this.$refs.circleGroup.initGroup()
+      },
+      loadBottom:function (id) {
+//        window.console.log(id)
       }
     },
     components: {
       circleHeader,
       circleBanner,
       circleGroup,
-      circleSearch
+      circleSearch,
+      Loadmore
+    },
+    mounted() {
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.circle.getBoundingClientRect().top + 50);
     }
   }
 </script>
-<style scoped>
-  @import "../../../static/css/animate.css";
-  .custome-fade{
-    padding-left: 30%;
-    opacity: 0;
-  }
-  .custome-fade-leave-active {
-    padding-left: 100%;
-    opacity: 0;
-  }
-  /*@-webkit-keyframes test-fade-enter-active {*/
-    /*from {*/
-      /*-webkit-transform: translate3d(100%, 0, 0);*/
-      /*transform: translate3d(100%, 0, 0);*/
-      /*visibility: visible;*/
-    /*}*/
-
-    /*to {*/
-      /*-webkit-transform: translate3d(0, 0, 0);*/
-      /*transform: translate3d(0, 0, 0);*/
-    /*}*/
-  /*}*/
-
-  /*@keyframes test-fade-enter-active {*/
-    /*from {*/
-      /*-webkit-transform: translate3d(100%, 0, 0);*/
-      /*transform: translate3d(100%, 0, 0);*/
-      /*visibility: visible;*/
-    /*}*/
-
-    /*to {*/
-      /*-webkit-transform: translate3d(0, 0, 0);*/
-      /*transform: translate3d(0, 0, 0);*/
-    /*}*/
-  /*}*/
-
-  /*.test-fade-enter-active {*/
-    /*-webkit-animation-name: slideInRight;*/
-    /*animation-name: slideInRight;*/
-  /*}*/
-
-  /*@-webkit-keyframes test-fade-leave-active {*/
-    /*from {*/
-      /*-webkit-transform: translate3d(0, 0, 0);*/
-      /*transform: translate3d(0, 0, 0);*/
-    /*}*/
-
-    /*to {*/
-      /*visibility: hidden;*/
-      /*-webkit-transform: translate3d(-100%, 0, 0);*/
-      /*transform: translate3d(-100%, 0, 0);*/
-    /*}*/
-  /*}*/
-
-  /*@keyframes test-fade-leave-active {*/
-    /*from {*/
-      /*-webkit-transform: translate3d(0, 0, 0);*/
-      /*transform: translate3d(0, 0, 0);*/
-    /*}*/
-
-    /*to {*/
-      /*visibility: hidden;*/
-      /*-webkit-transform: translate3d(-100%, 0, 0);*/
-      /*transform: translate3d(-100%, 0, 0);*/
-    /*}*/
-  /*}*/
-
-  /*.test-fade-leave-active {*/
-    /*-webkit-animation-name: slideOutLeft;*/
-    /*animation-name: slideOutLeft;*/
-  /*}*/
-  /*.test-fade-enter, .test-fade-leave-active {*/
-    /*padding-left: 30%;*/
-    /*opacity: 0;*/
-  /*}*/
-  /*@import "../../../static/css/animate.css";*/
-  /* 可以设置不同的进入和离开动画 */
-  /* 设置持续时间和动画函数 */
-  /*.slide-fade-enter{*/
-    /*padding-left: 30%;*/
-    /*opacity: 0;*/
-  /*}*/
-  /*.slide-fade-enter-active {*/
-    /*transition: padding-right .3s cubic-bezier((0.0, 0.0, 1.0, 1.0));*/
-    /*opacity: 1;*/
-  /*}*/
-  /*.slide-fade-leave-active {*/
-    /*transition: padding-left .8s cubic-bezier((0.0, 0.0, 1.0, 1.0));*/
-    /*opacity: 1;*/
-  /*}*/
-  /*.slide-fade-leave-active {*/
-    /*padding-left: 30%;*/
-    /*opacity: 0;*/
-  /*}*/
-
-  /*.slide-fade-enter-active {*/
-    /*transition: all .3s ease;*/
-  /*}*/
-  /*.slide-fade-leave-active {*/
-    /*transition: all .8s cubic-bezier((0.0, 0.0, 1.0, 1.0));*/
-  /*}*/
-  /*.slide-fade-enter, .slide-fade-leave-active {*/
-    /*padding-left: 10px;*/
-    /*opacity: 0;*/
-  /*}*/
-  /*.fade-enter-active, .fade-leave-active {*/
-    /*opacity: 1;*/
-    /*transition: opacity .35s ease;*/
-  /*}*/
-  /*.fade-enter, .fade-leave-active {*/
-    /*opacity: 0*/
-  /*}*/
-</style>
+<!--<style scoped>-->
+  <!--@import "../../../static/css/animate.css";-->
+<!--</style>-->

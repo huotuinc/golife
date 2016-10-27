@@ -3,13 +3,16 @@ import Vue from 'vue';
 import * as types from '../vuex/mutation-type'
 import * as actions from '../vuex/actions'
 import * as getters from '../vuex/getters'
+import { addCookie } from '../assets/cookie/cookie'
+import * as cookies from '../assets/cookie/cookie-type'
 
 Vue.use(Vuex);
 
 const state = {
   loading: true,
   footer:true,
-  backClass:'ddbg'
+  backClass:'ddbg',
+  token:'234234234'
 };
 const mutations = {
   [types.UPDATE_LOADING](state,loading) {
@@ -22,6 +25,10 @@ const mutations = {
   },
   [types.UPDATE_BACKCLASS](state,className){
     state.backClass=className
+  },
+  [types.UPDATE_TOKEN](state,token){
+    state.token=token
+    addCookie(cookies.TOKEN,token,cookies.COOKIE_DAYS,'/')
   }
 }
 export default new Vuex.Store({

@@ -1,10 +1,10 @@
 <!--suppress ALL -->
 <template>
-  <div id="app" class="scrollable-wrap" :class="getBackClass">
-    <div class="main app-content" :class="{'app-content-box-sizing':isFooter}">
+  <div id="app" :class="getBackClass">
+    <div class="main" :class="{'app-content-box-sizing':isFooter}">
       <!--router-->
       <keep-alive>
-        <router-view  class="scrollable"  :class="getBackClass"></router-view>
+        <router-view  :class="getBackClass"></router-view>
       </keep-alive>
     </div>
     <cfooter v-if="isFooter"></cfooter>

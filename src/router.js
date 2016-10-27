@@ -5,7 +5,11 @@
 const circleRouter = [
   {
     path: 'groupAll',
-    component: resolve => require(['./views/circle/group/groupRecommend'], resolve)
+    component: resolve => require(['./views/circle/group/groupRecommend'], resolve),
+    meta: {
+      title: "热门推荐",
+      description: ""
+    }
   },
   {
     path: 'groupList/:id',

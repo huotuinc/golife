@@ -9,25 +9,64 @@
  * author:xhl
  */
 import "whatwg-fetch"
+import store from '../vuex/store'
+import { getToken } from '../vuex/getters'
 /**
  * API根地址
  */
 export const javaApiUri='http://mallsns.51flashmall.com:8091'
 
+// export const javaApiUri = 'http://192.168.1.92:8986'
+
 /**
- * get请求
+ * get 请求
  * @param  {String} options.uri   api地址以'/'开头
  * @param  {String} options.query query参数
- * @return {Promise}               Promise
+ * @param token  授权Token
+ * @returns {Promise.<T>|*|Promise}
  */
-export  const get = ({ uri, query }) => {
+export const get = ({uri, query}) => {
   let _url;
+  let _token = getToken(store.state);//获得Token
   if (query) {
-    _url = javaApiUri+`${uri}?${query}`;
+    _url = javaApiUri + `${uri}?${query}`;
   } else {
-    _url = javaApiUri+`${uri}`;
+    _url = javaApiUri + `${uri}`;
   }
-  return fetch(_url)
+  return fetch(_url, {
+    headers: {
+      authentication: _token,
+    }
+  })
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        return res.json();
+      }
+      return Promise.reject(new Error(res.status));
+    })
+    .catch(function (error) {
+      return Promise.reject(new Error(res.status));
+    });
+}
+
+/**
+ * post请求
+ * @param  {String} uri    api相对地址
+ * @param  {Object} params 包含post内容的object
+ * @param token  授权Token
+ * @return {Promise}       Promise
+ */
+export const post = (uri, params) => {
+  let _token = getToken(store.state);//获得Token
+  return fetch(javaApiUri + uri, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authentication: _token,
+    },
+    body: JSON.stringify(params),
+  })
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
         return res.json();
@@ -37,24 +76,7 @@ export  const get = ({ uri, query }) => {
 };
 
 /**
- * post请求
- * @param  {String} uri    api相对地址
- * @param  {Object} params 包含post内容的object
- * @return {Promise}       Promise
+ * 没有数据
+ * @type {string}
  */
-export const post = (uri, params) => {
-  return fetch(javaApiUri+uri, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
-  })
-  .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.json();
-      }
-      return Promise.reject(new Error(res.status));
-  });
-};
+export const NO_FIND_DATA = '404'

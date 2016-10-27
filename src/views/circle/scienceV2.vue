@@ -8,13 +8,8 @@
         <mt-loadmore :auto-Fill="false" bottom-Distance="20" top-Distance="20" @top-status-change="handleTopChange"
                      :top-method="loadTop"
                      ref="loadmore">
-          <div slot="top" class="mint-loadmore-top">
-            <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
-            <span v-show="loadStatus.topStatus === 'loading'">
-              <mt-spinner type="snake"></mt-spinner>
-            </span>
-          </div>
-          <scrollerPager :nextMethod="nextMethod" ref="scrollerPager">
+          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="scrollStatus.disabled"
+               infinite-scroll-distance="100">
             <div class="cont-zhbox" v-for="item in data.list">
               <div class="cont-zhbox-t">
                 <router-link :to="{ path: 'content/10' }" append class="bz">
@@ -44,7 +39,19 @@
                 </div>
               </div>
             </div>
-          </scrollerPager>
+          </div>
+          <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage"
+                      :message="errorStatus.message"></subLoading>
+          <div slot="top" class="mint-loadmore-top">
+            <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
+            <span v-show="loadStatus.topStatus === 'loading'">
+              <mt-spinner type="snake"></mt-spinner>
+            </span>
+          </div>
+          <p v-show="scrollStatus.loading" class="page-infinite-loading" style="text-align: center">
+            <mt-spinner type="fading-circle"></mt-spinner>
+            加载中...
+          </p>
         </mt-loadmore>
       </div>
     </div>
@@ -61,8 +68,7 @@
 <script>
   import circleHeader from '../../components/circle/header'
   import circleSearch from '../../components/circle/search'
-  import scrollerPager from '../../components/pager/scrollerPage'
-  import { Loadmore } from 'mint-ui';
+  import {Loadmore} from 'mint-ui';
   import subLoading from '../../components/common/loading'
   import { getScienceList } from '../../apis/science'
   import { hideLoading, errorTip, errorTipMessage} from '../../apis/common/actions'
@@ -75,9 +81,19 @@
           topStatus: '',
           allLoaded: true,
         },
+        scrollStatus: {
+          disabled: false,
+          loading: false,
+        },
+        errorStatus: {
+          loading: true,
+          isShowImage: true,
+          message: ""
+        },
         wrapperHeight: '',
         data: {
-          list: []
+          list: [],
+          lastId: 0
         }
       }
     },
@@ -85,12 +101,9 @@
       circleHeader,
       circleSearch,
       Loadmore,
-      scrollerPager
+      subLoading
     },
     methods: {
-      nextMethod(lastId){
-        return getScienceList(lastId)
-      },
       handleTopChange(status) {
         this.loadStatus.topStatus = status;
       },
@@ -102,11 +115,59 @@
        * @param id
        */
       loadTop: function (id) {
-        this.$refs.scrollerPager.refresh(this,id)
+        undisabledScroll(this);
+        this.data.lastId = 0
+        let $this = this
+        $this.loadStatus.allLoaded = false
+        getScienceList($this.data.lastId)
+          .then(function (data) {
+            if (data == null) {
+              errorTipMessage($this, '没有数据')
+              $this.loadStatus.allLoaded = true
+            } else {
+              hideLoading($this)
+              $this.data.lastId = data.lastId
+              $this.data.list = data.list
+              $this.$refs.loadmore.onTopLoaded(id);
+            }
+          })
+          .catch(function () {
+            $this.loadStatus.topStatus = ''
+            errorTip($this)
+            $this.loadStatus.allLoaded = true
+          })
       },
+      /**
+       * 滚动分页
+       */
+      loadMore: function () {
+        let $this = this
+        this.scrollStatus.loading = true;
+        getScienceList($this.data.lastId)
+          .then(function (data) {
+            if (data == null) {
+              $this.disabledScroll()
+              if ($this.data.lastId == 0) {
+                errorTipMessage($this, '没有数据')
+              }
+            } else {
+              $this.data.lastId = data.lastId
+              for (let i = 0; i < data.list.length; i++) {
+                $this.data.list.push(data.list[i])
+              }
+              undisabledScroll($this);
+              hideLoading($this)
+            }
+          })
+          .catch(function (error) {
+            if ($this.data.lastId == 0) {
+              errorTip($this, '没有数据')
+            }
+            disabledScroll($this)
+          })
+      }
     },
     mounted() {
-      this.data.list=this.$refs.scrollerPager.data.list
       this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.wrapper.getBoundingClientRect().top + 50);
     }
   }

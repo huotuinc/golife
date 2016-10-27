@@ -1,11 +1,9 @@
 /**
  * Created by Administrator on 2016/10/10.
  */
-// export function getLoading (state) {
-//   window.console.log("====ceshi ====")
-//   return true;
-//   // return state.loading;
-// }
+import { getCookie } from '../assets/cookie/cookie'
+import * as cookies from '../assets/cookie/cookie-type'
+
 /**
  * 获得全局加载状态
  * @param state
@@ -23,3 +21,16 @@ export const isFooter = state => state.footer
  * @param state
  */
 export const getBackClass = state => state.backClass
+
+/**
+ * 获得全局的Token vuex状态中没有token则查找Cookie中的Token
+ * @param state
+ */
+export const getToken = function (state) {
+  if(state.token!=''&&state.token!=undefined){
+     return state.token;
+  }else{
+    return getCookie(cookies.TOKEN)
+  }
+}
+

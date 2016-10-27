@@ -24,3 +24,12 @@ export const updateFooter = ({ commit },isFooter) => {
 export const updateBackClass = ({ commit },className) => {
     commit(types.UPDATE_BACKCLASS,className)
 }
+
+/**
+ * 修改Token
+ * @param commit
+ * @param token
+ */
+export const updateToken = ({ commit },token) => {
+  commit(types.UPDATE_TOKEN,token)
+}

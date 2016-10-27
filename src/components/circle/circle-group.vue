@@ -9,7 +9,7 @@
         <div class="weui_cell_ft" style="font-size:12px"></div>
       </router-link>
     </div>
-    <subLoading :loading="loading" :isShowImage="isShowImage" :message="message"></subLoading>
+    <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage" :message="errorStatus.message"></subLoading>
     <div class="cont-zhbox" v-for="item in groupData">
       <div class="cont-zhbox-t" style="padding:5px 0px">
         <div class="cont-zhbox-t" style="border:0px; padding:5px 10px 10px 10px">
@@ -66,9 +66,11 @@
     data () {
       return {
         groupData:[],
-        loading:true,
-        isShowImage:true,
-        message:""
+        errorStatus:{
+          loading:true,
+          isShowImage:true,
+          message:""
+        }
       }
     },
     components: {
@@ -103,18 +105,21 @@
             }
           ]
         });
+      },
+      initGroup(){
+        let $this=this
+        getGroup()
+          .then(function (data) {
+            $this.groupData=data;
+            hideLoading($this)
+          })
+          .catch(function (error) {
+            errorTip($this)
+          })
       }
     },
     created () {
-      let $this=this
-      getGroup()
-        .then(function (data) {
-          $this.groupData=data;
-          hideLoading($this)
-        })
-        .catch(function (error) {
-          errorTip($this)
-        })
+      this.initGroup()
     },
   }
 </script>

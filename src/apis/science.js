@@ -13,23 +13,21 @@ import * as bases from '../apis/base'
  * 获得圈子页面圈子首页幻灯及推荐
  * @param $this vue文件this对象用于控制加载提示的
  */
-export const login = (userName,password) => {
-  let uri = '/app/web/userLogin?userName=' + userName+"&password="+password
+export const getScienceList = (lastId) => {
+  let uri = '/app/wiki/wikiList?lastId=' + lastId
   return bases.get({uri}).then((json) => {
-    window.console.log(json.resultData.data)
-    verifyToken(json.resultData.data)
+    let data = {
+      list: [],
+      lastId: 0
+    }
+    if (json.resultData.wikilist != null && json.resultData.wikilist.length > 0) {
+      data.list = json.resultData.wikilist;
+      data.lastId = json.resultData.wikilist[json.resultData.wikilist.length - 1].pid
+    } else {
+      return null
+    }
+    return data;
   }).catch((error) => {
-    return Promise.reject(new Error('网络异常'));
-  });
-}
-
-export const verifyToken =(token) => {
-  let uri='/app/web/checkToken'
-  let query=''
-  return bases.getByHeader({uri,query,token}).then((json)=>{
-    window.console.log(json)
-  })
-    .catch((error) => {
     return Promise.reject(new Error('网络异常'));
   });
 }
