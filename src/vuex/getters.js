@@ -46,3 +46,45 @@ export const getCustomerID=function (state) {
     return getCookie(cookies.CUSTOMERID)
   }
 }
+
+/**
+ * 获得全局的微信基本信息
+ * @param state
+ */
+export const getWxOAuherInfo=function (state) {
+  let oauthor={
+      openId:'',
+      wxNick:'',
+      wxHeader:''
+  }
+  if(state.oauthor.openId!=''){
+    oauthor.openId=state.oauthor.openId
+  }else{
+    oauthor.openId=getCookie(cookies.OPENID)
+  }
+  if(state.oauthor.wxNick!=''){
+    oauthor.wxNick=state.oauthor.wxNick
+  }else{
+    oauthor.wxNick=getCookie(cookies.WXNICK)
+  }
+  if(state.oauthor.wxHeader!=''){
+    oauthor.wxHeader=state.oauthor.wxHeader
+  }else{
+    oauthor.wxHeader=getCookie(cookies.WXHEADER)
+  }
+  return oauthor
+}
+
+/**
+ * 判断OpenId 是否存在
+ * @param state
+ * @returns {boolean}
+ */
+export const hasOpenId=function (state,route) {
+  if(state.oauthor.openId!=''){
+    return true
+  }else{
+    let openId=getCookie(cookies.OPENID)
+    return !(openId==''&&route.query.openid==undefined)
+  }
+}

@@ -13,7 +13,12 @@ const state = {
   footer:true,
   backClass:'ddbg',
   token:'234234234',
-  customerId:0
+  customerId:0,
+  oauthor:{
+    openId:'',
+    wxNick:'',
+    wxHeader:''
+  }
 };
 const mutations = {
   [types.UPDATE_LOADING](state,loading) {
@@ -34,6 +39,14 @@ const mutations = {
   [types.UPDATE_CUSTOMERID](state,customerId){
     state.customerId=customerId
     addCookie(cookies.CUSTOMERID,customerId,cookies.COOKIE_DAYS)
+  },
+  [types.UPDATE_WEIXININFO](state,openId,wxNick,wxHeader){
+    state.oauthor.openId=openId
+    state.oauthor.wxNick=wxNick
+    state.oauthor.wxHeader=wxHeader
+    addCookie(cookies.OPENID)
+    addCookie(cookies.WXNICK)
+    addCookie(cookies.WXHEADER)
   }
 }
 export default new Vuex.Store({

@@ -28,3 +28,9 @@ export const UPDATE_TOKEN = 'UPDATE_TOKEN'
  * @type {string}
  */
 export const UPDATE_CUSTOMERID = 'UPDATE_CUSTOMERID'
+
+/**
+ * 修改微信的相关基础信息
+ * @type {string}
+ */
+export const UPDATE_WEIXININFO = 'UPDATE_WEIXININFO'
