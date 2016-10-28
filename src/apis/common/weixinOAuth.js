@@ -1,5 +1,6 @@
 import store from '../../vuex/store'
 import { hasOpenId } from '../../vuex/getters'
+import { isWeXin} from '../../assets/utils'
 /**
  * 使用微信授权
  * @param customerId 商户ID
@@ -24,7 +25,9 @@ export const weixinOAuth=function (route,callback) {
   if(!hasOpenId(store.state,route)){
     let redirectUri=window.location.href;
     let customerId=route.query.customerId
-    oauthByWeixin(customerId,redirectUri)
+    if(isWeXin()){
+      oauthByWeixin(customerId,redirectUri)
+    }
     callback()
   }else{
     if(route.query.openid!=undefined){
