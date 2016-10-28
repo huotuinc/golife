@@ -108,7 +108,7 @@
           })
       },
       /**
-       * 上啦滚动分页
+       * 上拉滚动分页
        */
       loadMore: function () {
         let $this = this

@@ -77,8 +77,9 @@ export const getGroup = ()=> {
  * @param $this 当前页最后一条数据ID
  */
 export const getGroupList = (lastId) => {
-  let uri = '/app/circle/indexList?lastId=' + lastId
-  return bases.get({uri}).then((json) => {
+  let uri = '/app/circle/indexList'
+  let query=`lastId=${lastId}`
+  return bases.get({uri,query}).then((json) => {
     let data = {
       list: [],
       lastId: 0

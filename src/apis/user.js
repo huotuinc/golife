@@ -14,8 +14,9 @@ import * as bases from '../apis/base'
  * @param $this vue文件this对象用于控制加载提示的
  */
 export const login = (userName,password) => {
-  let uri = '/app/web/userLogin?userName=' + userName+"&password="+password
-  return bases.get({uri}).then((json) => {
+  let uri = '/app/web/userLogin'
+  let query=`userName=${userName}&password=${password}`
+  return bases.get({ uri, query }).then((json) => {
     window.console.log(json.resultData.data)
     verifyToken(json.resultData.data)
   }).catch((error) => {
@@ -39,8 +40,9 @@ export const login = (userName,password) => {
  * @param $this 当前页最后一条数据ID
  */
 export const getConcernArticle = (lastId) => {
-  let uri = '/app/user/concernIndex?lastId=' + lastId
-  return bases.get({uri}).then((json) => {
+  let uri = '/app/user/concernIndex'
+  let query=`lastId=${lastId}`
+  return bases.get({ uri, query }).then((json) => {
     let data = {
       list: [],
       lastId: 0

@@ -12,7 +12,8 @@ const state = {
   loading: true,
   footer:true,
   backClass:'ddbg',
-  token:'234234234'
+  token:'234234234',
+  customerId:0
 };
 const mutations = {
   [types.UPDATE_LOADING](state,loading) {
@@ -28,7 +29,11 @@ const mutations = {
   },
   [types.UPDATE_TOKEN](state,token){
     state.token=token
-    addCookie(cookies.TOKEN,token,cookies.COOKIE_DAYS,'/')
+    addCookie(cookies.TOKEN,token,cookies.COOKIE_DAYS)
+  },
+  [types.UPDATE_CUSTOMERID](state,customerId){
+    state.customerId=customerId
+    addCookie(cookies.CUSTOMERID,customerId,cookies.COOKIE_DAYS)
   }
 }
 export default new Vuex.Store({

@@ -51,7 +51,6 @@
         this.decline=_decline
       },
       handleTopChange(status) {
-
         this.loadStatus.topStatus = status;
       },
       /**
@@ -75,6 +74,7 @@
       Loadmore
     },
     mounted() {
+      window.console.log(this.$route)
       this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.circle.getBoundingClientRect().top + 50);
     }
   }

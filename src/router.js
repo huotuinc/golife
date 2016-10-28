@@ -89,5 +89,13 @@ export const routes = [
         ]
       },
     ]
-  }
+  },
+  {
+    path: '/error/:code',
+    name: 'error',
+    component: resolve => require(['./components/common/error'], resolve),
+    meta: {
+      requiresAuth: false
+    }
+  },
 ]

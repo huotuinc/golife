@@ -8,23 +8,32 @@
         <p class="kimg dhfenleiicon"></p>
         <p>分类</p>
       </a>
-      <router-link to="/circle" active-class="weui_bar_item_on" class="weui_navbar_item">
+      <router-link :to="'/circle?customerId='+getCustomerID" active-class="weui_bar_item_on" class="weui_navbar_item">
         <p class="kimg faxxx"></p>
         <p style="z-index:99999; position:absolute;left:0px;right:0px;">发现</p>
         <div style="position:absolute;bottom:0px;left:0px;right:0px;">
           <p class="faxxxicon"></p>
           <div style="position:absolute;bottom:0px;left:0px;right:0px; z-index:-1">
             <p style=" height:5.5em; text-align:center; margin:0 auto;background-color:#fff; border-radius:100%; border:1px solid #eee">
-            </p> </div>
+            </p>
+          </div>
         </div>
       </router-link>
       <a href="javascript:void(0);" class="weui_navbar_item">
         <p class="kimg dhgouwucheicon"></p>
         <p>购物车</p>
       </a>
-      <router-link to="/userCenter/index" active-class="weui_bar_item_on" class="weui_navbar_item">
+      <router-link :to="'/userCenter/index?customerId='+getCustomerID" active-class="weui_bar_item_on" class="weui_navbar_item">
         <p class="kimg dhzhongxinicon"></p>
         <p> 我的</p>
       </router-link>
     </div>
 </template>
+<script>
+  import { mapGetters} from 'vuex'
+  export default {
+    computed: mapGetters([
+      'getCustomerID'
+    ])
+  }
+</script>

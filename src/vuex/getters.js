@@ -34,3 +34,15 @@ export const getToken = function (state) {
   }
 }
 
+/**
+ * 获得全局的CustomerId  vuex状态中没有获得全局的CustomerId则查找Cookie中的获得全局的CustomerId
+ * @param state
+ * @returns {*}
+ */
+export const getCustomerID=function (state) {
+  if(state.customerId!=''&&state.customerId!=undefined&&state.customerId!=0){
+    return state.customerId;
+  }else{
+    return getCookie(cookies.CUSTOMERID)
+  }
+}

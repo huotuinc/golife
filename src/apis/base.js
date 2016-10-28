@@ -28,10 +28,11 @@ export const javaApiUri='http://mallsns.51flashmall.com:8091'
 export const get = ({uri, query}) => {
   let _url;
   let _token = getToken(store.state);//获得Token
+  let _customerId=getCustomerID(store.customerId)//获得CustomerId
   if (query) {
-    _url = javaApiUri + `${uri}?${query}`;
+    _url = javaApiUri + `${uri}?${query}&customerId=${_customerId}`;
   } else {
-    _url = javaApiUri + `${uri}`;
+    _url = javaApiUri + `${uri}?customerId=${_customerId}`;
   }
   return fetch(_url, {
     headers: {
