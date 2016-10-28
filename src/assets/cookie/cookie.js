@@ -7,12 +7,13 @@
  * @param days
  * @param path
  */
-export const addCookie=function (name,value,days,path) {
+export const addCookie=function (name,value,days) {
   var name = escape(name);
   var value = escape(value);
   var expires = new Date();
   expires.setTime(expires.getTime() + days * 3600000 * 24);
-  path = path == "" ? "" : ";path=" + path;
+  // var path = path == "" ? "" : ";path=" + path;
+  var path ='/';
   //GMT(Greenwich Mean Time)是格林尼治平时，现在的标准时间，协调世界时是UTC
   //参数days只能是数字型
   var _expires = (typeof days) == "string" ? "" : ";expires=" + expires.toUTCString();

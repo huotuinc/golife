@@ -1,0 +1,30 @@
+.baocuo {
+  text-align: center; max-width:640px; min-width:320px; margin:0 auto;
+}
+.baocuotb {
+  padding-top: 40%;
+}
+.baocuo img {
+  width: 105px;
+}
+.baocuo p.baocuo_tishi {
+  color:#B0B0B0;
+  font-size: 16px;
+  margin-top: 10px;
+
+}
+.baocuo a.cxjz {
+  border: 1px solid #575757;
+  padding: 5px 15px;
+  font-size: 14px;
+  color: #575757;;
+  border-radius: 4px;
+}
+.baocuo .baocuo_buttom{
+  margin: 18px auto;
+  text-align: center;
+  display: none;
+}
+.baocuo .baocuo_buttomo.on {
+  display: block;
+}

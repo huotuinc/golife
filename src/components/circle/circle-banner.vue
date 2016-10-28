@@ -14,7 +14,7 @@
     </div>
     <div>
       <div class="weui_cells weui_cells_access" style="margin-top:0px; font-size:14px">
-        <router-link class="weui_cell" :to="{ path: 'groupAll' }" append>
+        <router-link class="weui_cell" :to="{ path: 'groupAll',query:{ customerId:getCustomerID} }" append>
           <div class="weui_cell_bd weui_cell_primary">
             <p>热门推荐</p>
           </div>
@@ -30,7 +30,7 @@
                 <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage"
                             :message="errorStatus.message"></subLoading>
                 <div class="swiper-slide" v-for="item in hotData.recommended" style="width: auto;">
-                  <router-link :to="{ path: 'groupList/10' }" append>
+                  <router-link :to="{ path: 'groupList/10',query:{ customerId:getCustomerID} }" append>
                     <div class="custom-image-mask">
                       <span class="bn">{{item.title}}</span>
                       <span class="bna">{{item.num}}人已关注</span>
@@ -51,7 +51,8 @@
   import Swiper from 'swiper'
   import {getBanner} from '../../apis/circle'
   import subLoading from '../../components/common/loading'
-  import {hideLoading, errorTip} from '../../apis/common/actions'
+  import { hideLoading, errorTip } from '../../apis/common/actions'
+  import { mapGetters} from 'vuex'
   export default {
     data () {
       return {
@@ -66,6 +67,9 @@
         }
       }
     },
+    computed: mapGetters([
+      'getCustomerID'
+    ]),
     components: {
       subLoading
     },

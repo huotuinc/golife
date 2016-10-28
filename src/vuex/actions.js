@@ -33,3 +33,12 @@ export const updateBackClass = ({ commit },className) => {
 export const updateToken = ({ commit },token) => {
   commit(types.UPDATE_TOKEN,token)
 }
+
+/**
+ * 修改商户号
+ * @param commit
+ * @param customerId
+ */
+export const updateCustomerId = ({ commit },customerId) => {
+  commit(types.UPDATE_CUSTOMERID,customerId)
+}

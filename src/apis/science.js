@@ -14,8 +14,9 @@ import * as bases from '../apis/base'
  * @param $this vue文件this对象用于控制加载提示的
  */
 export const getScienceList = (lastId) => {
-  let uri = '/app/wiki/wikiList?lastId=' + lastId
-  return bases.get({uri}).then((json) => {
+  let uri = '/app/wiki/wikiList'
+  let query=`lastId=${lastId}`
+  return bases.get({ uri, query }).then((json) => {
     let data = {
       list: [],
       lastId: 0

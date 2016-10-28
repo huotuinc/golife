@@ -22,3 +22,9 @@ export const UPDATE_BACKCLASS = 'UPDATE_BACKCLASS'
  * @type {string}
  */
 export const UPDATE_TOKEN = 'UPDATE_TOKEN'
+
+/**
+ * 修改商户号
+ * @type {string}
+ */
+export const UPDATE_CUSTOMERID = 'UPDATE_CUSTOMERID'
