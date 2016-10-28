@@ -43,8 +43,10 @@
     },
     methods: {
       /**
-       * 下拉刷新
-       */
+       * 下拉组件和数据组件是统一vue 实例
+       *  @param parent 下拉组件(mint-ui 的loadMore组件)或者数据承接的当前vue 实例组件
+       *  @param id 下拉组件(mint-ui 的loadMore组件) 的标识ID
+       * */
       refresh:function (parent,id) {
         let $this = this
         undisabledScroll($this);
@@ -70,6 +72,39 @@
             errorTip($this)
             parent.loadStatus.allLoaded = true
             parent.$refs.loadmore.onTopLoaded(id);
+          })
+      },
+      /**
+       * 下拉刷新分页数据,该方法是当下拉组件和数据对象组件不在同一的vue 实例中
+       *  @param loadMoreObject 下拉组件(mint-ui 的loadMore组件)
+       *  @param dataObject 数据承接的当前vue 实例组件
+       *  @param id 下拉组件(mint-ui 的loadMore组件) 的标识ID
+       * */
+      refreshPager:function (loadMoreObject,dataObject,id) {
+        let $this = this
+        undisabledScroll($this);
+        $this.data.lastId = 0
+        this.nextMethod($this.data.lastId)
+          .then(function (data) {
+            if (data == null) {
+              disabledScroll($this)
+              if ($this.data.lastId == 0) {
+                errorTipMessage($this, '没有数据')
+              }
+              dataObject.loadStatus.allLoaded = true
+              loadMoreObject.$refs.loadmore.onTopLoaded(id);
+            } else {
+              hideLoading($this)
+              $this.data.lastId = data.lastId
+              $this.data.list = data.list
+              dataObject.data.list=data.list
+              loadMoreObject.$refs.loadmore.onTopLoaded(id);
+            }
+          })
+          .catch(function (error) {
+            errorTip($this)
+            dataObject.loadStatus.allLoaded = true
+            loadMoreObject.$refs.loadmore.onTopLoaded(id);
           })
       },
       /**

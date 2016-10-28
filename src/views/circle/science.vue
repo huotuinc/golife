@@ -5,7 +5,7 @@
       <circleSearch></circleSearch>
       <circle-header></circle-header>
       <div class="scrollable-content" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
-        <mt-loadmore :auto-Fill="false" bottom-Distance="20" top-Distance="20" @top-status-change="handleTopChange"
+        <mt-loadmore :auto-Fill="false"  top-Distance="20" @top-status-change="handleTopChange"
                      :top-method="loadTop"
                      ref="loadmore">
           <div slot="top" class="mint-loadmore-top">
@@ -63,10 +63,7 @@
   import circleSearch from '../../components/circle/search'
   import scrollerPager from '../../components/pager/scrollerPage'
   import { Loadmore } from 'mint-ui';
-  import subLoading from '../../components/common/loading'
   import { getScienceList } from '../../apis/science'
-  import { hideLoading, errorTip, errorTipMessage} from '../../apis/common/actions'
-  import { disabledScroll, undisabledScroll } from '../../assets/pager'
   export default {
     data() {
       return {

@@ -6,19 +6,13 @@
       <circleHeader></circleHeader>
       <circleSearch></circleSearch>
       <div class="scrollable-content" ref="circle" :style="{ height: wrapperHeight + 'px' }">
-        <mt-loadmore @top-status-change="handleTopChange" bottom-Distance="20" top-Distance="20" :top-method="loadTop"
-                     :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
+        <mt-loadmore @top-status-change="handleTopChange" top-Distance="20" :top-method="loadTop"
+                     :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
             <circleBanner ref="circleBanner"></circleBanner>
             <circleGroup ref="circleGroup"></circleGroup>
           <div slot="top" class="mint-loadmore-top">
             <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
             <span v-show="loadStatus.topStatus === 'loading'">
-              <mt-spinner type="snake"></mt-spinner>
-            </span>
-          </div>
-          <div slot="bottom" v-show="!loadStatus.allLoaded" class="mint-loadmore-bottom">
-            <span v-show="loadStatus.bottomStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.bottomStatus === 'drop' }">↑</span>
-            <span v-show="loadStatus.bottomStatus === 'loading'">
               <mt-spinner type="snake"></mt-spinner>
             </span>
           </div>
@@ -48,8 +42,6 @@
         wrapperHeight: '',
         loadStatus:{
           topStatus: '',
-          bottomShow:true,
-          bottomStatus: '',
           allLoaded: false,
         },
       }
@@ -62,9 +54,6 @@
 
         this.loadStatus.topStatus = status;
       },
-      handleBottomChange(status) {
-        this.loadStatus.bottomStatus = status;
-      },
       /**
        * 下拉刷新
        * @param id
@@ -75,10 +64,7 @@
           .then(function () {
             $this.$refs.loadmore.onTopLoaded(id);
           })
-        this.$refs.circleGroup.initGroup()
-      },
-      loadBottom:function (id) {
-//        window.console.log(id)
+        this.$refs.circleGroup.loadTop(this,id)
       }
     },
     components: {

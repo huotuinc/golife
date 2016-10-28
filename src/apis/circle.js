@@ -86,3 +86,26 @@ export const fetchSuggestList = ()=>{
         return json.resultData.suggestList;})
      .catch(error=>Promise.reject(error));
 }
+
+  /**
+  * 获得我的小组列表(分页)
+  * @param $this 当前页最后一条数据ID
+  */
+  export const getGroupList = (lastId) => {
+  let uri = '/app/circle/indexList?lastId=' + lastId
+  return bases.get({uri}).then((json) => {
+    let data = {
+      list: [],
+      lastId: 0
+    }
+    if (json.resultData.circlelist != null && json.resultData.circlelist.length > 0) {
+      data.list = json.resultData.circlelist;
+      data.lastId = json.resultData.circlelist[json.resultData.circlelist.length - 1].pid
+    } else {
+      return null
+    }
+    return data;
+  }).catch((error) => {
+    return Promise.reject(new Error('网络异常'));
+  });
+  }
