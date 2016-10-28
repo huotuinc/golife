@@ -11,6 +11,7 @@
 import "whatwg-fetch"
 import store from '../vuex/store'
 import { getToken ,getCustomerID } from '../vuex/getters'
+
 /**
  * API根地址
  */
@@ -28,7 +29,7 @@ export const javaApiUri='http://mallsns.51flashmall.com:8091'
 export const get = ({uri, query}) => {
   let _url;
   let _token = getToken(store.state);//获得Token
-  let _customerId=getCustomerID(store.customerId)//获得CustomerId
+  let _customerId=getCustomerID(store.state)//获得CustomerId
   if (query) {
     _url = javaApiUri + `${uri}?${query}&customerId=${_customerId}`;
   } else {

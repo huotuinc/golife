@@ -24,17 +24,6 @@ export const login = (userName,password) => {
   });
 }
 
-// export const verifyToken =(token) => {
-//   let uri='/app/web/checkToken'
-//   let query=''
-//   return bases.getByHeader({uri,query,token}).then((json)=>{
-//     window.console.log(json)
-//   })
-//     .catch((error) => {
-//     return Promise.reject(new Error('网络异常'));
-//   });
-// }
-
 /**
  * 获得我的关注文章列表(分页)
  * @param $this 当前页最后一条数据ID
