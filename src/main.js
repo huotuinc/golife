@@ -23,40 +23,49 @@ const router = new VueRouter({
 
 let indexScrollTop = 0;
 router.beforeEach((route, redirect, next) => {
-  weixinOAuth(route,function () {
-    //TODO 商城授权->微信授权->跳转过来的链接安全性问题还待处理
-    store.dispatch("updateFooter",true);
-    store.dispatch("updateBackClass",'ddbg');
-    if (route.path !== '/') {
-      indexScrollTop = document.body.scrollTop;
-    }
-
-    console.log("requiresAuth="+ route.meta.requiresAuth+" , customerId="+route.query.customerId);
-
-    if(route.meta.requiresAuth==undefined||route.meta.requiresAuth){
-      if(route.query.customerId==undefined||route.query.customerId==0){
-        let url= '/error/'+errorCodes.ERROR_PARAMETER
-        next({ path: url })
-      }else{
-        store.dispatch("updateCustomerId",route.query.customerId);
-        next();
+  if(route.meta.requiresAuth==undefined||route.meta.requiresAuth){
+    weixinOAuth(route,function () {
+      //TODO 商城授权->微信授权->跳转过来的链接安全性问题还待处理
+      store.dispatch("updateFooter",true);
+      store.dispatch("updateBackClass",'ddbg');
+      if (route.path !== '/') {
+        indexScrollTop = document.body.scrollTop;
       }
-    }else{
-      next();
-    }
-  })//微信授权
+      redirectError(route,next)
+    })
+  }else{
+    next()
+  }
   // document.title = route.meta.title || document.title;
 });
 
-router.afterEach(route => {
-  if (route.path !== '/') {
-    document.body.scrollTop = 0;
-  } else {
-    Vue.nextTick(() => {
-      document.body.scrollTop = indexScrollTop;
-    });
+/**
+ * 错误拦截
+ * @param route
+ * @param next
+ */
+const redirectError = function (route,next) {
+  let url=''
+  if(route.query.customerId==undefined||route.query.customerId==0){
+    url= '/error/'+errorCodes.ERROR_PARAMETER
+    next({ path: url })
+  }else if(store.state.mallUrl==''){
+    url='/error/'+errorCodes.ERROR_CONFIG
+    next({ path: url })
+  } else{
+    store.dispatch("updateCustomerId",route.query.customerId);
+    next();
   }
-});
+}
+// router.afterEach(route => {
+//   if (route.path !== '/') {
+//     document.body.scrollTop = 0;
+//   } else {
+//     Vue.nextTick(() => {
+//       document.body.scrollTop = indexScrollTop;
+//     });
+//   }
+// });
 
 
 new Vue({

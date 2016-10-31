@@ -17,6 +17,8 @@ import { getToken ,getCustomerID } from '../vuex/getters'
  */
 export const javaApiUri='http://mallsns.51flashmall.com:8091'
 
+export const debug=true
+
 // export const javaApiUri = 'http://192.168.1.92:8986'
 
 /**

@@ -34,3 +34,9 @@ export const UPDATE_CUSTOMERID = 'UPDATE_CUSTOMERID'
  * @type {string}
  */
 export const UPDATE_WEIXININFO = 'UPDATE_WEIXININFO'
+
+/**
+ * 更新商家商城根地址方法名称
+ * @type {string}
+ */
+export const UPDATE_MALLURL='UPDATE_MALLURL'

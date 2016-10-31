@@ -14,6 +14,7 @@ const state = {
   backClass:'ddbg',
   token:'234234234',
   customerId:0,
+  mallUrl:'',
   oauthor:{
     openId:'',
     wxNick:'',
@@ -47,6 +48,9 @@ const mutations = {
     addCookie(cookies.OPENID)
     addCookie(cookies.WXNICK)
     addCookie(cookies.WXHEADER)
+  },
+  [types.UPDATE_MALLURL](state,mallUrl){
+    state.mallUrl=mallUrl
   }
 }
 export default new Vuex.Store({

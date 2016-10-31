@@ -189,31 +189,9 @@
       .then(
         (response)=>{
           this.suggestList= response;
-
-          this.suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-
-          
           hideLoading($this);
         })
       .catch(error=>{
-
-
-          this.suggestList = [];
-          this.suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-          this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
-
-
         //alert(error);
         $this.errorStatus.message = error.message;
         //hideLoading($this);

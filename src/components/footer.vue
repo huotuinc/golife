@@ -1,6 +1,6 @@
 <template>
     <div class="weui_navbar daohangs">
-      <a href="javascript:void(0);" class="weui_navbar_item">
+      <a :href="getMallUrl" class="weui_navbar_item">
         <p class="kimg dhshouyeicon"></p>
         <p>首页</p>
       </a>
@@ -33,7 +33,8 @@
   import { mapGetters} from 'vuex'
   export default {
     computed: mapGetters([
-      'getCustomerID'
+      'getCustomerID',
+      'getMallUrl'
     ])
   }
 </script>

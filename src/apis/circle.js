@@ -73,18 +73,6 @@ export const getGroup = ()=> {
 }
 
 
-/**
- * 获得 圈子热门推荐列表
- */
-export const fetchSuggestList = ()=>{
-  let uri = '/app/circle/circleIndexSuggestList';
-  return bases.get({uri})
-    .then((json)=>{
-        if(json.systemResultCode !=1 ) return Promise.reject(new Error('code:'+json.systemResultCode+' message:'+json.systemResultDescription));
-        if(json.resultCode != 1 ) return Promise.reject(new Error('code:'+json.resultData+ "message:"+json.resultDescription));
-        return json.resultData.suggestList;})
-     .catch(error=>Promise.reject(error));
-}
 
   /**
   * 获得我的小组列表(分页)
@@ -109,3 +97,29 @@ export const getGroupList = (lastId) => {
     return Promise.reject(new Error('网络异常'));
   });
   }
+
+/**
+ * 获得 圈子热门推荐列表
+ */
+export const fetchSuggestList = () =>{
+  if(bases.debug){
+    let suggestList=[];
+     suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     return Promise.resolve(suggestList)
+  }else{
+     let uri = '/app/circle/circleIndexSuggestList';
+    return bases.get({uri })
+      .then((json) => {
+        if (json.systemResultCode != 1) return Promise.reject(new Error('code:' + json.systemResultCode + ' message:' + json.systemResultDescription));
+        if (json.resultCode != 1) return Promise.reject(new Error('code:' + json.resultData + "message:" + json.resultDescription));
+        return json.resultData.suggestList;
+      })
+      .catch(error => Promise.reject(error));
+  }
+}
