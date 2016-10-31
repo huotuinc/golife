@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/10/10.
  */
-import { getCookie } from '../assets/cookie/cookie'
+import {getCookie} from '../assets/cookie/cookie'
 import * as cookies from '../assets/cookie/cookie-type'
 
 /**
@@ -27,11 +27,20 @@ export const getBackClass = state => state.backClass
  * @param state
  */
 export const getToken = function (state) {
-  if(state.token!=''&&state.token!=undefined){
-     return state.token;
-  }else{
+  if (state.token != '' && state.token != undefined) {
+    return state.token;
+  } else {
     return getCookie(cookies.TOKEN)
   }
+}
+
+/**
+ * 获得全局的商家商城地址
+ * @param state
+ * @returns {string}
+ */
+export const getMallUrl = function (state) {
+  return state.mallUrl
 }
 
 /**
@@ -39,10 +48,10 @@ export const getToken = function (state) {
  * @param state
  * @returns {*}
  */
-export const getCustomerID=function (state) {
-  if(state.customerId!=''&&state.customerId!=undefined&&state.customerId!=0){
+export const getCustomerID = function (state) {
+  if (state.customerId != '' && state.customerId != undefined && state.customerId != 0) {
     return state.customerId;
-  }else{
+  } else {
     return getCookie(cookies.CUSTOMERID)
   }
 }
@@ -51,26 +60,26 @@ export const getCustomerID=function (state) {
  * 获得全局的微信基本信息
  * @param state
  */
-export const getWxOAuherInfo=function (state) {
-  let oauthor={
-      openId:'',
-      wxNick:'',
-      wxHeader:''
+export const getWxOAuherInfo = function (state) {
+  let oauthor = {
+    openId: '',
+    wxNick: '',
+    wxHeader: ''
   }
-  if(state.oauthor.openId!=''){
-    oauthor.openId=state.oauthor.openId
-  }else{
-    oauthor.openId=getCookie(cookies.OPENID)
+  if (state.oauthor.openId != '') {
+    oauthor.openId = state.oauthor.openId
+  } else {
+    oauthor.openId = getCookie(cookies.OPENID)
   }
-  if(state.oauthor.wxNick!=''){
-    oauthor.wxNick=state.oauthor.wxNick
-  }else{
-    oauthor.wxNick=getCookie(cookies.WXNICK)
+  if (state.oauthor.wxNick != '') {
+    oauthor.wxNick = state.oauthor.wxNick
+  } else {
+    oauthor.wxNick = getCookie(cookies.WXNICK)
   }
-  if(state.oauthor.wxHeader!=''){
-    oauthor.wxHeader=state.oauthor.wxHeader
-  }else{
-    oauthor.wxHeader=getCookie(cookies.WXHEADER)
+  if (state.oauthor.wxHeader != '') {
+    oauthor.wxHeader = state.oauthor.wxHeader
+  } else {
+    oauthor.wxHeader = getCookie(cookies.WXHEADER)
   }
   return oauthor
 }
@@ -80,11 +89,11 @@ export const getWxOAuherInfo=function (state) {
  * @param state
  * @returns {boolean}
  */
-export const hasOpenId=function (state,route) {
-  if(state.oauthor.openId!=''){
+export const hasOpenId = function (state, route) {
+  if (state.oauthor.openId != '') {
     return true
-  }else{
-    let openId=getCookie(cookies.OPENID)
-    return !(openId==''&&route.query.openid==undefined)
+  } else {
+    let openId = getCookie(cookies.OPENID)
+    return !(openId == '' && route.query.openid == undefined)
   }
 }

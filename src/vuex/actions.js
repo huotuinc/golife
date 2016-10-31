@@ -51,3 +51,12 @@ export const updateCustomerId = ({ commit },customerId) => {
 export const updateOAuther = ({ commit },openId,wxNick,wxHeader) => {
   commit(types.UPDATE_WEIXININFO,openId,wxNick,wxHeader)
 }
+
+/**
+ * 更新商家商城地址
+ * @param commit
+ * @param mallUrl 商家商城地址
+ */
+export const updateMallUrl = ({ commit },mallUrl) => {
+  commit(types.UPDATE_MALLURL,mallUrl)
+}

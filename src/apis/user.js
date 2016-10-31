@@ -24,6 +24,8 @@ export const login = (userName,password) => {
   });
 }
 
+// export const loginByWx = (openId,nickName,)
+
 /**
  * 获得我的关注文章列表(分页)
  * @param $this 当前页最后一条数据ID

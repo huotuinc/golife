@@ -19,10 +19,10 @@
     methods:{
       init:function () {
         let code=this.$route.params.code
-        window.console.log(code)
-        switch (code){
-          case errors.ERROR_PARAMETER.toString():
-            this.message="参数错误"
+        if(code==errors.ERROR_PARAMETER){
+          this.message='参数错误'
+        }else if(code==errors.ERROR_CONFIG){
+          this.message='获取配置错误'
         }
       }
     },
