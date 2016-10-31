@@ -8,6 +8,8 @@
  *
  */
 import * as bases from '../apis/base'
+import * as apiStatus from '../apis/common/apiStatus'
+import store from '../vuex/store';
 
 /**
  * 获得圈子页面圈子首页幻灯及推荐
@@ -24,7 +26,32 @@ export const login = (userName,password) => {
   });
 }
 
-// export const loginByWx = (openId,nickName,)
+/**
+ * 微信授权登录,如果登录openId 登录成功则直接获得token,
+ * 返回的20002 说明openId 没有存在帐号,后期需要跳转到登录页面登录
+ * @param openId 微信OpenId
+ * @param nickName 微信昵称
+ * @param wxHeader 微信头像
+ */
+export const loginByWx = (customerId,openId,nickName,wxHeader) => {
+  let uri='/app/security/weixinLogin'
+  let params={
+    customerId:customerId,
+    openId:openId,
+    nickName:nickName,
+    imageUrl:wxHeader
+  }
+  return bases.post({ uri, params})
+    .then(function (json) {
+      if(json.resultCode==apiStatus.SUCCESS){//登录成功
+        store.dispatch("updateToken",json.resultData.data)
+      }else if(json.resultCode==apiStatus.NO_EXISTES_OPENID_ACCOUNT){//微信没有关联帐号
+
+      }else{//其他错误异常
+
+      }
+    })
+}
 
 /**
  * 获得我的关注文章列表(分页)
