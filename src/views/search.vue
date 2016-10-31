@@ -17,7 +17,13 @@
     <div class="con">
       <div class="msg">点击选择栏目</div>
       <ul class="list">
-        <li class="fixed">
+
+          <li class="fixed" v-for = "serchList in serchLists" >
+
+            <a>  {{ serchList.name }} </a>
+          </li>
+
+        <!-- <li class="fixed">
           <a>推荐</a>
         </li>
         <li>
@@ -61,7 +67,7 @@
         </li>
         <li>
           <a>美食</a>
-        </li>
+        </li> -->
       </ul>
       <div class="msg tip" disabled-message="最多#n#个分类,请先删除一些" origin-message="点击选择分类">点击选择分类</div>
       <ul class="list" data-toggle="menu-unselected">
@@ -82,16 +88,52 @@
         </li>
       </ul>
     </div>
+
+    <div> <button type="button" name="button" v-on:click="btnclick">点我啊</button></div>
   </div>
 </template>
 <script>
   import store from '../vuex/store';
+  import  searchxxx from '../apis/search'
   export default {
     created () {
       this.$store.dispatch("updateFooter",false);
       this.$store.dispatch("updateBackClass",'');
       require("../../static/js/jquery-weui")
     },
+
+    beforeCreate () {
+
+
+    },
+
+    methods: {
+
+      btnclick () {
+        var serchList = searchxxx(0)
+        .then((json) => {
+
+           var listData =  JSON.stringify(json);
+           for(var index = 0; index < json.length; index ++){
+             console.log(json[index].name);
+           }
+           this.serchLists = json;
+          })
+        .catch((error) =>{
+
+        });
+
+
+
+      }
+    },
+
+    data () {
+      return {
+          serchLists: []
+      }
+    }
+
   }
 </script>
 <style scoped>
