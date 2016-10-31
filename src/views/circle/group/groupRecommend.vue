@@ -1,22 +1,20 @@
 <template>
   <div class="_full_router ddbg">
     <div class="_full_inner">
-
       <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage" :message="errorStatus.message"></subLoading>
-
       <div class="qbxiaozu scrollable-content">
         <ul>
           <li v-for='item in suggestList'>
             <a :href="item.url">
-                <div class='custom-image-mask'>
-                   <span class="bn"></span>
-                   <span class="bna">{{item.num}}人已关注</span>
-                   <div class="masksd"></div>
-                   <img :src="item.pictureUrl" :alt="item.title" style="width:100%;">
-                </div>
+              <div class='custom-image-mask'>
+                <span class="bn"></span>
+                <span class="bna">{{item.num}}人已关注</span>
+                <div class="masksd"></div>
+                <img :src="item.pictureUrl" :alt="item.title" style="width:100%;">
+              </div>
             </a>
           </li>
-      <!--<li>
+          <!--<li>
         <router-link to="/circle/groupList/10">
           <div class="custom-image-mask">
             <span class="bn">养生</span>
@@ -148,7 +146,7 @@
           </div>
         </router-link>
       </li>-->
-    </ul>
+        </ul>
       </div>
     </div>
   </div>
@@ -205,6 +203,8 @@
         })
       .catch(error=>{
 
+
+          this.suggestList = [];
           this.suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
           this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
           this.suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});

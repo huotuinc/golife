@@ -79,8 +79,7 @@ export const getGroup = ()=> {
 export const fetchSuggestList = ()=>{
   let uri = '/app/circle/circleIndexSuggestList';
   return bases.get({uri})
-    .then(
-      (json)=>{
+    .then((json)=>{
         if(json.systemResultCode !=1 ) return Promise.reject(new Error('code:'+json.systemResultCode+' message:'+json.systemResultDescription));
         if(json.resultCode != 1 ) return Promise.reject(new Error('code:'+json.resultData+ "message:"+json.resultDescription));
         return json.resultData.suggestList;})

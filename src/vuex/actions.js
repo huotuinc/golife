@@ -42,3 +42,12 @@ export const updateToken = ({ commit },token) => {
 export const updateCustomerId = ({ commit },customerId) => {
   commit(types.UPDATE_CUSTOMERID,customerId)
 }
+
+/**
+ * 更新微信基本信息
+ * @param commit
+ * @param oauthorObj 微信授权获取到的微信个人基本信息
+ */
+export const updateOAuther = ({ commit },openId,wxNick,wxHeader) => {
+  commit(types.UPDATE_WEIXININFO,openId,wxNick,wxHeader)
+}

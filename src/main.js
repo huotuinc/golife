@@ -9,6 +9,7 @@ import 'mint-ui/lib/style.css';
 import infiniteScroll from 'vue-infinite-scroll'
 import { timeToNow} from './filters';
 import * as errorCodes from './assets/error-type'
+import { weixinOAuth } from './apis/common/weixinOAuth'
 
 Vue.filter('timeToNow', timeToNow);
 
@@ -19,34 +20,31 @@ Vue.use(Mint);
 const router = new VueRouter({
   routes:routers.routes
 })
-const getRouterPath=function (to) {
-  let customerId=to.params.customerId
-  let nextUri=to.path+"/"+customerId
-  return nextUri
-}
 
 let indexScrollTop = 0;
 router.beforeEach((route, redirect, next) => {
-  store.dispatch("updateFooter",true);
-  store.dispatch("updateBackClass",'ddbg');
+  weixinOAuth(route,function () {
+    //TODO 商城授权->微信授权->跳转过来的链接安全性问题还待处理
+    store.dispatch("updateFooter",true);
+    store.dispatch("updateBackClass",'ddbg');
+    if (route.path !== '/') {
+      indexScrollTop = document.body.scrollTop;
+    }
 
-  console.log('path='+route.path + " requiresAuth="+ route.meta.requiresAuth +" query.customerid="+ route.query.customerId );
+    console.log("requiresAuth="+ route.meta.requiresAuth+" , customerId="+route.query.customerId);
 
-
-  if (route.path !== '/') {
-    indexScrollTop = document.body.scrollTop;
-  }
-  if(route.meta.requiresAuth==undefined||route.meta.requiresAuth){
-    if(route.query.customerId==undefined||route.query.customerId==0){
-      let url= '/error/'+errorCodes.ERROR_PARAMETER
-      next({ path: url })
+    if(route.meta.requiresAuth==undefined||route.meta.requiresAuth){
+      if(route.query.customerId==undefined||route.query.customerId==0){
+        let url= '/error/'+errorCodes.ERROR_PARAMETER
+        next({ path: url })
+      }else{
+        store.dispatch("updateCustomerId",route.query.customerId);
+        next();
+      }
     }else{
-      store.dispatch("updateCustomerId",route.query.customerId);
       next();
     }
-  }else{
-    next();
-  }
+  })//微信授权
   // document.title = route.meta.title || document.title;
 });
 

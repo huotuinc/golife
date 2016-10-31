@@ -9,6 +9,7 @@
 <script>
   import store from '../../vuex/store';
   import * as errors from '../../assets/error-type'
+  import { clearCookie } from '../../assets/cookie/cookie'
   export default {
     data () {
       return {
@@ -26,6 +27,7 @@
       }
     },
     created(){
+      clearCookie()
       this.init()
     },
     activated() {
