@@ -8,4 +8,3 @@
  *
  */
 import * as bases from '../apis/base'
-

@@ -61,10 +61,10 @@
    width: 100%;
    height: 100%;
 }
-#app, body, html {
-  height: 100%;
-  overflow: hidden;
-}
+/*#app, body, html {*/
+  /*height: 100%;*/
+  /*overflow: hidden;*/
+/*}*/
 .app-scroll{
   /*position: relative;*/
   /*height: 100%;*/
@@ -131,3 +131,55 @@
   /*transition: all .7s ease;*/
   /*opacity: 0.6;*/
 /*}*/
+.mint-loadmore-top {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.mint-loadmore-top span {
+  display: inline-block;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  vertical-align: middle;
+}
+
+/*.mint-loadmore {*/
+/*overflow: auto !important;*/
+/*}*/
+
+.mint-spinner-snake {
+  box-sizing: border-box !important;
+}
+.mint-loadmore-bottom span {
+  display: inline-block;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  vertical-align: middle;
+}
+
+/*
+*滚动加载样式
+*/
+.page-infinite-loading {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.page-infinite-loading div {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.mint-spinner-fading-circle {
+  position: relative;
+}
+
+.mint-loadmore-top span{
+  display: inline-block;
+  transition: .2s linear;
+  vertical-align: middle;
+}
+.mint-loadmore-top span.is-rotate{
+  transform: rotate(180deg);
+}

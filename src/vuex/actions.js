@@ -24,3 +24,39 @@ export const updateFooter = ({ commit },isFooter) => {
 export const updateBackClass = ({ commit },className) => {
     commit(types.UPDATE_BACKCLASS,className)
 }
+
+/**
+ * 修改Token
+ * @param commit
+ * @param token
+ */
+export const updateToken = ({ commit },token) => {
+  commit(types.UPDATE_TOKEN,token)
+}
+
+/**
+ * 修改商户号
+ * @param commit
+ * @param customerId
+ */
+export const updateCustomerId = ({ commit },customerId) => {
+  commit(types.UPDATE_CUSTOMERID,customerId)
+}
+
+/**
+ * 更新微信基本信息
+ * @param commit
+ * @param oauthorObj 微信授权获取到的微信个人基本信息
+ */
+export const updateOAuther = ({ commit },openId,wxNick,wxHeader) => {
+  commit(types.UPDATE_WEIXININFO,openId,wxNick,wxHeader)
+}
+
+/**
+ * 更新商家商城地址
+ * @param commit
+ * @param mallUrl 商家商城地址
+ */
+export const updateMallUrl = ({ commit },mallUrl) => {
+  commit(types.UPDATE_MALLURL,mallUrl)
+}

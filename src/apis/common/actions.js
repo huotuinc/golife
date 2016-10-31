@@ -15,9 +15,9 @@
  * @param $this 实例对象
  */
 export const hideLoading=($this) => {
-  $this.loading=false;
-  $this.isShowImage=false;
-  $this.message=""
+  $this.errorStatus.loading=false;
+  $this.errorStatus.isShowImage=false;
+  $this.errorStatus.message=""
 }
 
 /**
@@ -25,7 +25,18 @@ export const hideLoading=($this) => {
  * @param $this .vue 实例对象
  */
 export const errorTip=($this) => {
-  $this.loading=true;
-  $this.isShowImage=false;
-  $this.message="网络异常";
+  $this.errorStatus.loading=true;
+  $this.errorStatus.isShowImage=false;
+  $this.errorStatus.message="网络异常";
+}
+
+/**
+ * 显示请求API接口异常提示(局部Loading方式)
+ * @param $this  .vue 实例对象
+ * @param message 提示消息
+ */
+export const errorTipMessage=($this,message) => {
+  $this.errorStatus.loading=true;
+  $this.errorStatus.isShowImage=false;
+  $this.errorStatus.message=message;
 }
