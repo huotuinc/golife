@@ -13,7 +13,7 @@
                 <img :src="item.pictureUrl" :alt="item.title" style="width:100%;" />
               </div>
             </a>
-          </li>      
+          </li>
         </ul>
       </div>
     </div>
@@ -28,7 +28,7 @@
 
   export default{
     data:function(){
-      return{    
+      return{
         errorStatus:{
           loading:true,
           isShowImage:true,
@@ -66,14 +66,10 @@
     },
     activated(){
       this.$store.dispatch("updateFooter",false);
-      this.$emit('update-decline', true);    
-      this.$emit('update-searchbar',false);
-      this.$emit('update-header',false);
+      this.$emit('update-decline', true);
     },
     deactivated() {
       this.$emit('update-decline', false);
-      this.$emit('update-searchbar',true);
-      this.$emit('update-header',true);
     },
 
   }

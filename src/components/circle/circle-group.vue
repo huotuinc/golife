@@ -96,24 +96,25 @@
             {
               text: "取消关注",
               className: "quxiaoguanzu",
-
             },
             {
               text: "简介",
               className: "jubao",
               onClick: function() {
-                window.console.log($this.$route)
+                //TODO 简介跳转
+                window.location.href="/#/introduce/10?customerId=3447"
+//                window.location.href="http://"+window.location.host+"/#/login?customerId=3447"
+//                window.console.log($this.$router)
+//                $this.$router.go("/login?customerId=3447")
               }
             },
             {
               text: "举报",
               className: "jubao",
-
             },
             {
               text: "更多帖子",
               className: 'quanbutiezi',
-
             }
           ]
         });

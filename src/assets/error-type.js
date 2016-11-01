@@ -23,10 +23,10 @@ export const ERROR_NOFIND=4000
  */
 export const redirectErrorByCode = function (code) {
   let url = ''
-  if (code == errorCodes.ERROR_CONFIG) {
-    url = '/error/' + errorCodes.ERROR_CONFIG
-  } else if (code == errorCodes.ERROR_PARAMETER) {
-    url = '/error/' + errorCodes.ERROR_PARAMETER
+  if (code == ERROR_CONFIG) {
+    url = '/error/' +ERROR_CONFIG
+  } else if (code ==ERROR_PARAMETER) {
+    url = '/error/' +ERROR_PARAMETER
   }
   return {path: url}
 }

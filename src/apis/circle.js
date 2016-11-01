@@ -27,7 +27,7 @@ export const getBanner = () => {
   }).catch((error) => {
     return Promise.reject(new Error('网络异常'));
   });
-  
+
   // let slideList=[{},{},{}]
   // let suggestList=[
   //   {
@@ -58,21 +58,6 @@ export const getBanner = () => {
   // $this.bannerData=slideList
   // $this.hot=suggestList
 }
-
-/**
- * 获得我的小组列表,后面需要改成下来刷新方式
- * @param $this vue文件this对象用于控制加载提示的
- */
-export const getGroup = ()=> {
-  let uri = '/app/circle/indexList';
-  return bases.get({uri}).then((json) => {
-    return json.resultData.circlelist;
-  }).catch((error) => {
-    return Promise.reject(error);
-  });
-}
-
-
 
   /**
   * 获得我的小组列表(分页)

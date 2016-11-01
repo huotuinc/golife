@@ -16,10 +16,6 @@ const circleRouter = [
     component: resolve => require(['./views/circle/group/groupList'], resolve)
   },
   {
-    path: 'introduce/:id',
-    component: resolve => require(['./views/circle/group/introduce'], resolve)
-  },
-  {
     path: 'content/:id',
     component: resolve => require(['./views/circle/content/content'], resolve),
     children: commentRouter
@@ -36,6 +32,11 @@ const commentRouter = [
   },
 ]
 export const routes = [
+  {
+    path: '/introduce/:id',
+    component: resolve => require(['./views/circle/group/introduce'], resolve),
+    redirect: { name: 'introduce' }
+  },
   {
     path: '/circle',
     name: 'circleIndex',
@@ -69,6 +70,10 @@ export const routes = [
     path: '/search',
     name: 'search',
     component: resolve => require(['./views/search'], resolve)
+  },
+  {
+    path: '/write',
+    component: resolve => require(['./views/admin/write'], resolve)
   },
   {
     path: '/userCenter/index',
