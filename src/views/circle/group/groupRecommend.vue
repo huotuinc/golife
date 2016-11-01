@@ -7,145 +7,13 @@
           <li v-for='item in suggestList'>
             <a :href="item.url">
               <div class='custom-image-mask'>
-                <span class="bn"></span>
+                <span class="bn">{{item.title}}</span>
                 <span class="bna">{{item.num}}人已关注</span>
                 <div class="masksd"></div>
-                <img :src="item.pictureUrl" :alt="item.title" style="width:100%;">
+                <img :src="item.pictureUrl" :alt="item.title" style="width:100%;" />
               </div>
             </a>
-          </li>
-          <!--<li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/a1.jpg" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/circle/groupList/10">
-          <div class="custom-image-mask">
-            <span class="bn">养生</span>
-            <span class="bna">3232人已关注</span>
-            <div class="masksd">
-            </div>
-            <img src="/static/images/zzxxzz.png" style="width:100%; ">
-          </div>
-        </router-link>
-      </li>-->
+          </li>      
         </ul>
       </div>
     </div>
@@ -179,9 +47,7 @@
       //...mapActions({fetchSuggestList:'fetchSuggestList'})
     },
 
-    activated() {
-      this.$store.dispatch("updateFooter",false);
-      this.$emit('update-decline', true);
+    created() {
       let $this = this;
 
       fetchSuggestList()
@@ -198,8 +64,17 @@
         });
 
     },
+    activated(){
+      this.$store.dispatch("updateFooter",false);
+      this.$emit('update-decline', true);    
+      this.$emit('update-searchbar',false);
+      this.$emit('update-header',false);
+    },
     deactivated() {
-      this.$emit('update-decline', false)
-    }
+      this.$emit('update-decline', false);
+      this.$emit('update-searchbar',true);
+      this.$emit('update-header',true);
+    },
+
   }
 </script>

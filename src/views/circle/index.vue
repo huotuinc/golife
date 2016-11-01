@@ -3,8 +3,8 @@
   <div>
     <!--<div class="_full_inner fonthui animated slideInRight" :class="{'animated slideOutLeft':decline}">-->
     <div class="fonthui">
-      <circleHeader></circleHeader>
-      <circleSearch></circleSearch>
+      <circleHeader v-show="isShowHeader"></circleHeader>
+      <circleSearch v-show="isShowSearchbar"></circleSearch>
       <div class="scrollable-content" ref="circle" :style="{ height: wrapperHeight + 'px' }">
         <mt-loadmore @top-status-change="handleTopChange" top-Distance="20" :top-method="loadTop"
                      :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
@@ -24,7 +24,7 @@
                 <!--leave-active-class="animated slideOutLeft">-->
     <transition>
       <keep-alive>
-        <router-view  v-on:update-decline="update"  class="cover-transition"></router-view>
+        <router-view  v-on:update-decline="update" v-on:update-header='updateHeader' v-on:update-searchbar='updateSearchbar'  class="cover-transition"></router-view>
       </keep-alive>
     </transition>
   </div>
@@ -44,9 +44,23 @@
           topStatus: '',
           allLoaded: false,
         },
+        isShowHeader:true,
+        isShowSearchbar:true,
       }
     },
     methods:{
+      /**
+      * 控制header头部的显示隐藏
+      */
+      updateHeader:function(_isShowHeader){
+        this.isShowHeader = _isShowHeader;
+      },
+      /**
+      * 控制搜索组件的显示隐藏
+      */
+      updateSearchbar:function(_isShowSearchbar){
+        this.isShowSearchbar = _isShowSearchbar;
+      },
       update:function (_decline) {
         this.decline=_decline
       },
@@ -64,7 +78,8 @@
             $this.$refs.loadmore.onTopLoaded(id);
           })
         this.$refs.circleGroup.loadTop(this,id)
-      }
+      },     
+
     },
     components: {
       circleHeader,
@@ -76,7 +91,7 @@
     mounted() {
       window.console.log(this.$route)
       this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.circle.getBoundingClientRect().top + 50);
-    }
+    },
   }
 </script>
 <!--<style scoped>-->
