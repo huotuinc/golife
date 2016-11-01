@@ -152,7 +152,6 @@
   </div>
 </template>
 <script>
-  //import store from '../../../vuex/store';
   import {fetchSuggestList} from '../../../apis/circle';
   import subLoading from '../../../components/common/loading';
   import {hideLoading, errorTip,errorTipMessage} from '../../../apis/common/actions';
@@ -193,7 +192,7 @@
         })
       .catch(error=>{
         //alert(error);
-        $this.errorStatus.message = error.message;
+        //$this.errorStatus.message = error.message;
         //hideLoading($this);
         errorTipMessage($this,error.message);
         });

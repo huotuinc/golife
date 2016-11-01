@@ -40,3 +40,4 @@ export const errorTipMessage=($this,message) => {
   $this.errorStatus.isShowImage=false;
   $this.errorStatus.message=message;
 }
+

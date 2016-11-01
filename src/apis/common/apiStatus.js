@@ -34,6 +34,12 @@ export const ERROR_USER_NOT_FOUND=2001
  */
 export const NO_LOGIN=20001
 
+/**
+ * 当前微信没有绑定的帐号
+ * @type {number}
+ */
+export const NO_EXISTES_OPENID_ACCOUNT=20002
+
 // /**
 //  * 用户已被冻结，无法进行任何操作，请联系客服
 //  * @type {number} 2101

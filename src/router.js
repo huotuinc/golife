@@ -16,6 +16,10 @@ const circleRouter = [
     component: resolve => require(['./views/circle/group/groupList'], resolve)
   },
   {
+    path: 'introduce/:id',
+    component: resolve => require(['./views/circle/group/introduce'], resolve)
+  },
+  {
     path: 'content/:id',
     component: resolve => require(['./views/circle/content/content'], resolve),
     children: commentRouter
