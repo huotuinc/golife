@@ -2,9 +2,9 @@
 <template>
   <div>
     <!--<div class="_full_inner fonthui animated slideInRight" :class="{'animated slideOutLeft':decline}">-->
-    <div class="fonthui">
+    <div class="fonthui " :class="{'_effect--30':decline}">
       <circleHeader></circleHeader>
-      <circleSearch></circleSearch>
+      <circleWrite></circleWrite>
       <div class="scrollable-content" ref="circle" :style="{ height: wrapperHeight + 'px' }">
         <mt-loadmore @top-status-change="handleTopChange" top-Distance="20" :top-method="loadTop"
                      :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
@@ -33,7 +33,7 @@
   import circleBanner from '../../components/circle/circle-banner'
   import circleGroup from '../../components/circle/circle-group'
   import circleHeader from '../../components/circle/header'
-  import circleSearch from '../../components/circle/search'
+  import circleWrite from '../../components/circle/write'
   import {Loadmore} from 'mint-ui';
   export default {
     data() {
@@ -70,11 +70,10 @@
       circleHeader,
       circleBanner,
       circleGroup,
-      circleSearch,
+      circleWrite,
       Loadmore
     },
     mounted() {
-      window.console.log(this.$route)
       this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.circle.getBoundingClientRect().top + 50);
     }
   }

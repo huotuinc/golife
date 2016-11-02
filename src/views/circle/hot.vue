@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--<div class="_full_inner fonthui _effect" :class="{'_effect&#45;&#45;30':decline}">-->
-    <div class="_full_inner fonthui">
+    <div class="_full_inner fonthui" :class="{'_effect--30':decline}">
       <circleSearch></circleSearch>
       <circle-header></circle-header>
       <div class="scrollable-content padding-bottom-100">

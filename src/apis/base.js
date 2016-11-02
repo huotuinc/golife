@@ -10,7 +10,8 @@
  */
 import "whatwg-fetch"
 import store from '../vuex/store'
-import { getToken, getCustomerID } from '../vuex/getters'
+import { getToken ,getCustomerID } from '../vuex/getters'
+
 /**
  * API根地址
  */

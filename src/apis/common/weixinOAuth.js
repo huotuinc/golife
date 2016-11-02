@@ -1,5 +1,5 @@
 import store from '../../vuex/store'
-import { hasOpenId, getMallUrl} from '../../vuex/getters'
+import { hasOpenId, getMallUrl,getWxOAuherInfo} from '../../vuex/getters'
 import { getRootUriByCustomerId } from '../../apis/customerApi'
 import { isWeXin } from '../../assets/utils'
 
@@ -34,12 +34,12 @@ export const oauthByWeixin=function (customerId, redirectUrl, options) {
 }
 
 /**
- * 微信授权并且获得微信相关信息
+ * 微信授权并且获得微信相关信息 同时返回微信的相关授权信息
  * @param route 当前跳转的路由
  */
-export const weixinOAuth=function (route,callback) {
+export const weixinOAuth=function (route) {
   let customerId=route.query.customerId
-  getMallUrlByCustomerId(customerId)
+  return getMallUrlByCustomerId(customerId)
     .then(function (data) {
       store.dispatch("updateMallUrl",data);
       if(!hasOpenId(store.state,route)){
@@ -47,7 +47,6 @@ export const weixinOAuth=function (route,callback) {
         if(isWeXin()){
           oauthByWeixin(customerId,redirectUri)
         }
-        callback()
       }else{
         if(route.query.openid!=undefined){
           let openId=route.query.openid
@@ -56,12 +55,43 @@ export const weixinOAuth=function (route,callback) {
           let wxHeader=retuinfo.nickname
           store.dispatch("updateOAuther",openId,wxNick,wxHeader);
         }
-        callback()
       }
+      return Promise.resolve(getWxOAuherInfo(store.state))
     })
     .catch(function (error) {
-      callback()
+      return Promise.reject(error)
     })
-
 }
+
+// /**
+//  * 微信授权并且获得微信相关信息
+//  * @param route 当前跳转的路由
+//  */
+// export const weixinOAuth=function (route,callback) {
+//   let customerId=route.query.customerId
+//   getMallUrlByCustomerId(customerId)
+//     .then(function (data) {
+//       store.dispatch("updateMallUrl",data);
+//       if(!hasOpenId(store.state,route)){
+//         let redirectUri=window.location.href;
+//         if(isWeXin()){
+//           oauthByWeixin(customerId,redirectUri)
+//         }
+//         callback()
+//       }else{
+//         if(route.query.openid!=undefined){
+//           let openId=route.query.openid
+//           let retuinfo=JSON.parse(route.query.retuinfo);
+//           let wxNick=retuinfo.headimgurl
+//           let wxHeader=retuinfo.nickname
+//           store.dispatch("updateOAuther",openId,wxNick,wxHeader);
+//         }
+//         callback()
+//       }
+//     })
+//     .catch(function (error) {
+//       callback()
+//     })
+//
+// }
 

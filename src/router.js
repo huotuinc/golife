@@ -33,6 +33,11 @@ const commentRouter = [
 ]
 export const routes = [
   {
+    path: '/introduce/:id',
+    component: resolve => require(['./views/circle/group/introduce'], resolve),
+    redirect: { name: 'introduce' }
+  },
+  {
     path: '/circle',
     name: 'circleIndex',
     component: resolve => require(['./views/circle/index'], resolve),
@@ -65,6 +70,10 @@ export const routes = [
     path: '/search',
     name: 'search',
     component: resolve => require(['./views/search'], resolve)
+  },
+  {
+    path: '/write',
+    component: resolve => require(['./views/admin/write'], resolve)
   },
   {
     path: '/userCenter/index',

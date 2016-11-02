@@ -27,6 +27,7 @@ export const getBanner = () => {
   }).catch((error) => {
     return Promise.reject(new Error('网络异常'));
   });
+
   // let slideList=[{},{},{}]
   // let suggestList=[
   //   {
@@ -58,24 +59,10 @@ export const getBanner = () => {
   // $this.hot=suggestList
 }
 
-/**
- * 获得我的小组列表,后面需要改成下来刷新方式
- * @param $this vue文件this对象用于控制加载提示的
- */
-export const getGroup = ()=> {
-  let uri = '/app/circle/indexList';
-  return bases.get({uri}).then((json) => {
-    return json.resultData.circlelist;
-  }).catch((error) => {
-    return Promise.reject(error);
-  });
-}
-
-
-/**
- * 获得我的小组列表(分页)
- * @param $this 当前页最后一条数据ID
- */
+  /**
+  * 获得我的小组列表(分页)
+  * @param $this 当前页最后一条数据ID
+  */
 export const getGroupList = (lastId) => {
   let uri = '/app/circle/indexList'
   let query=`lastId=${lastId}`
@@ -94,4 +81,30 @@ export const getGroupList = (lastId) => {
   }).catch((error) => {
     return Promise.reject(new Error('网络异常'));
   });
+  }
+
+/**
+ * 获得 圈子热门推荐列表
+ */
+export const fetchSuggestList = () =>{
+  if(bases.debug){
+    let suggestList=[];
+     suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:'https://vuefe.cn/guide/installation.html'});
+     return Promise.resolve(suggestList)
+  }else{
+     let uri = '/app/circle/circleIndexSuggestList';
+    return bases.get({uri })
+      .then((json) => {
+        if (json.systemResultCode != 1) return Promise.reject(new Error('code:' + json.systemResultCode + ' message:' + json.systemResultDescription));
+        if (json.resultCode != 1) return Promise.reject(new Error('code:' + json.resultData + "message:" + json.resultDescription));
+        return json.resultData.suggestList;
+      })
+      .catch(error => Promise.reject(error));
+  }
 }

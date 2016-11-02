@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--<div class="_full_inner scrollable-content padding-bottom-50 _effect" :class="{'_effect&#45;&#45;30':decline}">-->
-    <div class="_full_inner scrollable-content padding-bottom-50">
+    <div class="_full_inner scrollable-content" ref="userCenter" :class="{'_effect--30':decline}" :style="{ height: wrapperHeight + 'px' }">
       <div class="fonthui" style="position:relative">
         <div class="grs">
           <a href="javascript:void(0);" class="z"><img src="/static/images/ddicon/zzdxx.png"  style="width:100%"></a>
@@ -19,8 +19,8 @@
           </div>
           <div class="weui_navbar dfd" style="z-index:12; position: static">
             <a class="weui_navbar_item"> 99999+ 发帖 </a>
-            <router-link to="/userCenter/fans/attention/" class="weui_navbar_item"> 5 关注 </router-link>
-            <router-link to="/userCenter/fans/index" class="weui_navbar_item"> 52213 粉丝 </router-link>
+            <router-link to="/userCenter/fans/attention?customerId=3447" class="weui_navbar_item"> 5 关注 </router-link>
+            <router-link to="/userCenter/fans/index?customerId=3447" class="weui_navbar_item"> 52213 粉丝 </router-link>
           </div>
         </div>
       </div>
@@ -169,6 +169,7 @@
     data() {
       return {
         decline: false,
+        wrapperHeight: '',
       }
     },
     activated() {
@@ -179,6 +180,9 @@
         this.decline=_decline
       }
     },
+    mounted() {
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.userCenter.getBoundingClientRect().top + 50);
+    }
   }
 </script>
 <style scoped>

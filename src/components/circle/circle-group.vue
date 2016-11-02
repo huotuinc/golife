@@ -22,7 +22,7 @@
                   <p class="zh-wz-name" style="color:#333">{{item.name}}</p>
                 </div>
                 <div class="njk fkfk">
-                  <a href="javascript:void(0)" class="guanzudian" v-on:click="open">
+                  <a href="javascript:void(0)" class="guanzudian" v-on:click="open(item.pid)">
                     <div class="weui_btn weui_btn_mini weui_btn_default" style="padding:0px 4px">
                       <img src="/static/images/ddicon/iconfont-gengduo-b.png" style="width:30px; margin-top:-6px"></div>
                   </a>
@@ -69,7 +69,7 @@
   export default {
     data () {
       return {
-        sheetVisible:true,
+        sheetVisible:false,
         actions: [],
         data:{
           list:[]
@@ -84,17 +84,40 @@
       Actionsheet
     },
     methods: {
-      open:function () {
-        this.actions = [{
-          name: '取消关注'
-        }, {
-          name: '简介'
-        }];
-        this.actions2 = [{
-          name: '举报'
-        }, {
-          name: '更多帖子'
-        }];
+      open:function (id) {
+        require("../../../static/js/jquery-weui")
+        let $this=this
+        $.actions({
+          title: "选择操作",
+          onClose: function() {
+            console.log("close");
+          },
+          actions: [
+            {
+              text: "取消关注",
+              className: "quxiaoguanzu",
+            },
+            {
+              text: "简介",
+              className: "jubao",
+              onClick: function() {
+                //TODO 简介跳转
+                window.location.href="/#/introduce/10?customerId=3447"
+//                window.location.href="http://"+window.location.host+"/#/login?customerId=3447"
+//                window.console.log($this.$router)
+//                $this.$router.go("/login?customerId=3447")
+              }
+            },
+            {
+              text: "举报",
+              className: "jubao",
+            },
+            {
+              text: "更多帖子",
+              className: 'quanbutiezi',
+            }
+          ]
+        });
       },
       nextMethod:function (lastId) {
         return getGroupList(lastId)
@@ -109,6 +132,16 @@
       },
     },
     mounted() {
+//      this.actions = [{
+//        name: '取消关注'
+//      }, {
+//        name: '简介'
+//      }];
+//      this.actions2 = [{
+//        name: '举报'
+//      }, {
+//        name: '更多帖子'
+//      }];
       this.data.list=this.$refs.scrollerPager.data.list
     }
   }
