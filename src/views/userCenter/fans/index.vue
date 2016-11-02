@@ -13,7 +13,7 @@
           <p style="height:42px"></p>
         </div>
       </div>
-      <div class="scrollable-content padding-bottom-42">
+      <div class="scrollable-content" ref="fans" :style="{ height: wrapperHeight + 'px' }">
         <fansAttention v-if="fans.isAttention" :active="fans.tab"></fansAttention>
         <fansFans  v-if="fans.isFans" :active="fans.tab"></fansFans>
         <fansPerson v-if="fans.isPerson" :active="fans.tab"></fansPerson>
@@ -38,6 +38,7 @@
     data() {
       return {
         decline: false,
+        wrapperHeight: '',
         fans:{
           isAttention:false,
           isFans:false,
@@ -81,6 +82,9 @@
       window.console.log('=============fans decativated==============')
       this.$emit('update-decline', false)
     },
+    mounted() {
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.fans.getBoundingClientRect().top);
+    }
   }
 </script>
 <style scoped>

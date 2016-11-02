@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--<div class="_full_inner scrollable-content padding-bottom-50 _effect" :class="{'_effect&#45;&#45;30':decline}">-->
-    <div class="_full_inner scrollable-content padding-bottom-50">
+    <div class="_full_inner scrollable-content" ref="userCenter" :class="{'_effect--30':decline}" :style="{ height: wrapperHeight + 'px' }">
       <div class="fonthui" style="position:relative">
         <div class="grs">
           <a href="javascript:void(0);" class="z"><img src="/static/images/ddicon/zzdxx.png"  style="width:100%"></a>
@@ -169,6 +169,7 @@
     data() {
       return {
         decline: false,
+        wrapperHeight: '',
       }
     },
     activated() {
@@ -179,6 +180,9 @@
         this.decline=_decline
       }
     },
+    mounted() {
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.userCenter.getBoundingClientRect().top + 50);
+    }
   }
 </script>
 <style scoped>
