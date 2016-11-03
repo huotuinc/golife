@@ -19,22 +19,23 @@ export default (searchId) => {
   return bases.get({uri,searchId})
   .then((json) => {
     if(json.systemResultCode == 1 && json.resultCode == 1){
-
-      console.log(json.resultData.catalogList);
       return json.resultData.catalogList;
     }
-    // var [] resultData = json.resultData;
-    // for (var obj in resultData) {
-    //   console.log(obj.name);
-    // }
-    // let hotData = {
-    //   banner: [],
-    //   recommended: []
-    // }
-    // hotData.banner = json.resultData.slideList;
-    // hotData.recommended = json.resultData.suggestList
-    // return hotData;
+  }).then((json) =>{
+    return json;
   }).catch(function(){
     return Promise.reject(new Error('网络异常'));
   })
 }
+
+// export default (searchId) => {
+//   let uri = '/app/wiki/getCatalogList'
+//   return bases.get({uri,searchId})
+//   .then((json) => {
+//     if(json.systemResultCode == 1 && json.resultCode == 1){
+//       return json.resultData.catalogList;
+//     }
+//   }).catch(function(){
+//     return Promise.reject(new Error('网络异常'));
+//   })
+// }

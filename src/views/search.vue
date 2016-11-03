@@ -17,120 +17,88 @@
     <div class="con">
       <div class="msg">点击选择栏目</div>
       <ul class="list">
-
-          <li class="fixed" v-for = "serchList in serchLists" >
-
-            <a>  {{ serchList.name }} </a>
+        <hot v-for = "(serchList,index) in serchLists" >
+          <li v-bind:class="{ fixed: selected==index}" v-on:click="itemClick(index)">
+            <a >  {{ serchList.name }} </a>
           </li>
-
-        <!-- <li class="fixed">
-          <a>推荐</a>
-        </li>
-        <li>
-          <a>娱乐</a>
-        </li>
-        <li>
-          <a>汽车</a>
-        </li>
-        <li>
-          <a>体育</a>
-        </li>
-        <li>
-          <a>财经</a>
-        </li>
-        <li>
-          <a>军事</a>
-        </li>
-        <li>
-          <a>时尚</a>
-        </li>
-        <li>
-          <a>游戏</a>
-        </li>
-        <li>
-          <a>旅游</a>
-        </li>
-        <li>
-          <a>探索</a>
-        </li>
-        <li>
-          <a>热点</a>
-        </li>
-        <li>
-          <a>科技</a>
-        </li>
-        <li>
-          <a>育儿</a>
-        </li>
-        <li>
-          <a>国际</a>
-        </li>
-        <li>
-          <a>美食</a>
-        </li> -->
+        </hot>
       </ul>
       <div class="msg tip" disabled-message="最多#n#个分类,请先删除一些" origin-message="点击选择分类">点击选择分类</div>
       <ul class="list" data-toggle="menu-unselected">
-        <li>
-          <a>历史</a>
-        </li>
-        <li>
-          <a>养生</a>
-        </li>
-        <li>
-          <a>故事</a>
-        </li>
-        <li>
-          <a>美文</a>
-        </li>
-        <li>
-          <a>社会</a>
+        <li v-for = "secondClass in secondClasses" >
+          <a>  {{ secondClass.name }} </a>
         </li>
       </ul>
     </div>
-
-    <div> <button type="button" name="button" v-on:click="btnclick">点我啊</button></div>
   </div>
 </template>
 <script>
   import store from '../vuex/store';
-  import  searchxxx from '../apis/search'
+  import  searchApi from '../apis/search'
   export default {
     created () {
       this.$store.dispatch("updateFooter",false);
       this.$store.dispatch("updateBackClass",'');
-      require("../../static/js/jquery-weui")
+      require("../../static/js/jquery-weui");
+
+
+
+      // this.getSecondWikiItem(0,0);
+      //
+      // searchApi(this.selected).then((json) => {
+      //    var listData =  JSON.stringify(json);
+      //    for(var index = 0; index < json.length; index ++){
+      //      console.log(json[index].name);
+      //    }
+      //    this.secondClasses = json;
+      //   })
+      // .catch((error) =>{
+      //
+      // });
     },
 
+
     beforeCreate () {
+
+      searchApi(0).then((json)=>{
+        this.serchLists = json;
+      });
+      searchApi(1).then((json)=>{
+        this.secondClasses = json;
+      });
+      // searchApi(0).then((json) => {
+      //    var listData =  JSON.stringify(json);
+      //    for(var index = 0; index < json.length; index ++){
+      //      console.log(json);
+      //    }
+      //    this.serchLists = json;
+      //   })
+      // .catch((error) =>{
+      //
+      // });
+
 
 
     },
 
     methods: {
 
-      btnclick () {
-        var serchList = searchxxx(0)
-        .then((json) => {
-
-           var listData =  JSON.stringify(json);
-           for(var index = 0; index < json.length; index ++){
-             console.log(json[index].name);
-           }
-           this.serchLists = json;
-          })
-        .catch((error) =>{
-
-        });
-
-
-
+      itemClick(index) {
+          this.selected = index;
+          searchApi(index).then((json)=>{
+            this.secondClasses = json;
+          });
       }
+
+
+
     },
 
     data () {
       return {
-          serchLists: []
+          serchLists: [],
+          secondClasses: [],
+          selected: 0
       }
     }
 
