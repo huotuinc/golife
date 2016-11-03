@@ -1,19 +1,19 @@
 <template>
   <div class="title-xz">
-    <img src="images/hot/zzz.png" width="100%">
+    <img src="/static/images/hot/zzz.png" width="100%">
     <div class="box">
       <p class="leftname"><i>属性：</i>健康分类</p>
       <p class="leftname"><i>组名：</i>头昏脑涨感冒求解决</p>
       <p class="leftname" style="float:left"><i>组长：</i>
         <div class="zhbox">
-          <div class="zh-tx">
-            <img src="images/imgsss.png">
+          <div class="zh-tx" style="position: inherit;">
+            <img src="/static/images/imgsss.png">
           </div>
-          <div class="zh-wz">
+          <div class="zh-wz" style="margin-left: 0px;">
             <div class="zh-wz-x">
               <p class="zh-wz-name">
                 <span>Dr-left</span>
-                <img src="images/ddbm.png" class="zh-wz-name-ico"/>
+                <img src="/static/images/ddbm.png" class="zh-wz-name-ico"/>
               </p>
             </div>
           </div>
@@ -30,3 +30,19 @@
   </div>
   </div>
 </template>
+<script>
+  import store from '../../../vuex/store';
+  export default {
+    activated() {
+      this.$store.dispatch("updateFooter",false);
+      this.$store.dispatch("updateBackClass",'app-content-color-white');
+      this.$emit('update-decline', true)
+    },
+    deactivated() {
+      this.$emit('update-decline', false)
+    }
+  }
+</script>
+<style>
+  @import "/static/css/weui.min-rsgghot-diy.css";
+</style>

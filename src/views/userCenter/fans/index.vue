@@ -69,7 +69,6 @@
 //      this.$store.dispatch("updateFooter",false);
 //    },
     activated() {
-      window.console.log('=============fans activated==============')
       this.$store.dispatch("updateFooter",false);
       let tab=this.$route.params.tab
       this.fans.isAttention=tab=='attention'
@@ -79,7 +78,6 @@
       this.$emit('update-decline', true)
     },
     deactivated() {
-      window.console.log('=============fans decativated==============')
       this.$emit('update-decline', false)
     },
     mounted() {

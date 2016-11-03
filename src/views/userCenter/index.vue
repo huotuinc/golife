@@ -19,8 +19,8 @@
           </div>
           <div class="weui_navbar dfd" style="z-index:12; position: static">
             <a class="weui_navbar_item"> 99999+ 发帖 </a>
-            <router-link to="/userCenter/fans/attention?customerId=3447" class="weui_navbar_item"> 5 关注 </router-link>
-            <router-link to="/userCenter/fans/index?customerId=3447" class="weui_navbar_item"> 52213 粉丝 </router-link>
+            <router-link :to="'/userCenter/fans/attention?customerId='+getCustomerID" class="weui_navbar_item"> 5 关注 </router-link>
+            <router-link :to="'/userCenter/fans/index?customerId='+getCustomerID" class="weui_navbar_item"> 52213 粉丝 </router-link>
           </div>
         </div>
       </div>
@@ -165,6 +165,7 @@
   </div>
 </template>
 <script>
+  import { mapGetters} from 'vuex'
   export default {
     data() {
       return {
@@ -172,6 +173,9 @@
         wrapperHeight: '',
       }
     },
+    computed: mapGetters([
+      'getCustomerID'
+    ]),
     activated() {
       window.console.log("=========start========")
     },

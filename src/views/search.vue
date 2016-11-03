@@ -17,16 +17,15 @@
     <div class="con">
       <div class="msg">点击选择栏目</div>
       <ul class="list">
-        <hot v-for = "(serchList,index) in serchLists" >
-          <li v-bind:class="{ fixed: selected==index}" v-on:click="itemClick(index)">
-            <a >  {{ serchList.name }} </a>
-          </li>
-        </hot>
+        <li v-for="(searchList,index) in searchLists" v-bind:class="{ fixed: selected==index}"
+            v-on:click="itemClick(index)">
+          <a> {{ searchList.name }} </a>
+        </li>
       </ul>
-      <div class="msg tip" disabled-message="最多#n#个分类,请先删除一些" origin-message="点击选择分类">点击选择分类</div>
+      <div class="msg tip">点击选择分类</div>
       <ul class="list" data-toggle="menu-unselected">
-        <li v-for = "secondClass in secondClasses" >
-          <a>  {{ secondClass.name }} </a>
+        <li v-for="secondClass in secondClasses">
+          <a>{{ secondClass.name }} </a>
         </li>
       </ul>
     </div>
@@ -37,71 +36,34 @@
   import  searchApi from '../apis/search'
   export default {
     created () {
-      this.$store.dispatch("updateFooter",false);
-      this.$store.dispatch("updateBackClass",'');
+      this.$store.dispatch("updateFooter", false);
+      this.$store.dispatch("updateBackClass", '');
       require("../../static/js/jquery-weui");
-
-
-
-      // this.getSecondWikiItem(0,0);
-      //
-      // searchApi(this.selected).then((json) => {
-      //    var listData =  JSON.stringify(json);
-      //    for(var index = 0; index < json.length; index ++){
-      //      console.log(json[index].name);
-      //    }
-      //    this.secondClasses = json;
-      //   })
-      // .catch((error) =>{
-      //
-      // });
     },
-
-
     beforeCreate () {
-
-      searchApi(0).then((json)=>{
-        this.serchLists = json;
+      searchApi(0).then((json)=> {
+        this.searchLists = json;
       });
-      searchApi(1).then((json)=>{
+      searchApi(1).then((json)=> {
         this.secondClasses = json;
       });
-      // searchApi(0).then((json) => {
-      //    var listData =  JSON.stringify(json);
-      //    for(var index = 0; index < json.length; index ++){
-      //      console.log(json);
-      //    }
-      //    this.serchLists = json;
-      //   })
-      // .catch((error) =>{
-      //
-      // });
-
-
-
     },
-
     methods: {
-
       itemClick(index) {
-          this.selected = index;
-          searchApi(index).then((json)=>{
-            this.secondClasses = json;
-          });
+        this.selected = index;
+        searchApi(index).then((json)=> {
+          this.secondClasses = json;
+        });
       }
-
-
-
     },
 
     data () {
       return {
-          serchLists: [],
-          secondClasses: [],
-          selected: 0
+        searchLists: [],
+        secondClasses: [],
+        selected: 0
       }
     }
-
   }
 </script>
 <style scoped>

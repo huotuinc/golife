@@ -34,9 +34,7 @@ const commentRouter = [
 export const routes = [
   {
     path: '/introduce/:id',
-    component: resolve => require(['./views/circle/group/introduce'], resolve),
-    // component:
-    redirect: { name: 'introduce' }
+    component: resolve => require(['./views/circle/group/introduce'], resolve)
   },
   {
     path: '/circle',
