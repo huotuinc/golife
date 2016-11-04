@@ -91,7 +91,7 @@
               if ($this.data.lastId == 0) {
                 errorTipMessage($this, '没有数据')
               }
-              dataObject.loadStatus.allLoaded = true
+              loadMoreObject.loadStatus.allLoaded = true
               loadMoreObject.$refs.loadmore.onTopLoaded(id);
             } else {
               hideLoading($this)
@@ -103,7 +103,7 @@
           })
           .catch(function (error) {
             errorTip($this)
-            dataObject.loadStatus.allLoaded = true
+            loadMoreObject.loadStatus.allLoaded = true
             loadMoreObject.$refs.loadmore.onTopLoaded(id);
           })
       },

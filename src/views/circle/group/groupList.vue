@@ -1,5 +1,23 @@
 <template>
-    <div class="wihtab _full_router _full_inner ddbg">
+  <div class="wihtab _full_router _full_inner ddbg">
+    <div class="weui_navbar" style="position:initial; top:0px; z-index:999; margin-bottom: 1px;">
+      <a href="javascript:void(0)" v-on:click="changeTab('newTab')" v-bind:class="{weui_bar_item_on:newTab}" class="weui_navbar_item"> 最新 </a>
+      <a href="javascript:void(0)" v-on:click="changeTab('hotTab')" v-bind:class="{weui_bar_item_on:hotTab}" class="weui_navbar_item"> 最热 </a>
+    </div>
+    <div class='scrollable-content' ref="group" :style="{ height: wrapperHeight + 'px' }">
+      <mt-loadmore top-Distance="20" @top-status-change="handleTopChange" :top-method="loadTop" :bottom-all-loaded="loadStatus.allLoaded"
+        ref="loadmore">
+        <groupTop ref="groupTop"></groupTop>
+        <groupList ref="groupList"></groupList>
+        <div slot="top" class="mint-loadmore-top">
+          <span v-show="loadStatus.topStatus !== 'loading'" :class="{ 'is-rotate': loadStatus.topStatus === 'drop' }">↓</span>
+          <span v-show="loadStatus.topStatus === 'loading'"><mt-spinner type="snake"></mt-spinner></span>
+        </div>
+      </mt-loadmore>
+    </div>
+  </div>
+  </div>
+  <!--<div class="wihtab _full_router _full_inner ddbg">
           <div class="weui_navbar" style="position: fixed; top:0px; z-index:999">
             <a class="weui_navbar_item weui_bar_item_on"> 最新 </a>
             <a class="weui_navbar_item"> 最热 </a>
@@ -102,44 +120,60 @@
                 </div>
               </div>
           </div>
-    </div>
+    </div>-->
 </template>
 <script>
-  import store from '../../../vuex/store'
+  import {Loadmore} from 'mint-ui'
+  import groupTop from '../../../components/circle/group-top.vue'
+  import groupList from './../../../components/circle/group-list.vue'
+
   export default {
+    data(){
+      return {
+        newTab:true,
+        hotTab:false,
+        currentTab:'newTab',   
+        wrapperHeight:'',    
+        type: 0, 
+        loadStatus:{
+          topStatus: '',          
+          allLoaded: false,
+        },   
+      }
+    },
+    components:{
+      groupTop,
+      groupList,
+      Loadmore,
+    },
     methods:{
-      open:function () {
-         require("../../../../static/js/jquery-weui")
-         $.actions({
-           title: "选择操作",
-           onClose: function() {
-             console.log("close");
-           },
-           actions: [
-             {
-               text: "关注",
-               className: "guanzu",
-             },
-             {
-               text: "简介",
-               className: "jianjie",
-
-             },
-             {
-               text: "举报",
-               className: "jubao",
-
-             }
-           ]
-         });
-       }
+      changeTab:function(tab){
+        this.newTab = tab == 'newTab';
+        this.hotTab = tab == 'hotTab';
+        this.currentTab = tab;
+        this.type = tab =='newTab'? 0:1;
+        this.$refs.groupList.setType(this.type);
+        this.loadTop()
+      },
+      handleTopChange(status){
+        this.loadStatus.topStatus = status;
+      },
+      loadTop:function(id){
+        this.$refs.groupTop.init().then(()=>{this.$refs.loadmore.onTopLoaded(id)});
+        this.$refs.groupList.loadTop(this , this.type , id );
+      },
+    },      
+    created(){
     },
     activated() {
       this.$store.dispatch("updateFooter",false);
-      this.$emit('update-decline', true)
+      this.$emit('update-decline', true);
     },
     deactivated() {
       this.$emit('update-decline', false)
+    },
+    mounted(){
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.group.getBoundingClientRect().top );
     }
   }
 </script>

@@ -5,14 +5,14 @@
       <div class="qbxiaozu scrollable-content">
         <ul>
           <li v-for='item in suggestList'>
-            <a :href="item.url">
+            <router-link :to="item.url">
               <div class='custom-image-mask'>
                 <span class="bn">{{item.title}}</span>
                 <span class="bna">{{item.num}}人已关注</span>
                 <div class="masksd"></div>
                 <img :src="item.pictureUrl" :alt="item.title" style="width:100%;" />
               </div>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
