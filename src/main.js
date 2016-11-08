@@ -35,6 +35,7 @@ router.beforeEach((route, redirect, next) => {
           if (route.path !== '/') {
             indexScrollTop = document.body.scrollTop;
           }
+          // loginByWx(route.query.customerId, OAutherObject.openId, OAutherObject.wxNick, OAutherObject.wxHeader)
           if (OAutherObject.openId != '' && OAutherObject.openId != undefined) {
             loginByWx(route.query.customerId, OAutherObject.openId, OAutherObject.wxNick, OAutherObject.wxHeader)
           }

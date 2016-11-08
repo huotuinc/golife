@@ -56,7 +56,7 @@
         components:{
             scrollerPager,
         },
-        methods:{   
+        methods:{
             setType(type){
                 this.type = type;
             },
@@ -77,6 +77,4 @@
     }
 </script>
 <style>
-
-
 </style>

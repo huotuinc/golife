@@ -66,6 +66,11 @@ export const routes = [
     component: resolve => require(['./views/login'], resolve)
   },
   {
+    path: '/register',
+    name: 'register',
+    component: resolve => require(['./views/register'], resolve)
+  },
+  {
     path: '/search',
     name: 'search',
     component: resolve => require(['./views/search'], resolve)

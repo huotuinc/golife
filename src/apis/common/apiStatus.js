@@ -40,6 +40,67 @@ export const NO_LOGIN=20001
  */
 export const NO_EXISTES_OPENID_ACCOUNT=20002
 
+/**
+ * 不合法的手机号码
+ * @type {number} 编号20003
+ */
+export const PARAMETER_PHONE_ERROR=20003
+
+/**
+ * 用户名或者密码错误
+ * @type {number}
+ */
+export const ACCOUNT_ERROR=20004
+
+/**
+ * 密码格式有误(必须大于6小于16)
+ * @type {number}
+ */
+export const PARAMETER_PASSWORD_FORMATTER_ERROR=20005
+
+/**
+ * 手机号码已经存在
+ * @type {number}
+ */
+export const PARAMETER_PHONE_EXISTS_ERROR=20006
+
+/**
+ * 手机号码不存在
+ * @type {number}
+ */
+export const ACCOUNT_PHONE_NOFIND=20007
+
+  /**
+ * 验证码发送间隔为90秒
+ * @type {number}
+ */
+export const EXCEED_TIME_ERROR=20104
+
+/**
+ * 验证码错误
+ * @type {number}
+ */
+export const PARAMETER_CODE_ERROR=20106
+
+/**
+ * 验证码失效
+ * @type {number}
+ */
+export const PARAMETER_CODE_PAST=20107
+
+
+/**
+ * 还不支持的语音播报
+ * @type {number}
+ */
+export const SERVER_MESSAGE_NOSUPPORT_ERROR=20108
+
+/**
+ * 短信发送通道不稳定，请重新尝试
+ * @type {number}
+ */
+export const SERVER_MESSAGE_ERROR=20109
+
 // /**
 //  * 用户已被冻结，无法进行任何操作，请联系客服
 //  * @type {number} 2101

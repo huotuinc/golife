@@ -60,8 +60,10 @@ export const get = ({uri, query}) => {
  * @param token  授权Token
  * @return {Promise}       Promise
  */
-export const post = (uri, params) => {
+export const post = ({uri, params}) => {
+  window.console.log(uri)
   let _token = getToken(store.state);//获得Token
+  window.console.log(params)
   return fetch(javaApiUri + uri, {
     method: 'POST',
     headers: {
