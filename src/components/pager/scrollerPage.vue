@@ -1,11 +1,9 @@
 <template>
   <div ref="pager">
-    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="scrollStatus.disabled"
-         infinite-scroll-distance="50">
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="scrollStatus.disabled" infinite-scroll-distance="50">
       <slot></slot>
     </div>
-    <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage"
-                :message="errorStatus.message"></subLoading>
+    <subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage" :message="errorStatus.message"></subLoading>
     <p v-show="scrollStatus.loading" class="page-infinite-loading" style="text-align: center">
       <mt-spinner type="fading-circle"></mt-spinner>
       加载中...

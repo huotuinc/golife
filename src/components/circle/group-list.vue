@@ -3,14 +3,16 @@
     <scrollerPager :nextMethod="nextMethod" ref="scrollerPager">
       <div v-for="item in data.list" class="cont-zhbox">
         <div class="cont-zhbox-t">
-          <router-link to="/circle/content/10" class="bz">
+          <router-link :to="{path:'/circle/content/'+item.pid , query:{customerId: getCustomerID }}" class="bz">
             <p class="cont-zhbox-a"><b>{{item.name}}</b></p>
             <p class="cont-zhbox-img"><img v-bind:src="item.pictureUrl"></p>
             <p class="cont-zhbox-nav">后台返回的数据缺少这部分信息222</p>
           </router-link>
           <div class="zhbox">
             <div class="zh-tx">
-              <img v-bind:src="item.userHeadUrl">
+              <router-link :to="{path:'/admin/'+item.userId , query:{customerId: getCustomerID} }">
+                <img v-bind:src="item.userHeadUrl">
+              </router-link>
             </div>
             <div class="zh-wz">
               <div class="zh-wz-x">
@@ -36,6 +38,8 @@
 
     import {fetchList} from '../../apis/circle.js'
     import scrollerPager from '../../components/pager/scrollerPage.vue'
+    import {getCustomerID} from '../../vuex/getters'
+    import {mapGetters} from 'vuex'
 
     export default {
         data(){
@@ -45,6 +49,9 @@
                     list:[]
                     },
             }
+        },
+        computed:{
+          ...mapGetters(['getCustomerID']),
         },
         components:{
             scrollerPager,

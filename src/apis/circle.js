@@ -200,11 +200,41 @@ export const fetchList =(circleId , type = 0  , lastId=0)=>{
       userHeadUrl:'http://common.cnblogs.com/images/ghs.png',userId:1,userLevel:8,userName:'itwriter',viewAmount:'3422'});
 
     }
-   return Promise.resolve(articleList)
+   return Promise.resolve(articleList);
   }else{
     let uri = '/app/circle/list';
     return bases.get({uri })
     .then(response=>{ return Promise.resolve(json.resultData);})
     .catch(error => Promise.reject(error));
   }
+}
+
+
+/**
+ * 圈子介绍
+ * circleId 圈子id
+ */
+export const introduce= (circleId)=>{
+    if(bases.debug){
+      let data={
+        	articleAmount:3432,
+          categoryName:'健康分类',
+          concermAmount:123,
+          date:new Date().getTime()- 454000,
+          leaderHeadUrl:'https://images0.cnblogs.com/news_topic/12-08-24%2023-47-29.gif',
+          leaderLevel:2,
+	        leaderName:'金向东',
+          name:'保健',
+          pictureUrl:'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCztdqn6AEQrAIY-gEyCJUbj9FaQJnw',
+          summary:'Visual Studio Code 1.7.1 发布啦！更新内容：水平布局-按纵向或横向组织编辑器；键盘快捷键参考-新键盘快捷键可打开 PDF 备忘单；调试命中的计数控制-设置断',
+      };
+
+      return Promise.resolve( data );
+
+    }else{
+      let uri = '/app/circle/introduce';
+      let query = `id=${circleId}`;
+      return bases.get(uri,query).then(json=>{ return Promise.resolve(json.resultData);}).catch(error=>Promise.reject(error));
+
+    }
 }
