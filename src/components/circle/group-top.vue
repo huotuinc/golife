@@ -83,16 +83,15 @@
     import { hideLoading, errorTip } from '../../apis/common/actions.js'
     import subLoading from '../../components/common/loading'
     import {mapGetters} from 'vuex'
-    //import 
 
     export default {
         data(){
             return{
                 circleId:0,
-                data:{                    
+                data:{
                     data:{},
                     noticeList:[],
-                    top:{},                   
+                    top:{},
                 },
                 errorStatus:{
                       loading:true,
@@ -115,17 +114,17 @@
                 this.errorStatus.message= '';
 
                 this.circleId = this.$route.params.id;
-     
+
                 return fetchTop(this.circleId)
-                .then(response=>{ 
+                .then(response=>{
                     hideLoading(this);
                     this.data = response;
                     })
-                .catch(error=>{ 
-                  window.console.log(error.message); 
+                .catch(error=>{
+                  window.console.log(error.message);
                   this.errorStatus.message= error.messaga;
                   errorTip(this);
-                  //Promise.reject( error); 
+                  //Promise.reject( error);
                   });
 
             },
@@ -183,7 +182,7 @@
                     }
                 ]
                 });
-            },           
+            },
 
             concernOrCancel:function(){
               if(this.data.top.concerned){
@@ -231,7 +230,7 @@
         },
         created(){
             this.init();
-        },    
+        },
     }
 
 </script>

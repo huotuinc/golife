@@ -16,6 +16,7 @@ import { getToken ,getCustomerID } from '../vuex/getters'
  * API根地址
  */
 export const javaApiUri='http://mallsns.51flashmall.com:8091'
+//export const javaApiUri='http://192.168.1.92:8986'
 
 export const debug=true
 
@@ -40,7 +41,7 @@ export const get = ({uri, query}) => {
   return fetch(_url, {
     headers: {
       authentication: _token,
-    }
+    },    
   })
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {

@@ -64,7 +64,7 @@ export const getBanner = () => {
   * @param $this 当前页最后一条数据ID
   */
 export const getGroupList = (lastId) => {
-  let uri = '/app/circle/indexList'
+  let uri = '/app/user/indexList'
   let query=`lastId=${lastId}`
   return bases.get({uri,query}).then((json) => {
     let data = {
@@ -85,28 +85,34 @@ export const getGroupList = (lastId) => {
 
 /**
  * 获得 圈子热门推荐列表
+ * @param lastId 圈子id
+ * @returns {*|Promise|Promise.<T>}
  */
-export const fetchSuggestList = () =>{
-  if(bases.debug){
-    let suggestList=[];
-     suggestList.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/1?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/2?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/3?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/4?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/5?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/6?customerId=3447"});
-     suggestList.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/7?customerId=3447"});
-     return Promise.resolve(suggestList)
-  }else{
+export const fetchSuggestList = ( lastId) =>{
+  // if(bases.debug){
+  //     let suggestList={list:[],lastId:7};
+  //    suggestList.list.push({num:230,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/1?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/2?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/3?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/4?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/5?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/6?customerId=3447"});
+  //    suggestList.list.push({num:454,title:'测试数据',pictureUrl:'https://vuefe.cn/images/logo.png',url:"/circle/groupList/7?customerId=3447"});
+  //    return Promise.resolve(suggestList)
+  // }else{
      let uri = '/app/circle/circleIndexSuggestList';
-    return bases.get({uri })
+     let query = `lastId=${lastId}`;
+     let data={list:[],lastId:0};
+    return bases.get({uri ,query})
       .then((json) => {
         if (json.systemResultCode != 1) return Promise.reject(new Error('code:' + json.systemResultCode + ' message:' + json.systemResultDescription));
         if (json.resultCode != 1) return Promise.reject(new Error('code:' + json.resultData + "message:" + json.resultDescription));
-        return json.resultData.suggestList;
+        if(json.resultData == null || json.resultData.suggestList==null || json.resultData.suggestList.length<1) return Promise.resolve(null);
+        data.list = json.resultData.suggestList;
+        return Promise.resolve( data );
       })
       .catch(error => Promise.reject(error));
-  }
+  // }
 }
 
 /**
@@ -152,7 +158,7 @@ export const fetchList =(circleId , type = 0  , lastId=0)=>{
       articleList.list.push({commentsAmount:3452,concerned:false,name:'美国交通部长：美国的未来同自动驾驶技术休戚相关',
       pictureUrl:'https://images0.cnblogs.com/news_topic/20150522141805682.png',pid:lastId,time:new Date().getTime()-360000,
       userHeadUrl:'https://images2015.cnblogs.com/news_topic/20161027234046765-2075674400.png',userId:1,userLevel:8,userName:'新闻小白',viewAmount:'3422'});
-    
+
       articleList.list.push({commentsAmount:3452,concerned:false,name:'特斯拉10月出货暴跌八成，它成了按财报节点造车的公司',
       pictureUrl:'https://images0.cnblogs.com/news_topic/tesla.png',pid:lastId+1,time:new Date().getTime()-360000,
       userHeadUrl:'https://news.cnblogs.com/images/logo.gif',userId:1,userLevel:8,userName:'itwriter',viewAmount:'3422'});
@@ -214,27 +220,29 @@ export const fetchList =(circleId , type = 0  , lastId=0)=>{
  * 圈子介绍
  * circleId 圈子id
  */
-export const introduce= (circleId)=>{
-    if(bases.debug){
-      let data={
-        	articleAmount:3432,
-          categoryName:'健康分类',
-          concermAmount:123,
-          date:new Date().getTime()- 454000,
-          leaderHeadUrl:'https://images0.cnblogs.com/news_topic/12-08-24%2023-47-29.gif',
-          leaderLevel:2,
-	        leaderName:'金向东',
-          name:'保健',
-          pictureUrl:'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCztdqn6AEQrAIY-gEyCJUbj9FaQJnw',
-          summary:'Visual Studio Code 1.7.1 发布啦！更新内容：水平布局-按纵向或横向组织编辑器；键盘快捷键参考-新键盘快捷键可打开 PDF 备忘单；调试命中的计数控制-设置断',
-      };
+export const introduce= (circleId)=> {
+  if (bases.debug) {
+    let data = {
+      articleAmount: 3432,
+      categoryName: '健康分类',
+      concermAmount: 123,
+      date: new Date().getTime() - 454000,
+      leaderHeadUrl: 'https://images0.cnblogs.com/news_topic/12-08-24%2023-47-29.gif',
+      leaderLevel: 2,
+      leaderName: '金向东',
+      name: '保健',
+      pictureUrl: 'https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCztdqn6AEQrAIY-gEyCJUbj9FaQJnw',
+      summary: 'Visual Studio Code 1.7.1 发布啦！更新内容：水平布局-按纵向或横向组织编辑器；键盘快捷键参考-新键盘快捷键可打开 PDF 备忘单；调试命中的计数控制-设置断',
+    };
 
-      return Promise.resolve( data );
+    return Promise.resolve(data);
 
-    }else{
-      let uri = '/app/circle/introduce';
-      let query = `id=${circleId}`;
-      return bases.get(uri,query).then(json=>{ return Promise.resolve(json.resultData);}).catch(error=>Promise.reject(error));
+  } else {
+    let uri = '/app/circle/introduce';
+    let query = `id=${circleId}`;
+    return bases.get(uri, query).then(json=> {
+      return Promise.resolve(json.resultData);
+    }).catch(error=>Promise.reject(error));
 
-    }
+  }
 }
