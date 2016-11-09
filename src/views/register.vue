@@ -110,13 +110,14 @@
           $.toptip("请重新输入密码", 'warning');
           return false
         }
-        if(utils.isEqual(this.repeatPassWord,this.passWord)){
+        if(!utils.isEqual(this.repeatPassWord,this.passWord)){
           $.toptip("两次输入的密码不一致", 'warning');
           return false
         }
         return true
       },
       register:function () {
+        let $this=this
          if(this.validation()){
            let OAuthObject=this.getWxOAuherInfo
            let openId=OAuthObject.openId,nickName=OAuthObject.wxNick,imageUrl=OAuthObject.wxHeader
@@ -131,7 +132,7 @@
            ).then(function (data) {
               if(data.code==status.SUCCESS){
                 $.toptip("注册成功", 'success');
-                //TODO 做跳转操作
+                window.location.href="http://"+window.location.host+"/#"+$this.$route.query.redirectUrl
               }else{
                 $.toptip(data.message, 'warning');
               }

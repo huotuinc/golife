@@ -11,6 +11,8 @@ import { timeToNow } from './filters';
 import * as errorCodes from './assets/error-type'
 import { weixinOAuth } from './apis/common/weixinOAuth'
 import { loginByWx } from './apis/user'
+import { getTokenByCookie } from './vuex/getters'
+import * as utils from './assets/utils'
 
 Vue.filter('timeToNow', timeToNow);
 
@@ -26,28 +28,31 @@ let indexScrollTop = 0;
 router.beforeEach((route, redirect, next) => {
   if (route.meta.requiresAuth == undefined || route.meta.requiresAuth) {
     if (route.query.customerId != undefined && route.query.customerId != 0) {
-      store.dispatch("updateCustomerId", route.query.customerId);
-      weixinOAuth(route)
-        .then(function (OAutherObject) {
-          //TODO 商城授权->微信授权->跳转过来的链接安全性问题还待处理
-          store.dispatch("updateFooter", true);
-          store.dispatch("updateBackClass", 'ddbg');
-          if (route.path !== '/') {
-            indexScrollTop = document.body.scrollTop;
-          }
-          // loginByWx(route.query.customerId, OAutherObject.openId, OAutherObject.wxNick, OAutherObject.wxHeader)
-          if (OAutherObject.openId != '' && OAutherObject.openId != undefined) {
-            loginByWx(route.query.customerId, OAutherObject.openId, OAutherObject.wxNick, OAutherObject.wxHeader)
-          }
-          if (store.state.mallUrl == '')
+      if(route.meta.isLogin){
+        redirectLogin(route,next,route.query.customerId)
+      }else{
+        store.dispatch("updateCustomerId", route.query.customerId);
+        weixinOAuth(route)
+          .then(function (OAutherObject) {
+            //TODO 商城授权->微信授权->跳转过来的链接安全性问题还待处理
+            store.dispatch("updateFooter", true);
+            store.dispatch("updateBackClass", 'ddbg');
+            if (route.path !== '/') {
+              indexScrollTop = document.body.scrollTop;
+            }
+            if (OAutherObject.openId != '' && OAutherObject.openId != undefined) {
+              loginByWx(route.query.customerId, OAutherObject.openId, OAutherObject.wxNick, OAutherObject.wxHeader)
+            }
+            if (store.state.mallUrl == '')
+              next(errorCodes.redirectErrorByCode(errorCodes.ERROR_CONFIG))
+            else
+              next()
+          })
+          .catch(function (error) {//获得商城基本配置异常
+            window.console.log(error)
             next(errorCodes.redirectErrorByCode(errorCodes.ERROR_CONFIG))
-          else
-            next()
-        })
-        .catch(function (error) {//获得商城基本配置异常
-          window.console.log(error)
-          next(errorCodes.redirectErrorByCode(errorCodes.ERROR_CONFIG))
-        })
+          })
+      }
     } else {
       next(errorCodes.redirectErrorByCode(errorCodes.ERROR_PARAMETER))
     }
@@ -57,6 +62,16 @@ router.beforeEach((route, redirect, next) => {
   // document.title = route.meta.title || document.title;
 });
 
+//TODO 需要添加根据token 来判断登录是否有效的操作
+const redirectLogin=(route,next,customerId) =>{
+  let token=getTokenByCookie();
+  if(token==''||token==undefined){
+    let redirectUrl=route.fullPath
+    next(utils.redirectLogin(customerId,redirectUrl))
+  }else{
+    next()
+  }
+}
 
 // //
 // // /**

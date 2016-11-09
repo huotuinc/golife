@@ -12,7 +12,7 @@ const state = {
   loading: true,
   footer:true,
   backClass:'ddbg',
-  token:'234234234',
+  token:'',
   customerId:0,
   mallUrl:'',
   oauthor:{

@@ -65,7 +65,7 @@ export const getConcernArticle = (lastId) => {
       list: [],
       lastId: 0
     }
-    if (json.resultData.articleList != null && json.resultData.articleList.length > 0) {
+    if (json.resultData!=null&&json.resultData.articleList != null && json.resultData.articleList.length > 0) {
       data.list = json.resultData.articleList;
       data.lastId = json.resultData.articleList[json.resultData.articleList.length - 1].pid
     } else {
@@ -221,8 +221,9 @@ export const registerByMobile =(customerId,phone, code, password, openId, nickNa
   return bases.post({uri,params}).then((json) => {
     let data={};
     data.code=json.resultCode
-    if(json.resultCode==null||json.resultCode==''){
+    if(json.systemResultCode==apiStatus.SYSTEM_SERVER_ERROR){
       data.message='服务器内部异常'
+      data.code=apiStatus.SYSTEM_SERVER_ERROR
     }else {
       if (json.resultCode == apiStatus.SUCCESS) {//登录成功
         store.dispatch("updateToken", json.resultData.data)
@@ -270,10 +271,12 @@ export const loginByMobile =(customerId,phone,passWord, openId, nickName, imageU
   return bases.post({uri,params}).then((json) => {
     let data={};
     data.code=json.resultCode
-    if(json.resultCode==null||json.resultCode==''){
+    if(json.systemResultCode==apiStatus.SYSTEM_SERVER_ERROR){
       data.message='服务器内部异常'
+      data.code=apiStatus.SYSTEM_SERVER_ERROR
     }else {
       if (json.resultCode == apiStatus.SUCCESS) {//登录成功
+        window.console.log(json.resultData.data)
         store.dispatch("updateToken", json.resultData.data)
         data.message = "注册成功"
       } else if (json.resultCode == apiStatus.PARAMETER_PHONE_ERROR) {

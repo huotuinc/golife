@@ -32,7 +32,7 @@
       <!--</div>-->
     </div>
     <p class="nomessage">
-      <router-link :to="{ path: 'register',query:{ customerId:getCustomerID} }" >没有帐号?立即注册</router-link>
+      <router-link :to="{ path: 'register',query:{ customerId:getCustomerID,redirectUrl:redirectUrl} }" >没有帐号?立即注册</router-link>
     </p>
     <p style="height:35px"></p>
     <a href="javascript:;" v-on:click="login" class="weui_btn weui_btn_primary anniu ">登录</a>
@@ -53,7 +53,8 @@
     data(){
       return{
         phone:'',
-        passWord:''
+        passWord:'',
+        redirectUrl:""
       }
     },
     computed: mapGetters([
@@ -81,11 +82,12 @@
         return true
       },
       login:function () {
+        let $this=this
         if(this.validation()){
           let OAuthObject=this.getWxOAuherInfo
           let openId=OAuthObject.openId,nickName=OAuthObject.wxNick,imageUrl=OAuthObject.wxHeader
           loginByMobile(
-            this.customerId,
+            this.getCustomerID,
             this.phone,
             this.passWord,
             openId,
@@ -93,8 +95,8 @@
             imageUrl
           ).then(function (data) {
             if(data.code==status.SUCCESS){
-              $.toptip("登录成功", 'success');
-              //TODO 做跳转操作
+              $.toptip("登录成功,即将跳转", 'success');
+              window.location.href="http://"+window.location.host+"/#"+$this.redirectUrl
             }else{
               $.toptip(data.message, 'warning');
             }
@@ -109,6 +111,7 @@
       require("../../static/js/weui-0.8.2/jquery-weui");
     },
     activated () {
+      this.redirectUrl=this.$route.query.redirectUrl
       this.$store.dispatch("updateFooter",false);
       this.$store.dispatch("updateBackClass",'app-content-color-white');
     },
