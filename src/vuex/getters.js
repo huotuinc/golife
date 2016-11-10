@@ -35,6 +35,14 @@ export const getToken = function (state) {
 }
 
 /**
+ * 根据Cookie来获得Token
+ * @returns {*}
+ */
+export const getTokenByCookie=function () {
+  return getCookie(cookies.TOKEN)
+}
+
+/**
  * 获得全局的商家商城地址
  * @param state
  * @returns {string}

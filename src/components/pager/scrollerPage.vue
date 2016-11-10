@@ -115,6 +115,7 @@
         this.scrollStatus.loading=true
         this.nextMethod($this.data.lastId)
           .then(function (data) {
+            window.console.log(data)
             if (data == null) {
               disabledScroll($this)
               if ($this.data.lastId == 0) {
@@ -130,6 +131,7 @@
             }
           })
           .catch(function (error) {
+            window.console.log(error)
             if ($this.data.lastId == 0) {
               errorTip($this, '没有数据')
             }

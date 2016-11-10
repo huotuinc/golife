@@ -16,7 +16,7 @@ import { getToken ,getCustomerID } from '../vuex/getters'
  * API根地址
  */
 export const javaApiUri='http://mallsns.51flashmall.com:8091'
-//export const javaApiUri='http://192.168.1.92:8986'
+// export const javaApiUri='http://192.168.1.92:8986'
 
 export const debug=true
 
@@ -41,7 +41,7 @@ export const get = ({uri, query}) => {
   return fetch(_url, {
     headers: {
       authentication: _token,
-    },    
+    },
   })
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
@@ -64,15 +64,13 @@ export const get = ({uri, query}) => {
 export const post = ({uri, params}) => {
   window.console.log(uri)
   let _token = getToken(store.state);//获得Token
-  window.console.log(params)
   return fetch(javaApiUri + uri, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
       authentication: _token,
     },
-    body: JSON.stringify(params),
+    body:convertFromData(params)
   })
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
@@ -81,6 +79,33 @@ export const post = ({uri, params}) => {
       return Promise.reject(new Error(res.status));
     });
 };
+
+/**
+ * json 数据转url Params参数
+ * @param params
+ * @returns {string}
+ */
+export const convertUrlParam=(params)=>{
+  let urlParams=''
+  for(var param in params){
+    urlParams+=`${param}=${params[param]}&`
+  }
+  urlParams=urlParams.substring(0,urlParams.length-1)
+  return urlParams
+}
+
+/**
+ * json 数据转FromData参数
+ * @param params json参数对象
+ * @returns {string}
+ */
+export const convertFromData=(params)=>{
+  let fromData=new FormData()
+  for(var param in params){
+    fromData.append(param,params[param])
+  }
+  return fromData
+}
 
 /**
  * 没有数据

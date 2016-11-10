@@ -101,6 +101,12 @@ export const SERVER_MESSAGE_NOSUPPORT_ERROR=20108
  */
 export const SERVER_MESSAGE_ERROR=20109
 
+/**
+ * 内部服务错误
+ * @type {number}
+ */
+export const SYSTEM_SERVER_ERROR=500
+
 // /**
 //  * 用户已被冻结，无法进行任何操作，请联系客服
 //  * @type {number} 2101

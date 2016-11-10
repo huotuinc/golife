@@ -59,19 +59,19 @@ export const getBanner = () => {
   // $this.hot=suggestList
 }
 
-  /**
-  * 获得我的小组列表(分页)
-  * @param $this 当前页最后一条数据ID
-  */
+/**
+ * 获得我的小组列表(分页)
+ * @param $this 当前页最后一条数据ID
+ */
 export const getGroupList = (lastId) => {
   let uri = '/app/user/indexList'
-  let query=`lastId=${lastId}`
-  return bases.get({uri,query}).then((json) => {
+  let query = `lastId=${lastId}`
+  return bases.get({uri, query}).then((json) => {
     let data = {
       list: [],
       lastId: 0
     }
-    if (json.resultData.circlelist != null && json.resultData.circlelist.length > 0) {
+    if (json.resultData!=nulljson.resultData.circlelist != null && json.resultData.circlelist.length > 0) {
       data.list = json.resultData.circlelist;
       data.lastId = json.resultData.circlelist[json.resultData.circlelist.length - 1].pid
     } else {
@@ -81,7 +81,7 @@ export const getGroupList = (lastId) => {
   }).catch((error) => {
     return Promise.reject(new Error('网络异常'));
   });
-  }
+}
 
 /**
  * 获得 圈子热门推荐列表
@@ -121,6 +121,7 @@ export const fetchSuggestList = ( lastId) => {
  * circleId 圈子Id
  */
 export const fetchTop = (circleId)=> {
+
   // if (bases.debug) {
   //   let data = {data: null, noticeList: [], top: null};
   //   data.data = {
@@ -261,7 +262,7 @@ export const fetchList =(circleId , type = 0  , lastId=0)=>{
  * 圈子介绍
  * circleId 圈子id
  */
-export const introduce= (circleId)=> {
+export const introduce = (circleId)=> {
   if (bases.debug) {
     let data = {
       articleAmount: 3432,

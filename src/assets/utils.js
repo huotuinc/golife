@@ -104,6 +104,18 @@ export const isEmpty=function (str) {
 export const isEqual=function (str1,str2) {
   return str1==str2
 }
+
+/**
+ * 重定向登录页面
+ * @param customerId
+ * @param redirectUrl 需要跳转的地址（相对路由地址包含参数,比如你要访问http://localhost:8080/#/search?customerId=3447 则这里传递/search?customerId=3447即可）
+ * @returns {{path: string, query: {customerId: *, redirectUrl: string}}}
+ */
+export const redirectLogin =function (customerId,redirectUrl) {
+  let referer=redirectUrl
+  return {path:'/login',query:{customerId:customerId,redirectUrl:referer}}
+}
+
 // Browser: {
 //   UserAgent: function () {
 //     var u = navigator.userAgent;
