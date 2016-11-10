@@ -132,13 +132,13 @@
       return {
         newTab:true,
         hotTab:false,
-        currentTab:'newTab',   
-        wrapperHeight:'',    
-        type: 0, 
+        currentTab:'newTab',
+        wrapperHeight:'',
+        type: 0,
         loadStatus:{
-          topStatus: '',          
+          topStatus: '',
           allLoaded: false,
-        },   
+        },
       }
     },
     components:{
@@ -159,10 +159,13 @@
         this.loadStatus.topStatus = status;
       },
       loadTop:function(id){
-        this.$refs.groupTop.init().then(()=>{this.$refs.loadmore.onTopLoaded(id)});
+        this.$refs.groupTop.init()
+          .then(()=>{this.$refs.loadmore.onTopLoaded(id)})
+          .catch(error=>{this.$refs.loadmore.onTopLoaded(id)});
+
         this.$refs.groupList.loadTop(this , this.type , id );
       },
-    },      
+    },
     created(){
     },
     activated() {

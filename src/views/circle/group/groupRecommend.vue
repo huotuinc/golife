@@ -3,14 +3,14 @@
     <div class="_full_inner">
 
       <!--<subLoading :loading="errorStatus.loading" :isShowImage="errorStatus.isShowImage" :message="errorStatus.message"></subLoading>-->
-      
+
       <div ref='wrapper' class="qbxiaozu scrollable-content" :style="{height: wrapperHeight + 'px' }">
           <mt-loadmore top-Distance="20" @top-status-change="handleTopChange" :top-method="loadTop" :bottom-all-loaded="loadStatus.allLoaded" ref="loadmore">
-          
+
           <scrollPager :nextMethod="loadMore" ref='scrollPager'>
               <ul>
                 <li v-for='item in data.list'>
-                  <router-link :to="item.url">
+                  <router-link :to="{path:'/circle/groupList/'+ item.circleId , query:{ customerId:getCustomerID }}">
                     <div class='custom-image-mask'>
                       <span class="bn">{{item.title}}</span>
                       <span class="bna">{{item.num}}人已关注</span>
@@ -34,7 +34,7 @@
 </template>
 <script>
   import {fetchSuggestList} from '../../../apis/circle';
-  import {getCustomerID} from '../../../vuex/getters.js';
+  import {getCustomerID} from '../../../vuex/getters';
   import {mapGetters} from 'vuex';
   import subLoading from '../../../components/common/loading';
   import scrollPager from '../../../components/pager/scrollerPage.vue';
@@ -52,12 +52,12 @@
         // },
         wrapperHeight:0,
         loadStatus:{
-          topStatus: '',          
+          topStatus: '',
           allLoaded: false,
-        },  
+        },
         data:{
           list:[],
-          
+
         },
       }
     },
@@ -66,7 +66,7 @@
       scrollPager,
     },
     computed:{
-      ...mapGetters({getCustomerID}),
+      ...mapGetters(['getCustomerID']),
     },
     methods:{
 
@@ -74,15 +74,17 @@
         this.loadStatus.topStatus = status;
       },
 
-      loadTop:function(id){        
+      loadTop:function(id){
         window.console.log("loadTop");
-        this.$refs.scrollPager.refreshPager(this,this,id);        
+        this.$refs.scrollPager.refreshPager(this,this,id);
       },
 
       loadMore:function(lastId){
-        window.console.log("loadMore");          
+        window.console.log("loadMore");
+        let $this = this;
         //window.console.log("customerId="+customerId);
         return fetchSuggestList( lastId);
+
         //.then(
         //(response)=>{
         //  this.suggestList= response;
@@ -103,8 +105,8 @@
       this.$emit('update-decline', false);
     },
     mounted(){
-      window.console.log('mounted');
-      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.wrapper.getBoundingClientRect().top );     
+      //window.console.log('mounted');
+      this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.wrapper.getBoundingClientRect().top );
       this.data.list = this.$refs.scrollPager.data.list;
     },
 

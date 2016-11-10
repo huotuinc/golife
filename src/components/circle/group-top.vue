@@ -77,10 +77,10 @@
   </div>
   </div>
 </template>
-<script>
+<script type="text/ecmascript-6">
     import {fetchTop} from '../../apis/circle'
     import {concern,report,concernUser,cancelUser} from '../../apis/user.js'
-    import { hideLoading, errorTip } from '../../apis/common/actions.js'
+    import { hideLoading, errorTip,errorTipMessage } from '../../apis/common/actions.js'
     import subLoading from '../../components/common/loading'
     import {mapGetters} from 'vuex'
 
@@ -121,10 +121,9 @@
                     this.data = response;
                     })
                 .catch(error=>{
-                  window.console.log(error.message);
                   this.errorStatus.message= error.messaga;
-                  errorTip(this);
-                  //Promise.reject( error);
+                  errorTipMessage(this,error.message);
+                  //return Promise.reject( error);
                   });
 
             },

@@ -19,7 +19,7 @@
                 <p class="zh-wz-name"> {{item.userName}}<img src="/static/images/ddbm.png" class="zh-wz-name-ico"></p>
               </div>
               <div class="njk" style="display: none">
-                <a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default">关注</a>
+                <a href="javascript:void(0);" class="weui_btn weui_btn_mini weui_btn_default">关注</a>
               </div>
               <div class="zh-wz-time">
                 <span style="float:left">{{item.time | timeToNow }}</span>

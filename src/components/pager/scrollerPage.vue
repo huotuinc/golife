@@ -81,6 +81,7 @@
       refreshPager:function (loadMoreObject,dataObject,id) {
         let $this = this
         undisabledScroll($this);
+
         $this.data.lastId = 0
         this.nextMethod($this.data.lastId)
           .then(function (data) {
@@ -110,6 +111,7 @@
        */
       loadMore: function () {
         let $this = this
+        //this.scrollStatus.disabled=true;
         this.scrollStatus.loading=true
         this.nextMethod($this.data.lastId)
           .then(function (data) {
