@@ -48,8 +48,9 @@ export const updateCustomerId = ({ commit },customerId) => {
  * @param commit
  * @param oauthorObj 微信授权获取到的微信个人基本信息
  */
-export const updateOAuther = ({ commit },openId,wxNick,wxHeader) => {
-  commit(types.UPDATE_WEIXININFO,openId,wxNick,wxHeader)
+export const updateOAuther = ({ commit },oauthorObj) => {
+  alert(JSON.stringify(oauthorObj))
+  commit(types.UPDATE_WEIXININFO, oauthorObj)
 }
 
 /**

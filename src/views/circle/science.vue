@@ -64,6 +64,7 @@
   import scrollerPager from '../../components/pager/scrollerPage'
   import { Loadmore } from 'mint-ui';
   import { getScienceList } from '../../apis/science'
+  import { clearCookie } from '../../assets/cookie/cookie'
   export default {
     data() {
       return {
@@ -103,6 +104,7 @@
       },
     },
     mounted() {
+      clearCookie()
       this.data.list=this.$refs.scrollerPager.data.list
       this.wrapperHeight = document.documentElement.clientHeight - (this.$refs.wrapper.getBoundingClientRect().top + 50);
     }

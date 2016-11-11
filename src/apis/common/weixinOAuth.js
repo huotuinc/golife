@@ -51,9 +51,14 @@ export const weixinOAuth=function (route) {
         if(route.query.openid!=undefined){
           let openId=route.query.openid
           let retuinfo=JSON.parse(route.query.retuinfo);
-          let wxNick=retuinfo.headimgurl
-          let wxHeader=retuinfo.nickname
-          store.dispatch("updateOAuther",openId,wxNick,wxHeader);
+          let wxNick=retuinfo.nickname
+          let wxHeader=retuinfo.headimgurl
+          let oauthorObj={
+            openId:openId,
+            wxNick:wxNick,
+            wxHeader:wxHeader
+          }
+          store.dispatch("updateOAuther",oauthorObj);
         }
       }
       return Promise.resolve(getWxOAuherInfo(store.state))

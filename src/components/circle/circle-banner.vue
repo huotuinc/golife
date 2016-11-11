@@ -79,6 +79,7 @@
         return getBanner()
           .then(function (data) {
             $this.hotData = data;
+            window.console.log($this.hotData.banner)
             hideLoading($this)
             $this.$nextTick(() => {
               let mySwiper = new Swiper('.swiper-container', {

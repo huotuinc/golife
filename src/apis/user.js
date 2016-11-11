@@ -276,9 +276,8 @@ export const loginByMobile =(customerId,phone,passWord, openId, nickName, imageU
       data.code=apiStatus.SYSTEM_SERVER_ERROR
     }else {
       if (json.resultCode == apiStatus.SUCCESS) {//登录成功
-        window.console.log(json.resultData.data)
         store.dispatch("updateToken", json.resultData.data)
-        data.message = "注册成功"
+        data.message = "登录成功"
       } else if (json.resultCode == apiStatus.PARAMETER_PHONE_ERROR) {
         data.message = '手机号码格式不正确'
       } else if (json.resultCode == apiStatus.ACCOUNT_ERROR) {

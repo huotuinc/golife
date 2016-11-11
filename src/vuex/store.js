@@ -41,13 +41,16 @@ const mutations = {
     state.customerId=customerId
     addCookie(cookies.CUSTOMERID,customerId,cookies.COOKIE_DAYS)
   },
-  [types.UPDATE_WEIXININFO](state,openId,wxNick,wxHeader){
-    state.oauthor.openId=openId
-    state.oauthor.wxNick=wxNick
-    state.oauthor.wxHeader=wxHeader
-    addCookie(cookies.OPENID)
-    addCookie(cookies.WXNICK)
-    addCookie(cookies.WXHEADER)
+  [types.UPDATE_WEIXININFO](state,oauthorObj){
+    state.oauthor.openId=oauthorObj.openId
+    state.oauthor.wxNick=oauthorObj.wxNick
+    state.oauthor.wxHeader=oauthorObj.wxHeader
+    alert("openId-->"+oauthorObj.openId)
+    alert("wxNick-->"+oauthorObj.wxNick)
+    alert("wxHeader-->"+oauthorObj.wxHeader)
+    addCookie(cookies.OPENID,oauthorObj.openId,cookies.COOKIE_DAYS)
+    addCookie(cookies.WXNICK,oauthorObj.wxNick,cookies.COOKIE_DAYS)
+    addCookie(cookies.WXHEADER,oauthorObj.wxHeader,cookies.COOKIE_DAYS)
   },
   [types.UPDATE_MALLURL](state,mallUrl){
     state.mallUrl=mallUrl
